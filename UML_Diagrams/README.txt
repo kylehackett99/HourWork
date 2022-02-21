@@ -1,4 +1,4 @@
-This File is where collaborators can access and modify already created UML diagrams
+This Folder is where collaborators can access and modify already created UML diagrams
 
 Link to page to setup your github account to allow access to drawio
 https://www.diagrams.net/blog/single-repository-diagrams
