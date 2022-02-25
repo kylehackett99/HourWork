@@ -1,11 +1,11 @@
-<mxfile host="app.diagrams.net" modified="2022-02-25T04:57:37.827Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 OPR/83.0.4254.46" etag="FvZ1yYMuf07SXVeaJJVf" version="16.6.2" type="github">
+<mxfile host="app.diagrams.net" modified="2022-02-25T06:20:50.551Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 OPR/83.0.4254.46" etag="wDqnOyQSSeJwwZnt6foL" version="16.6.2" type="github">
   <diagram id="LVzEYyDSwuDejh0J49fi" name="Page-1">
     <mxGraphModel dx="489" dy="302" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="qb5UULLnhWee_SENul3f-9" value="MindMap_Creation_Controller" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="195" y="120" width="230" height="164" as="geometry" />
+          <mxGeometry x="195" y="100" width="230" height="190" as="geometry" />
         </mxCell>
         <mxCell id="qb5UULLnhWee_SENul3f-10" value="+ mmController: MindMapController" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="qb5UULLnhWee_SENul3f-9">
           <mxGeometry y="26" width="230" height="26" as="geometry" />
@@ -25,9 +25,16 @@
         <mxCell id="qb5UULLnhWee_SENul3f-30" value="+ compile(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="qb5UULLnhWee_SENul3f-9">
           <mxGeometry y="138" width="230" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="qb5UULLnhWee_SENul3f-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.448;entryY=1.014;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="qb5UULLnhWee_SENul3f-14" target="qb5UULLnhWee_SENul3f-30">
+        <mxCell id="qb5UULLnhWee_SENul3f-43" value="+ delete(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="qb5UULLnhWee_SENul3f-9">
+          <mxGeometry y="164" width="230" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="qb5UULLnhWee_SENul3f-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;entryX=0.323;entryY=1.129;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="qb5UULLnhWee_SENul3f-14" target="qb5UULLnhWee_SENul3f-43">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="270" y="310" as="targetPoint" />
+            <mxPoint x="270" y="300" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="190" y="310" />
+              <mxPoint x="269" y="310" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="qb5UULLnhWee_SENul3f-14" value="StructuredNotesController" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
@@ -60,11 +67,17 @@
         <mxCell id="qb5UULLnhWee_SENul3f-24" value="+ postNotes(name): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="qb5UULLnhWee_SENul3f-14">
           <mxGeometry y="216" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="qb5UULLnhWee_SENul3f-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.448;entryY=0.974;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="qb5UULLnhWee_SENul3f-18" target="qb5UULLnhWee_SENul3f-30">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="qb5UULLnhWee_SENul3f-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.514;entryY=1.007;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="qb5UULLnhWee_SENul3f-18" target="qb5UULLnhWee_SENul3f-43">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="322" />
+              <mxPoint x="298" y="322" />
+              <mxPoint x="298" y="290" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="qb5UULLnhWee_SENul3f-18" value="MindMapController" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="300" y="360" width="230" height="164" as="geometry" />
+          <mxGeometry x="320" y="360" width="230" height="164" as="geometry" />
         </mxCell>
         <mxCell id="qb5UULLnhWee_SENul3f-19" value="+ notes: JSON" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="qb5UULLnhWee_SENul3f-18">
           <mxGeometry y="26" width="230" height="26" as="geometry" />
