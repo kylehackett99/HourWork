@@ -1,11 +1,11 @@
-<mxfile host="app.diagrams.net" modified="2022-02-25T04:02:59.212Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 OPR/83.0.4254.46" etag="uVCCZOqu9h-Pe7aVc9YR" version="16.6.2" type="github">
+<mxfile host="app.diagrams.net" modified="2022-02-25T04:57:23.249Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 OPR/83.0.4254.46" etag="57sjZttdM-g1k_qqtMhz" version="16.6.2" type="github">
   <diagram id="fIxEfDhUwx2ujWKcjsf8" name="Page-1">
     <mxGraphModel dx="489" dy="302" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="EQNZa8FoGvDwN7BZj4iC-1" value="User_Dashboard_Controller" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="280" y="90" width="290" height="216" as="geometry" />
+          <mxGeometry x="280" y="90" width="290" height="190" as="geometry" />
         </mxCell>
         <mxCell id="EQNZa8FoGvDwN7BZj4iC-2" value="+ user: User" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="EQNZa8FoGvDwN7BZj4iC-1">
           <mxGeometry y="26" width="290" height="26" as="geometry" />
@@ -27,9 +27,6 @@
         </mxCell>
         <mxCell id="EQNZa8FoGvDwN7BZj4iC-8" value="+ updateDashboardUI(): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="EQNZa8FoGvDwN7BZj4iC-1">
           <mxGeometry y="164" width="290" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="EQNZa8FoGvDwN7BZj4iC-19" value="+ logout(): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="EQNZa8FoGvDwN7BZj4iC-1">
-          <mxGeometry y="190" width="290" height="26" as="geometry" />
         </mxCell>
         <mxCell id="EQNZa8FoGvDwN7BZj4iC-9" value="User" style="html=1;" vertex="1" parent="1">
           <mxGeometry x="90" y="90" width="110" height="50" as="geometry" />
