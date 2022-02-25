@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-02-25T06:20:50.551Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 OPR/83.0.4254.46" etag="wDqnOyQSSeJwwZnt6foL" version="16.6.2" type="github">
+<mxfile host="app.diagrams.net" modified="2022-02-25T07:02:29.322Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 OPR/83.0.4254.46" etag="A_uLxpdwA8nyPOfCSNY1" version="16.6.2" type="github">
   <diagram id="LVzEYyDSwuDejh0J49fi" name="Page-1">
     <mxGraphModel dx="489" dy="302" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -96,6 +96,26 @@
         </mxCell>
         <mxCell id="qb5UULLnhWee_SENul3f-28" value="+  updateUI(notes): MindMap" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="qb5UULLnhWee_SENul3f-18">
           <mxGeometry y="138" width="230" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="qb5UULLnhWee_SENul3f-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="qb5UULLnhWee_SENul3f-45" target="qb5UULLnhWee_SENul3f-29">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="590" y="425" />
+              <mxPoint x="590" y="425" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qb5UULLnhWee_SENul3f-45" value="MindMap" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="600" y="373" width="170" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="qb5UULLnhWee_SENul3f-46" value="+ mapNotes: JSON" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="qb5UULLnhWee_SENul3f-45">
+          <mxGeometry y="26" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="qb5UULLnhWee_SENul3f-47" value="+ dateCreated: Date" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="qb5UULLnhWee_SENul3f-45">
+          <mxGeometry y="52" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="qb5UULLnhWee_SENul3f-48" value="+ dateLastEdited: Date" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="qb5UULLnhWee_SENul3f-45">
+          <mxGeometry y="78" width="170" height="26" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
