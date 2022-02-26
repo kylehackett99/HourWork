@@ -1,1 +1,93 @@
-<mxfile host="app.diagrams.net" modified="2022-02-26T17:53:29.716Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 OPR/83.0.4254.46" version="16.6.4" etag="ceNTfNV-lKSzE9AVftk4" type="github"><diagram id="HTo3iiuKE1k7zcjPsBAO">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2022-02-26T18:10:00.081Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 OPR/83.0.4254.46" etag="pqv08gjH6prhVwhG0R1i" version="16.6.4" type="github">
+  <diagram id="HTo3iiuKE1k7zcjPsBAO" name="Page-1">
+    <mxGraphModel dx="729" dy="302" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="6rk3nvtCwCU-dYlgrRcQ-2" value="User" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="30" width="20" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="6rk3nvtCwCU-dYlgrRcQ-3" value="Device" style="shape=umlLifeline;participant=umlEntity;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="270" y="30" width="40" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="6rk3nvtCwCU-dYlgrRcQ-11" value="2. Requests Deck" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;rounded=0;" edge="1" parent="6rk3nvtCwCU-dYlgrRcQ-3" target="6rk3nvtCwCU-dYlgrRcQ-4">
+          <mxGeometry width="60" relative="1" as="geometry">
+            <mxPoint x="20" y="98" as="sourcePoint" />
+            <mxPoint x="185" y="98" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6rk3nvtCwCU-dYlgrRcQ-4" value="Application Controller" style="shape=umlLifeline;participant=umlEntity;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="405" y="30" width="40" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="6rk3nvtCwCU-dYlgrRcQ-5" value="Database" style="shape=umlLifeline;participant=umlEntity;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="560" y="30" width="40" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="6rk3nvtCwCU-dYlgrRcQ-6" value="1. Loads Creation Page with &lt;br&gt;option to open a &lt;br&gt;previously created deck&lt;br&gt;" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;rounded=0;" edge="1" parent="1" source="6rk3nvtCwCU-dYlgrRcQ-2" target="6rk3nvtCwCU-dYlgrRcQ-3">
+          <mxGeometry x="0.0045" y="10" width="60" relative="1" as="geometry">
+            <mxPoint x="340" y="160" as="sourcePoint" />
+            <mxPoint x="400" y="160" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="150" y="120" />
+              <mxPoint x="230" y="120" />
+            </Array>
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6rk3nvtCwCU-dYlgrRcQ-7" value="2. Clicks Add Card" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="60" relative="1" as="geometry">
+            <mxPoint x="89.5" y="262" as="sourcePoint" />
+            <mxPoint x="259.5" y="262" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="110" y="262" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6rk3nvtCwCU-dYlgrRcQ-8" value="3. Updates Page with new Card" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="259.5" y="290" as="sourcePoint" />
+            <mxPoint x="89.5" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6rk3nvtCwCU-dYlgrRcQ-9" value="4. Input Text &amp;amp; Images" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="89.5" y="320" as="sourcePoint" />
+            <mxPoint x="259.5" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6rk3nvtCwCU-dYlgrRcQ-12" value="3. Requests User path" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;rounded=0;" edge="1" parent="1" target="6rk3nvtCwCU-dYlgrRcQ-5">
+          <mxGeometry width="60" relative="1" as="geometry">
+            <mxPoint x="424.5" y="139" as="sourcePoint" />
+            <mxPoint x="549.5" y="139" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6rk3nvtCwCU-dYlgrRcQ-14" value="File System" style="shape=umlLifeline;participant=umlEntity;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="680" y="30" width="40" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="6rk3nvtCwCU-dYlgrRcQ-16" value="4. Returns User path" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" edge="1" parent="1" source="6rk3nvtCwCU-dYlgrRcQ-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="549.5" y="164" as="sourcePoint" />
+            <mxPoint x="424.5" y="164" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6rk3nvtCwCU-dYlgrRcQ-15" value="5. Requests Deck" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="60" relative="1" as="geometry">
+            <mxPoint x="424.5" y="190" as="sourcePoint" />
+            <mxPoint x="699.5" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6rk3nvtCwCU-dYlgrRcQ-18" value="6. Returns Deck" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="699.5" y="218" as="sourcePoint" />
+            <mxPoint x="424.5" y="218" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6rk3nvtCwCU-dYlgrRcQ-19" value="7. Creates Deck Object" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" edge="1" parent="1" target="6rk3nvtCwCU-dYlgrRcQ-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="420" y="220" as="sourcePoint" />
+            <mxPoint x="370" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
