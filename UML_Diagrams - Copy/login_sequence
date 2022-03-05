@@ -1,0 +1,53 @@
+<mxfile host="app.diagrams.net" modified="2022-02-26T17:47:09.936Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 OPR/83.0.4254.46" etag="VSEXTEUV27kxpApNYuAT" version="16.6.4" type="github">
+  <diagram id="-5vExPuOrVQbBUnITdHf" name="Page-1">
+    <mxGraphModel dx="729" dy="302" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pDSJfT_k_fx2y4oXBIIZ-4" value="" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="20" width="20" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="pDSJfT_k_fx2y4oXBIIZ-5" value="Device" style="shape=umlLifeline;participant=umlEntity;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="190" y="20" width="40" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="pDSJfT_k_fx2y4oXBIIZ-6" value="Database" style="shape=umlLifeline;participant=umlEntity;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;size=40;" vertex="1" parent="1">
+          <mxGeometry x="320" y="20" width="50" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="pDSJfT_k_fx2y4oXBIIZ-7" value="1. Input Credentials" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;rounded=0;" edge="1" parent="1" target="pDSJfT_k_fx2y4oXBIIZ-5">
+          <mxGeometry width="60" relative="1" as="geometry">
+            <mxPoint x="70" y="110" as="sourcePoint" />
+            <mxPoint x="130" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pDSJfT_k_fx2y4oXBIIZ-9" value="2. Retrieve User" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;rounded=0;" edge="1" parent="1" source="pDSJfT_k_fx2y4oXBIIZ-5" target="pDSJfT_k_fx2y4oXBIIZ-6">
+          <mxGeometry width="60" relative="1" as="geometry">
+            <mxPoint x="350" y="90" as="sourcePoint" />
+            <mxPoint x="410" y="90" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="240" y="120" />
+              <mxPoint x="330" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pDSJfT_k_fx2y4oXBIIZ-10" value="3. Authenticate" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;rounded=0;" edge="1" parent="1" source="pDSJfT_k_fx2y4oXBIIZ-6" target="pDSJfT_k_fx2y4oXBIIZ-5">
+          <mxGeometry width="60" relative="1" as="geometry">
+            <mxPoint x="350" y="160" as="sourcePoint" />
+            <mxPoint x="410" y="160" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="320" y="140" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pDSJfT_k_fx2y4oXBIIZ-11" value="4. Send User to Dashboard" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" edge="1" parent="1" source="pDSJfT_k_fx2y4oXBIIZ-5" target="pDSJfT_k_fx2y4oXBIIZ-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="180" y="190" as="sourcePoint" />
+            <mxPoint x="100" y="190" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="150" y="190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
