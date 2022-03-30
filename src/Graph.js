@@ -1,52 +1,85 @@
 class Graph {
+  
+  constructor(){
+    this.vertices = new Set();
+    this.adjacentList = new Map();
+  }
     
-    constructor() {
-        this.nodes = new Map();
-        this.size = 0;
-    }
+  // Returns Array of All verticies in Graph
+  getVertices() {
+    return Array.from(this.vertices)
+  }
+    
+  // Returns adjacency list of all verticies
 
-    addEdge(source, destination) {
-        const sourceNode = this.addVertex(source);
-        const destinationNode = this.addVertex(destination);
+  // FIX -> To work with The Node objects and their ids
+  getAdjacentList() {
+    const list = {};
       
-        sourceNode.addAdjacent(destinationNode);
-        destinationNode.addAdjacent(sourceNode);
-        
-        return true;
-    }
-    removeEdge(source, destination) {
-        const sourceNode = this.nodes.get(source);
-        const destinationNode = this.nodes.get(destination);
+    this.adjacentList.forEach((value, key) => {
+      list[key] = Array.from(value)
+    })
       
-        if(sourceNode && destinationNode) {
-          sourceNode.removeAdjacent(destinationNode);
-          destinationNode.removeAdjacent(sourceNode);
-          
-        }
-      
-        return true;
-    }
+    return list;
+  }
 
-    addVertex(card) {
-        if(this.nodes.has(card)) {
-          return this.nodes.get(card);
-        } else {
-          const vertex = new Node(card);
-          this.nodes.set(card, vertex);
-          return vertex;
-        }
+  // Adds a vertex to the graph
+  addVertex(vertex = null) {
+    if( !this.vertices.has(vertex) && vertex !== null && vertex !== undefined) {
+      this.vertices.add(vertex);
+      this.adjacentList.set(vertex, new Set());
+      return true;
     }
-    removeVertex(card) {
-        const current = this.nodes.get(card);
-        if(current) {
-          for (const node of this.nodes.values()) {
-            node.removeAdjacent(current);
-          }
+    return false;
+  }
+  // Removes a vertex from the graph
+  removeVertex(vertex = null){
+    if( this.vertices.has(vertex) && vertex !== null && vertex !== undefined) {
+      this.vertices.delete(vertex);
+      this.adjacentList.delete(vertex);
+      // Looks through adjacency list and removes the deleted vertex from all nodes
+      this.adjacentList.forEach((value, key) => { 
+        if(value.has(vertex)){
+          value.delete(vertex);
         }
-        return this.nodes.delete(card);
+      });
+      return true;    
     }
+    return false;
+  }
+
+
+  // Adds an edge between two verticies, and creates them if they do not already exist
+  addEdge(vertex1 = null, vertex2 = null) {
+    if( vertex1 !== null && vertex1 !== undefined &&
+        vertex2 !== null && vertex2 !== undefined && 
+        vertex1 != vertex2
+      ) {
+          this.addVertex(vertex1);
+          this.addVertex(vertex2);
+
+          this.adjacentList.get(vertex1).add(vertex2);
+          this.adjacentList.get(vertex2).add(vertex1);
+          return true;
+        }
+    return false;
+  }
+  // Removes an edge between two verticies -- must remove verticies separately
+  removeEdge(vertex1 = null, vertex2 = null) {
+    if( vertex1 !== null && vertex1 !== undefined &&
+        vertex2 !== null && vertex2 !== undefined && 
+        vertex1 != vertex2
+      ) {
+          this.adjacentList.get(vertex1).delete(vertex2);
+          this.adjacentList.get(vertex2).delete(vertex1);
+          return true;
+        }
+    return false;
+  }
+
+  
 
     
-    
+
 
 }

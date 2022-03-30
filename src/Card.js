@@ -1,9 +1,9 @@
 class Card {
-    constructor(frontText, backText) {
+    constructor(frontText = "", backText = "", weight = 0, dueDate = new Date) {
         this.frontText = frontText;
         this.backText = backText;
 
-        this.weight = weight;
+        this.weight = this.weight;
         this.dueDate = dueDate;
         this.nextStudyDate = this.calcNextStudyDate();
 

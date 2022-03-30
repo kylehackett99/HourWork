@@ -1,40 +1,13 @@
 class Node {
-    constructor(id, pid, card) {
-        // Graph Data 
-        this.adjacents = [];
-
+    constructor(id = 0, card = null) {
         // Data 
         this.card = card;
+        
+        this.id = id;
+        this.label = card.getFrontText();
+        this.color = this.generateColor();
     }
     
-    getID(){
-        return this.id;
-    }
-
-    getParentID(){
-        return this.parentID;
-    }
-    setParentID(pid){
-        this.parentID = pid;
-    }
-    
-    getAdjacents() {
-        return this.adjacents;
-    }
-    addAdjacent(node) {
-        this.adjacents.push(node);
-    }
-    removeAdjacent(node) {
-        const index = this.adjacents.indexOf(node);
-        if(index > -1) {
-          this.adjacents.splice(index, 1);
-          return node;
-        }
-    }
-    isAdjacent(node) {
-        return this.adjacents.indexOf(node) > -1;
-    }
-
     
     getCard(){
         return this.card;
@@ -43,5 +16,23 @@ class Node {
         this.card = c;
     }
 
+    getID(){
+        return this.id;
+    }
+
+    getLabel(){
+        return this.label;
+    }
+
+    getColor(){
+        return this.color;
+    }
+
+    generateColor(){
+        const red = '#AD2337';
+        const green = '#34AD24';
+        const blue = '#2F48AD';
+        return red;
+    }
     
 }
