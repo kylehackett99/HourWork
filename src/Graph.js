@@ -23,6 +23,17 @@ class Graph {
     return list;
   }
 
+  // Gets formatted edges to work with MindMap API
+  getEdges(){
+
+  }
+
+  // gets formatted nodes to work with Mindmap API
+  getNodes(){
+
+  }
+
+
   // Adds a vertex to the graph
   addVertex(vertex = null) {
     if( !this.vertices.has(vertex) && vertex !== null && vertex !== undefined) {
