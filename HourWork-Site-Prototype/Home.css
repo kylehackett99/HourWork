@@ -21,7 +21,10 @@
   margin: 0 auto 0 0;
 }
 
+/* upload file button */
 .u-section-1 .u-btn-1 {
+  display: inline;
+  float: none;
   border-style: none;
   text-transform: uppercase;
   font-size: 0.875rem;
@@ -30,6 +33,14 @@
   font-weight: 700;
   font-family: Nunito;
   margin: 0 auto 0 0;
+}
+
+/* file chosen span */
+.u-section-1 #file-chosen {
+  font-size: 0.925rem;
+  font-family: Nunito;
+  text-transform: lowercase;
+  padding: 20px;
 }
 
 .u-section-1 .u-text-1 {
@@ -240,4 +251,9 @@
   .u-section-1 .u-group-1 {
     width: 320px;
   }
+}
+
+/* hides the non-styled file upload button */
+input[type="file"] {
+  display: none;
 }
