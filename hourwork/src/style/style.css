@@ -1,3 +1,5 @@
 * {
     color: purple;
 }
+
+.rowC{display:flex; flex-direction:row;}

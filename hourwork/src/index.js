@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import {Mindmap} from './MindmapComponent.js';
 import './style/style.css';
@@ -7,14 +7,6 @@ import './style/style.css';
 import {Card} from './js/Card';
 import {Node} from './js/Node'
 import {Graph} from './js/Graph';
-
-
-
-// figure out how to import the plain js
-
-
-
-// Testing node and edge formatting
 
 // START IDs from 0
 var g = new Graph();
@@ -34,24 +26,53 @@ for(var i = 0; i < 6; i++){
 // adds a random edge from capital of MA
 g.addEdge(card2, new Node(5, new Card("Population", "500")));
 
-console.log("Graph");
-console.log(g);
 
 
+const App = () => {
+  
 
-// Renders HourWork Application
-const Application = () => {
+  // Renders MindMap from the MindMapComponent
+  function MindMap(){
+    // allows for callback from MindmapComponent js file
+    const [node, setNode] = useState('No Node Selected')
+    
+    // returns formatted React
+    return (
+      <div>
+        <h1>Mindmap</h1>
+        <h4>{node}</h4>
+        <Mindmap nodes={g.getNodes()} adjacent={g.getEdges()} sendBackNode={node => setNode(node)}  />
+      </div>
+    );
+
+  }
+ 
+  function Flashcard(){
     // React formatting
     return (
       <div>
-        <h1>Kyle's Testing</h1>
-        <p>Working to modify so it accepts a nodes & adj list and auto updates</p>
-        <Mindmap nodes={g.getNodes()} adjacent={g.getEdges()}/>
+        <h1>Flashcard</h1>
       </div>
     );
   
+  }
+
+
+  return (
+    <div>
+      <h1>Application</h1>
+
+      <div className='rowC'>
+        <MindMap />
+        <Flashcard />
+      </div>
+      
+    </div>
+  );
 }
 
 
 const root = createRoot(document.getElementById("root"));
-root.render(<Application />);
+root.render(<App />);
+
+

@@ -72,8 +72,10 @@ export function Mindmap(props) {
       select: ({ nodes, edges }) => {
         // call back to main with id of the selected node
           // do this so that the id can be taken in by the flashcard view upon selection
-      },
-      
+         
+        props.sendBackNode(nodes)
+
+      }, 
     }
   })
 
