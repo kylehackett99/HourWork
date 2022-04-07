@@ -1,5 +1,5 @@
-class Card {
-    constructor(frontText = "", backText = "", weight = 0, dueDate = new Date) {
+export class Card {
+    constructor(frontText = " ", backText = " ", weight = 0, dueDate = new Date) {
         this.frontText = frontText;
         this.backText = backText;
 

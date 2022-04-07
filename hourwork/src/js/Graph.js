@@ -1,4 +1,5 @@
-class Graph {
+
+export class Graph {
   
   constructor(){
     this.vertices = new Set();
@@ -23,14 +24,14 @@ class Graph {
     return list;
   }
 
-  // Gets formatted edges to work with MindMap API
+  // Gets edges to work with MindMap API
   getEdges(){
-
+    return this.adjacentList;
   }
 
-  // gets formatted nodes to work with Mindmap API
+  // gets nodes to work with Mindmap API
   getNodes(){
-
+    return this.vertices;
   }
 
 
@@ -87,10 +88,6 @@ class Graph {
         }
     return false;
   }
-
-  
-
-    
 
 
 }
