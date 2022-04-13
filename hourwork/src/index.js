@@ -39,9 +39,8 @@ const App = () => {
     // returns formatted React
     return (
       <div>
-        <h1>Mindmap</h1>
-        <h4>{node}</h4>
         <Mindmap nodes={g.getNodes()} adjacent={g.getEdges()} sendBackNode={node => setNode(node)}  />
+        <h4>{node}</h4>
       </div>
     );
 
@@ -60,11 +59,8 @@ const App = () => {
 
   return (
     <div>
-      <h1>Application</h1>
-
-      <div className='rowC'>
+      <div>
         <MindMap />
-        <Flashcard />
       </div>
       
     </div>

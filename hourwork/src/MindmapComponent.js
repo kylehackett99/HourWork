@@ -84,7 +84,7 @@ export function Mindmap(props) {
 
   return (
       <div>
-         <Graph graph={graph} options={options} events={events} style={{ height: "640px" }} />
+         <Graph graph={graph} options={options} events={events} style={{ height: "500px" }} />
       </div>
   )
 }
