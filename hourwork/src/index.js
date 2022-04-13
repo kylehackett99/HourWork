@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import {Mindmap} from './MindmapComponent.js';
-import './style/style.css';
 
 // Imports for Object JS classes
 import {Card} from './js/Card';
