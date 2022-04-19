@@ -64,7 +64,7 @@ fileUploadButton.addEventListener('change', function() {
                 }
             }
         }
-        console.log(nestedArray);
+        // console.log(nestedArray); <-- used for testing
     }
 
     fileReader.readAsText(file);
