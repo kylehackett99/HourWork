@@ -17,6 +17,15 @@ fileUploadButton.addEventListener('change', function() {
     /* create a new FileReader */
     var fileReader = new FileReader();
 
+    /* title and due date -- title will be at the center of the mindmap */
+    var title;
+    var dueDate;
+    var nestedArray = new Array();
+
+    var headers = 0;
+    var nest = 0;
+    var currHeader;
+
     /* uploads the contents of the file and displays them on the page */
     fileReader.onload = function() {
         output.textContent=this.result;
@@ -25,13 +34,8 @@ fileUploadButton.addEventListener('change', function() {
         var lines = this.result.split('\n');
 
         /* title and due date -- title will be at the center of the mindmap */
-        var title = lines[0];
-        var dueDate = lines[1];
-        
-        var headers = 0;
-        var nest = 0;
-        var currHeader;
-        var nestedArray = new Array();
+        title = lines[0];
+        dueDate = lines[1];
 
         for (var line = 2; line < lines.length-1; line++) {
             /* Gets the leading heading
@@ -64,12 +68,15 @@ fileUploadButton.addEventListener('change', function() {
                     nestedArray[headers-1][nest] =
                         new Array (lines[line], lines[line+1]);
                     nest++;
-                    innerNest = 2;
                 }
             }
         }
         // console.log(nestedArray); <-- used for testing
-    }
 
+        // add title, dueDate, and nestedArray to localStorage
+        localStorage.setItem("file-name", title);
+        localStorage.setItem("due-date", dueDate);
+        localStorage.setItem("file-array", JSON.stringify(nestedArray));
+    }
     fileReader.readAsText(file);
 })
