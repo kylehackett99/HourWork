@@ -57,6 +57,10 @@ fileUploadButton.addEventListener('change', function() {
 
                 /* single tab -- \t */
                 if (tabCounter == 1) {
+                    /* remove tab from beginning of line prior to inserting
+                     * a node and it's child into the array */
+                    lines[line] = lines[line].replace("\t", "");
+                    lines[line+1] = lines[line+1].replace("\t", "");
                     nestedArray[headers-1][nest] =
                         new Array (lines[line], lines[line+1]);
                     nest++;
