@@ -24,7 +24,9 @@ const App = () => {
     var titleCard = new Node(0, new Card(title));
     // empty array for the parent nodes
     var parents = [];
+    // counter for the node id #'s
     var id_counter = 0;
+    // temp variable for each child node
     var child;
 
     /* loop through the top layer of the nested array and fill in the parent
@@ -42,6 +44,7 @@ const App = () => {
       graph.addEdge(titleCard, parents[i]);
     }
 
+    /* go through the children and add them as edges to their parent nodes */
     for (var i = 0; i < nestedArray.length; i++) {
       for (var j = 2; j < nestedArray[i].length; j++) {
         id_counter++;
