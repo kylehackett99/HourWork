@@ -24,11 +24,14 @@ const App = () => {
     var titleCard = new Node(0, new Card(title));
     // empty array for the parent nodes
     var parents = [];
+    var id_counter = 0;
+    var child;
 
     /* loop through the top layer of the nested array and fill in the parent
      * nodes */
     for (var i = 0; i < nestedArray.length; i++) {
-      parents[i] = new Node(i+1, new Card(nestedArray[i][0], nestedArray[i][1]));
+      id_counter++;
+      parents[i] = new Node(id_counter, new Card(nestedArray[i][0], nestedArray[i][1]));
     }
 
     /* make the titleCard the vertex, then loop through and make each parent
@@ -37,6 +40,14 @@ const App = () => {
     for (var i = 0; i < nestedArray.length; i++) {
       graph.addVertex(parents[i]);
       graph.addEdge(titleCard, parents[i]);
+    }
+
+    for (var i = 0; i < nestedArray.length; i++) {
+      for (var j = 2; j < nestedArray[i].length; j++) {
+        id_counter++;
+        child = new Node(id_counter, new Card(nestedArray[i][j][0], nestedArray[i][j][1]));
+        graph.addEdge(parents[i], child);
+      }
     }
 
     // allows for callback from MindmapComponent js file
