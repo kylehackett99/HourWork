@@ -18,6 +18,34 @@ const App = () => {
   var appController = new MindmapObj();
 
 
+  // Handles Logid for when buttons are pressed
+  function handleNext(e) {
+    e.preventDefault();
+    appController.nextCard();
+    console.log(appController);
+    // Delete next line later
+    document.getElementById('temp').innerHTML = tempCurrentCardString();
+
+  }
+  function handlePrevious(e) {
+    e.preventDefault();
+    appController.previousCard();
+    console.log(appController);
+    // Delete next line later
+    document.getElementById('temp').innerHTML = tempCurrentCardString();
+  }
+
+  
+  // for testing -- delete me later
+  function tempCurrentCardString(){
+    var c = appController.getCurrentCard();
+    if(c == null){
+      return;
+    }
+    return c.getFrontText();
+  }
+
+
   // Renders MindMap from the MindMapComponent
   function MindMap() {
 
@@ -60,19 +88,19 @@ const App = () => {
     }
     // Generates deck of cards from the Mindmap
     appController.generateDeck();
-    console.log(appController);
 
 
     // allows for callback from MindmapComponent js file
     const [node, setNode] = useState('No Node Selected');
-    if(node != 'No Node Selected'){
-      appController.currentCard = (appController.getCardByNodeID(node[0]));
-      console.log(appController);
+    // Updates Current Card with the callback node ID
+    var clickedCard = appController.getCardByNodeID(node[0]);
+    if(clickedCard.getFrontText() != "card not found"){
+      //appController.currentCard = clickedCard;
+      appController.setCurrentCard(clickedCard);
+      document.getElementById('temp').innerHTML = appController.getCurrentCard().getFrontText();
     }
     
-
-
-    // returns formatted React
+    // returns formatted React Component
     return (
       <div>
         <Mindmap nodes={appController.getNodes()} adjacent={appController.getEdges()} sendBackNode={node => setNode(node)}/>
@@ -83,40 +111,11 @@ const App = () => {
   }
  
   function Flashcard(){
-    // Handles Logid for when buttons are pressed
-    function handleNext(e) {
-      e.preventDefault();
-      appController.nextCard();
-      console.log(appController);
-      // Delete next line later
-      document.getElementById('temp').innerHTML = tempCurrentCardString();
-
-    }
-    function handlePrevious(e) {
-      e.preventDefault();
-      appController.previousCard();
-      console.log(appController);
-      // Delete next line later
-      document.getElementById('temp').innerHTML = tempCurrentCardString();
-    }
-
-    
-    // for testing -- delete me later
-    function tempCurrentCardString(){
-      var c = appController.getCurrentCard();
-      if(c == null){
-        return;
-      }
-      return c.getFrontText();
-    }
 
     // React formatting
     return (
       <div>
-        <button onClick={handlePrevious}>Prev</button>
         <h1>Flashcard</h1>
-        <h4 id="temp"></h4>
-        <button onClick={handleNext}>Next</button>
       </div>
     );
   
@@ -127,7 +126,10 @@ const App = () => {
   return (
     <div>
       <div>
+        <button onClick={handlePrevious}>Prev</button>
         <Flashcard/>
+        <h4 id="temp"></h4>
+        <button onClick={handleNext}>Next</button>
         <MindMap/>
       </div>
       
