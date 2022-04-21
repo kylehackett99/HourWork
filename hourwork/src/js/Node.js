@@ -5,7 +5,11 @@ export class Node {
         // Data 
         this.card = card;
         this.id = id;
-        this.label = card.getFrontText();
+        this.label = "";
+        if(card != null){
+            this.label = card.getFrontText();
+        }
+        
     }
     
     

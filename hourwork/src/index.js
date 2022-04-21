@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {createRoot} from 'react-dom/client';
-import {Mindmap} from './MindmapComponent.js';
+import {Mindmap} from './ReactComponents/MindmapComponent.js';
 
 // Imports for Object JS classes
 import {Card} from './js/Card';
 import {Node} from './js/Node'
-import {Graph} from './js/Graph';
+import {MindmapObj} from './js/MindmapObj';
 
 const App = () => {
 
@@ -15,13 +15,19 @@ const App = () => {
   var title = localStorage.getItem("file-name");
 
   // initialize our graph
-  var graph = new Graph();
+  var appController = new MindmapObj();
+
 
   // Renders MindMap from the MindMapComponent
   function MindMap() {
 
     // title card
     var titleCard = new Node(0, new Card(title));
+    appController.setTitle(titleCard.getLabel());
+
+    //sets dueDate for the MindMap
+    appController.setDueDate(localStorage.getItem("due-date"));
+
     // empty array for the parent nodes
     var parents = [];
     // counter for the node id #'s
@@ -38,10 +44,10 @@ const App = () => {
 
     /* make the titleCard the vertex, then loop through and make each parent
      * node an edge to that card */
-    graph.addVertex(titleCard);
+    appController.addNode(titleCard);
     for (var i = 0; i < nestedArray.length; i++) {
-      graph.addVertex(parents[i]);
-      graph.addEdge(titleCard, parents[i]);
+      appController.addNode(parents[i]);
+      appController.addEdge(titleCard, parents[i]);
     }
 
     /* go through the children and add them as edges to their parent nodes */
@@ -49,17 +55,27 @@ const App = () => {
       for (var j = 2; j < nestedArray[i].length; j++) {
         id_counter++;
         child = new Node(id_counter, new Card(nestedArray[i][j][0], nestedArray[i][j][1]));
-        graph.addEdge(parents[i], child);
+        appController.addEdge(parents[i], child);
       }
     }
+    // Generates deck of cards from the Mindmap
+    appController.generateDeck();
+    console.log(appController);
+
 
     // allows for callback from MindmapComponent js file
     const [node, setNode] = useState('No Node Selected');
+    if(node != 'No Node Selected'){
+      appController.currentCard = (appController.getCardByNodeID(node[0]));
+      console.log(appController);
+    }
+    
+
 
     // returns formatted React
     return (
       <div>
-        <Mindmap nodes={graph.getNodes()} adjacent={graph.getEdges()} sendBackNode={node => setNode(node)}/>
+        <Mindmap nodes={appController.getNodes()} adjacent={appController.getEdges()} sendBackNode={node => setNode(node)}/>
         <h4>{node}</h4>
       </div>
     );
@@ -67,20 +83,52 @@ const App = () => {
   }
  
   function Flashcard(){
+    // Handles Logid for when buttons are pressed
+    function handleNext(e) {
+      e.preventDefault();
+      appController.nextCard();
+      console.log(appController);
+      // Delete next line later
+      document.getElementById('temp').innerHTML = tempCurrentCardString();
+
+    }
+    function handlePrevious(e) {
+      e.preventDefault();
+      appController.previousCard();
+      console.log(appController);
+      // Delete next line later
+      document.getElementById('temp').innerHTML = tempCurrentCardString();
+    }
+
+    
+    // for testing -- delete me later
+    function tempCurrentCardString(){
+      var c = appController.getCurrentCard();
+      if(c == null){
+        return;
+      }
+      return c.getFrontText();
+    }
+
     // React formatting
     return (
       <div>
+        <button onClick={handlePrevious}>Prev</button>
         <h1>Flashcard</h1>
+        <h4 id="temp"></h4>
+        <button onClick={handleNext}>Next</button>
       </div>
     );
   
   }
 
 
+  // This is what gets rendered
   return (
     <div>
       <div>
-        <MindMap />
+        <Flashcard/>
+        <MindMap/>
       </div>
       
     </div>
@@ -89,3 +137,4 @@ const App = () => {
 
 const root = createRoot(document.getElementById("root"));
 root.render(<App />);
+
