@@ -73,7 +73,6 @@ export class MindmapObj {
     }
     // If given an ID, the card belonging to node with id of x will be returned
     getCardByNodeID(id){
-        console.log("ID " + id);
         var card = new Card("card not found");
         (this.getNodes()).forEach(element => {
             if(element.id === id){
