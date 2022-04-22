@@ -7,38 +7,59 @@ import {Card} from './js/Card';
 import {Node} from './js/Node'
 import {Graph} from './js/Graph';
 
-// START IDs from 0
-var g = new Graph();
-var card1 = new Node(0, new Card("Capital", "Place in a State where the government is housed"));
-var card2 = new Node(1, new Card("Capital of MA", "Boston"));
-var card3 = new Node(2, new Card("Capital of RI", "Providence"));
-var card4 = new Node(3, new Card("Capital of CT", "Hartford"));
-var card5 = new Node(4, new Card("Capital of VT", "Burlington"));
-
-// connects cards to the capital card
-var cards = [card1, card2, card3, card4, card5];
-for(var i = 0; i < 6; i++){
-    g.addVertex(cards[i]);
-    if(i > 0) g.addEdge(card1, cards[i]);
-}
-
-// adds a random edge from capital of MA
-g.addEdge(card2, new Node(5, new Card("Population", "500")));
-
-
-
 const App = () => {
-  
+
+  // retrieve nestedArray and title from localStorage
+  var retrievedData = localStorage.getItem("file-array");
+  var nestedArray = JSON.parse(retrievedData);
+  var title = localStorage.getItem("file-name");
+
+  // initialize our graph
+  var graph = new Graph();
 
   // Renders MindMap from the MindMapComponent
-  function MindMap(){
+  function MindMap() {
+
+    // title card
+    var titleCard = new Node(0, new Card(title));
+    // empty array for the parent nodes
+    var parents = [];
+    // counter for the node id #'s
+    var id_counter = 0;
+    // temp variable for each child node
+    var child;
+
+    /* loop through the top layer of the nested array and fill in the parent
+     * nodes */
+    for (var i = 0; i < nestedArray.length; i++) {
+      id_counter++;
+      parents[i] = new Node(id_counter, new Card(nestedArray[i][0], nestedArray[i][1]));
+    }
+
+    /* make the titleCard the vertex, then loop through and make each parent
+     * node an edge to that card */
+    graph.addVertex(titleCard);
+    for (var i = 0; i < nestedArray.length; i++) {
+      graph.addVertex(parents[i]);
+      graph.addEdge(titleCard, parents[i]);
+    }
+
+    /* go through the children and add them as edges to their parent nodes */
+    for (var i = 0; i < nestedArray.length; i++) {
+      for (var j = 2; j < nestedArray[i].length; j++) {
+        id_counter++;
+        child = new Node(id_counter, new Card(nestedArray[i][j][0], nestedArray[i][j][1]));
+        graph.addEdge(parents[i], child);
+      }
+    }
+
     // allows for callback from MindmapComponent js file
-    const [node, setNode] = useState('No Node Selected')
-    
+    const [node, setNode] = useState('No Node Selected');
+
     // returns formatted React
     return (
       <div>
-        <Mindmap nodes={g.getNodes()} adjacent={g.getEdges()} sendBackNode={node => setNode(node)}  />
+        <Mindmap nodes={graph.getNodes()} adjacent={graph.getEdges()} sendBackNode={node => setNode(node)}/>
         <h4>{node}</h4>
       </div>
     );
@@ -66,8 +87,5 @@ const App = () => {
   );
 }
 
-
 const root = createRoot(document.getElementById("root"));
 root.render(<App />);
-
-
