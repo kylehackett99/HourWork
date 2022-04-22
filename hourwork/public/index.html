@@ -8,7 +8,7 @@
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Home</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="Home.css" media="screen">
+    <link rel="stylesheet" href="Home.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <!-- javascript file which parses an input file + saves it in storage -->
@@ -91,8 +91,10 @@
           </div>
         </div>
         <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-2">
-          <div class="u-layout" style="">
-            <div class="u-layout-row" style="">
+          <div class="u-layout">
+            <div class="u-layout-row">
+
+              <!-- left side -- flash cards -->
               <div class="u-container-style u-layout-cell u-shape-rectangle u-size-30 u-layout-cell-2">
                 <div class="u-border-1 u-border-custom-color-1 u-border-no-bottom u-border-no-left u-border-no-top u-container-layout u-container-layout-3">
                   <div class="u-border-1 u-border-custom-color-1 u-container-style u-group u-radius-5 u-shape-round u-group-2">
@@ -101,20 +103,29 @@
                     </div>
                   </div>
                   <div class="u-shape u-shape-svg u-text-custom-color-3 u-shape-1">
-                    <svg class="u-svg-link" preserveAspectRatio="none" viewBox="0 0 160 100" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-8406"></use></svg>
-                    <svg class="u-svg-content" viewBox="0 0 160 100" x="0px" y="0px" id="svg-8406" style="enable-background:new 0 0 160 100;"><g><path d="M109.2,99.9L160,50L109.2,0H75.6l38.7,38H0v24.2h114L75.6,100L109.2,99.9z"></path></g></svg>
+                    <!-- "next" button -->
+                    <button id="next-button" class="u-svg-link" style="background: transparent; border: none !important;">
+                      <svg class="u-svg-link" preserveAspectRatio="none" viewBox="0 0 160 100" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-8406"></use></svg>
+                      <svg class="u-svg-content" viewBox="0 0 160 100" x="0px" y="0px" id="svg-8406" style="enable-background:new 0 0 160 100;"><g><path d="M109.2,99.9L160,50L109.2,0H75.6l38.7,38H0v24.2h114L75.6,100L109.2,99.9z"></path></g></svg>
+                    </button>
                   </div>
                   <div class="u-flip-horizontal u-shape u-shape-svg u-text-custom-color-3 u-shape-2">
-                    <svg class="u-svg-link" preserveAspectRatio="none" viewBox="0 0 160 100" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a94c"></use></svg>
-                    <svg class="u-svg-content" viewBox="0 0 160 100" x="0px" y="0px" id="svg-a94c" style="enable-background:new 0 0 160 100;"><g><path d="M109.2,99.9L160,50L109.2,0H75.6l38.7,38H0v24.2h114L75.6,100L109.2,99.9z"></path></g></svg>
+                    <!-- "previous" button -->
+                    <button id="previous-button" class="u-svg-link" style="background: transparent; border: none !important;"></button>
+                      <svg class="u-svg-link" preserveAspectRatio="none" viewBox="0 0 160 100" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a94c"></use></svg>
+                      <svg class="u-svg-content" viewBox="0 0 160 100" x="0px" y="0px" id="svg-a94c" style="enable-background:new 0 0 160 100;"><g><path d="M109.2,99.9L160,50L109.2,0H75.6l38.7,38H0v24.2h114L75.6,100L109.2,99.9z"></path></g></svg>
+                  </button>
                   </div>
                 </div>
               </div>
+
+              <!-- right side -- flash cards -->
               <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-3">
                 <div class="u-container-layout u-container-layout-5">
                   <div id="root"></div>
                 </div>
               </div>
+              
             </div>
           </div>
         </div>

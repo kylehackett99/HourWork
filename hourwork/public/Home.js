@@ -74,9 +74,9 @@ fileUploadButton.addEventListener('change', function() {
         // console.log(nestedArray); <-- used for testing
 
         // add title, dueDate, and nestedArray to localStorage
-        localStorage.setItem("file-name", title);
-        localStorage.setItem("due-date", dueDate);
-        localStorage.setItem("file-array", JSON.stringify(nestedArray));
+        sessionStorage.setItem("file-name", title);
+        sessionStorage.setItem("due-date", dueDate);
+        sessionStorage.setItem("file-array", JSON.stringify(nestedArray));
     }
     fileReader.readAsText(file);
 })

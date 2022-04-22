@@ -11,15 +11,15 @@ import {MindmapObj} from './js/MindmapObj';
 const App = () => {
 
   // retrieve nestedArray and title from localStorage
-  var retrievedData = localStorage.getItem("file-array");
+  var retrievedData = sessionStorage.getItem("file-array");
   var nestedArray = JSON.parse(retrievedData);
-  var title = localStorage.getItem("file-name");
+  var title = sessionStorage.getItem("file-name");
   
   // initialize our graph
   var appController = new MindmapObj();
 
   // If the nested array is null -> then it wont parse the data in local storage
-  if(nestedArray != null){
+  if (nestedArray != null) {
     // title card
     var titleCard = new Node(0, new Card(title));
     appController.setTitle(titleCard.getLabel());
@@ -62,8 +62,6 @@ const App = () => {
     appController.generateDeck();
   }
 
-  console.log(appController);
-
   // Handles Logic for when buttons are pressed
   function handleNext(e) {
     e.preventDefault();
@@ -94,29 +92,30 @@ const App = () => {
 
   // Renders MindMap from the MindMapComponent
   function MindMap() {
+
     // allows for callback from MindmapComponent js file
     const [node, setNode] = useState('No Node Selected');
     // Updates Current Card with the callback node ID
     var clickedCard = appController.getCardByNodeID(node[0]);
+
     if(clickedCard.getFrontText() != "card not found"){
       appController.setCurrentCard(clickedCard);
       // Delete this line once Flashcard React Component is implemented
       document.getElementById('temp').innerHTML = appController.getCurrentCard().getFrontText();
     }
+
     // returns formatted React Component
     return (
       <div>
         <Mindmap nodes={appController.getNodes()} adjacent={appController.getEdges()} sendBackNode={node => setNode(node)}/>
       </div>
     );
-
   }
  
   function Flashcard(){
     // React formatting
     return (
       <div>
-        <h1>Flashcard</h1>
       </div>
     );
   }
@@ -126,15 +125,14 @@ const App = () => {
   return (
     <div>
       <div>
-        <button onClick={handlePrevious}>Prev</button>
+        <button onClick={handlePrevious}>previous</button>
         <Flashcard/>
         <h4 id="temp"></h4>
-        <button onClick={handleNext}>Next</button> 
+        <button onClick={handleNext}>next</button> 
       </div>
       <div>
         <MindMap/>
       </div>
-      
     </div>
   );
 }
