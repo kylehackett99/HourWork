@@ -1,45 +1,112 @@
 import React, {useState} from 'react';
 import {createRoot} from 'react-dom/client';
-import {Mindmap} from './MindmapComponent.js';
+import {Mindmap} from './ReactComponents/MindmapComponent.js';
 
 // Imports for Object JS classes
 import {Card} from './js/Card';
 import {Node} from './js/Node'
-import {Graph} from './js/Graph';
-
-// START IDs from 0
-var g = new Graph();
-var card1 = new Node(0, new Card("Capital", "Place in a State where the government is housed"));
-var card2 = new Node(1, new Card("Capital of MA", "Boston"));
-var card3 = new Node(2, new Card("Capital of RI", "Providence"));
-var card4 = new Node(3, new Card("Capital of CT", "Hartford"));
-var card5 = new Node(4, new Card("Capital of VT", "Burlington"));
-
-// connects cards to the capital card
-var cards = [card1, card2, card3, card4, card5];
-for(var i = 0; i < 6; i++){
-    g.addVertex(cards[i]);
-    if(i > 0) g.addEdge(card1, cards[i]);
-}
-
-// adds a random edge from capital of MA
-g.addEdge(card2, new Node(5, new Card("Population", "500")));
-
+import {MindmapObj} from './js/MindmapObj';
 
 
 const App = () => {
+
+  // retrieve nestedArray and title from localStorage
+  var retrievedData = localStorage.getItem("file-array");
+  var nestedArray = JSON.parse(retrievedData);
+  var title = localStorage.getItem("file-name");
   
+  // initialize our graph
+  var appController = new MindmapObj();
+
+  // If the nested array is null -> then it wont parse the data in local storage
+  if(nestedArray != null){
+    // title card
+    var titleCard = new Node(0, new Card(title));
+    appController.setTitle(titleCard.getLabel());
+
+    //sets dueDate for the MindMap
+    appController.setDueDate(localStorage.getItem("due-date"));
+
+    // empty array for the parent nodes
+    var parents = [];
+    // counter for the node id #'s
+    var id_counter = 0;
+    // temp variable for each child node
+    var child;
+
+    /* loop through the top layer of the nested array and fill in the parent
+    * nodes */
+    for (var i = 0; i < nestedArray.length; i++) {
+      id_counter++;
+      parents[i] = new Node(id_counter, new Card(nestedArray[i][0], nestedArray[i][1]));
+    }
+
+    /* make the titleCard the vertex, then loop through and make each parent
+    * node an edge to that card */
+    appController.addNode(titleCard);
+    for (var i = 0; i < nestedArray.length; i++) {
+      appController.addNode(parents[i]);
+      appController.addEdge(titleCard, parents[i]);
+    }
+
+    /* go through the children and add them as edges to their parent nodes */
+    for (var i = 0; i < nestedArray.length; i++) {
+      for (var j = 2; j < nestedArray[i].length; j++) {
+        id_counter++;
+        child = new Node(id_counter, new Card(nestedArray[i][j][0], nestedArray[i][j][1]));
+        appController.addEdge(parents[i], child);
+      }
+    }
+
+    // Generates deck of cards from the Mindmap
+    appController.generateDeck();
+  }
+
+  console.log(appController);
+
+  // Handles Logic for when buttons are pressed
+  function handleNext(e) {
+    e.preventDefault();
+    appController.nextCard();
+    //console.log(appController);
+    // Delete this line once Flashcard React Component is implemented
+    document.getElementById('temp').innerHTML = tempCurrentCardString();
+  }
+  function handlePrevious(e) {
+    e.preventDefault();
+    appController.previousCard();
+    //console.log(appController);
+    // Delete this line once Flashcard React Component is implemented
+    document.getElementById('temp').innerHTML = tempCurrentCardString();
+  }
+
+  
+  // Delete this line once Flashcard React Component is implemented
+  function tempCurrentCardString(){
+    var c = appController.getCurrentCard();
+    if(c == null){
+      return;
+    }
+    return c.getFrontText();
+  }
+
+
 
   // Renders MindMap from the MindMapComponent
-  function MindMap(){
+  function MindMap() {
     // allows for callback from MindmapComponent js file
-    const [node, setNode] = useState('No Node Selected')
-    
-    // returns formatted React
+    const [node, setNode] = useState('No Node Selected');
+    // Updates Current Card with the callback node ID
+    var clickedCard = appController.getCardByNodeID(node[0]);
+    if(clickedCard.getFrontText() != "card not found"){
+      appController.setCurrentCard(clickedCard);
+      // Delete this line once Flashcard React Component is implemented
+      document.getElementById('temp').innerHTML = appController.getCurrentCard().getFrontText();
+    }
+    // returns formatted React Component
     return (
       <div>
-        <Mindmap nodes={g.getNodes()} adjacent={g.getEdges()} sendBackNode={node => setNode(node)}  />
-        <h4>{node}</h4>
+        <Mindmap nodes={appController.getNodes()} adjacent={appController.getEdges()} sendBackNode={node => setNode(node)}/>
       </div>
     );
 
@@ -52,22 +119,29 @@ const App = () => {
         <h1>Flashcard</h1>
       </div>
     );
-  
   }
 
 
+  // This is what gets rendered
   return (
     <div>
       <div>
-        <MindMap />
+        <button onClick={handlePrevious}>Prev</button>
+        <Flashcard/>
+        <h4 id="temp"></h4>
+        <button onClick={handleNext}>Next</button> 
+      </div>
+      <div>
+        <MindMap/>
       </div>
       
     </div>
   );
 }
 
-
+/**********************************************
+ * Renders the Application "App" Defined Above
+ **********************************************/
 const root = createRoot(document.getElementById("root"));
 root.render(<App />);
-
 
