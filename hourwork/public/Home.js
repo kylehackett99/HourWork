@@ -13,6 +13,7 @@ fileUploadButton.addEventListener('change', function() {
     /* once a file is added, change the file chosen text to reflect the name of 
        the file uploaded */
     fileChosen.textContent = file.name;
+    sessionStorage.setItem("uploaded-file-name", file.name)
 
     /* create a new FileReader */
     var fileReader = new FileReader();
@@ -85,4 +86,9 @@ fileUploadButton.addEventListener('change', function() {
 // maintains file on screen after refresh
 if (sessionStorage.getItem("file-contents") != null) {
     output.textContent = sessionStorage.getItem("file-contents");
+}
+
+// maintains file name on screen after refresh
+if (sessionStorage.getItem("uploaded-file-name") != null) {
+    fileChosen.textContent = sessionStorage.getItem("uploaded-file-name")
 }
