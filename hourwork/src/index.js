@@ -8,15 +8,24 @@ import {Node} from './js/Node'
 import {MindmapObj} from './js/MindmapObj';
 
 
-const App = () => {
+/**********************************************
+ * Renders the Application "App" Defined Above
+**********************************************/
+const root = createRoot(document.getElementById("root"));
 
+
+
+
+var appController = new MindmapObj();
+
+function updateStructure(){
   // retrieve nestedArray and title from localStorage
   var retrievedData = sessionStorage.getItem("file-array");
   var nestedArray = JSON.parse(retrievedData);
   var title = sessionStorage.getItem("file-name");
   
   // initialize our graph
-  var appController = new MindmapObj();
+  appController = new MindmapObj();
 
   // If the nested array is null -> then it wont parse the data in local storage
   if (nestedArray != null) {
@@ -61,6 +70,18 @@ const App = () => {
     // Generates deck of cards from the Mindmap
     appController.generateDeck();
   }
+}
+
+var sessionStorageSetHandler = function(e) {
+  root.render(<App/>);
+};
+document.addEventListener("newFileUploaded", sessionStorageSetHandler, false);
+
+
+const App = () => {
+  updateStructure();
+  console.log(appController);
+  
 
   // Handler for Next Card Button Press
   function handleNext(e) {
@@ -187,9 +208,4 @@ const App = () => {
   );
 }
 
-/**********************************************
- * Renders the Application "App" Defined Above
- **********************************************/
-const root = createRoot(document.getElementById("root"));
-root.render(<App />);
-
+root.render(<App/>);

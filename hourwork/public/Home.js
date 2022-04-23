@@ -79,6 +79,11 @@ fileUploadButton.addEventListener('change', function() {
         sessionStorage.setItem("file-name", title);
         sessionStorage.setItem("due-date", dueDate);
         sessionStorage.setItem("file-array", JSON.stringify(nestedArray));
+
+        var event = new Event('newFileUploaded');
+
+        document.dispatchEvent(event);
+
     }
     fileReader.readAsText(file);
 })
