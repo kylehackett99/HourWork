@@ -62,16 +62,31 @@ const App = () => {
     appController.generateDeck();
   }
 
-  // Handles Logic for when buttons are pressed
+  // Handler for Next Card Button Press
   function handleNext(e) {
     e.preventDefault();
     appController.nextCard();
-    document.getElementById('flashcardText').innerHTML = flashcardTextCurrentCardString();
+    var string;
+    var c = appController.getCurrentCard();
+    if(c == null){
+      string = "";
+    } else {
+      string = c.getFrontText();
+    }
+    document.getElementById('flashcardText').innerHTML = string;
   }
+   // Handler for Previous Card Button Press
   function handlePrevious(e) {
     e.preventDefault();
     appController.previousCard();
-    document.getElementById('flashcardText').innerHTML = flashcardTextCurrentCardString();
+    var string;
+    var c = appController.getCurrentCard();
+    if(c == null){
+      string = "";
+    } else {
+      string = c.getFrontText();
+    }
+    document.getElementById('flashcardText').innerHTML = string;
   }
 
   // Flips flashcard
@@ -85,15 +100,6 @@ const App = () => {
     } else if (currText == currCard.getBackText()) {
       document.getElementById('flashcardText').innerHTML = appController.getCurrentCard().getFrontText();
     }
-  }
-
-
-  function flashcardTextCurrentCardString(){
-    var c = appController.getCurrentCard();
-    if(c == null){
-      return;
-    }
-    return c.getFrontText();
   }
 
 
