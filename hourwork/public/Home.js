@@ -29,6 +29,7 @@ fileUploadButton.addEventListener('change', function() {
     /* uploads the contents of the file and displays them on the page */
     fileReader.onload = function() {
         output.textContent=this.result;
+        sessionStorage.setItem("file-contents", this.result);
 
         /* read input line by line */
         var lines = this.result.split('\n');
@@ -80,3 +81,8 @@ fileUploadButton.addEventListener('change', function() {
     }
     fileReader.readAsText(file);
 })
+
+// maintains file on screen after refresh
+if (sessionStorage.getItem("file-contents") != null) {
+    output.textContent = sessionStorage.getItem("file-contents");
+}
