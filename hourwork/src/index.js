@@ -7,17 +7,12 @@ import {Card} from './js/Card';
 import {Node} from './js/Node'
 import {MindmapObj} from './js/MindmapObj';
 
-
-/**********************************************
- * Renders the Application "App" Defined Above
-**********************************************/
+// Defines where the App gets rendered in the DOM
 const root = createRoot(document.getElementById("root"));
-
-
-
-
+// initial definition of the  application controller
 var appController = new MindmapObj();
 
+//** Reads in data from session storage and updates the application data structure **/
 function updateStructure(){
   // retrieve nestedArray and title from localStorage
   var retrievedData = sessionStorage.getItem("file-array");
@@ -72,12 +67,14 @@ function updateStructure(){
   }
 }
 
+// Function definition for when the user uploads a file
 var sessionStorageSetHandler = function(e) {
   root.render(<App/>);
 };
+// defines the listener for the file upload, and then executes the function to rerender
 document.addEventListener("newFileUploaded", sessionStorageSetHandler, false);
 
-
+// Structures the React Parent Component
 const App = () => {
   updateStructure();
   console.log(appController);
