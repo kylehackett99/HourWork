@@ -31,7 +31,7 @@ const App = () => {
     var parents = [];
     // counter for the node id #'s
     var id_counter = 0;
-    // temp variable for each child node
+    // flashcardText variable for each child node
     var child;
 
     /* loop through the top layer of the nested array and fill in the parent
@@ -66,21 +66,29 @@ const App = () => {
   function handleNext(e) {
     e.preventDefault();
     appController.nextCard();
-    //console.log(appController);
-    // Delete this line once Flashcard React Component is implemented
-    document.getElementById('temp').innerHTML = tempCurrentCardString();
+    document.getElementById('flashcardText').innerHTML = flashcardTextCurrentCardString();
   }
   function handlePrevious(e) {
     e.preventDefault();
     appController.previousCard();
-    //console.log(appController);
-    // Delete this line once Flashcard React Component is implemented
-    document.getElementById('temp').innerHTML = tempCurrentCardString();
+    document.getElementById('flashcardText').innerHTML = flashcardTextCurrentCardString();
   }
 
-  
-  // Delete this line once Flashcard React Component is implemented
-  function tempCurrentCardString(){
+  // Flips flashcard
+  function flipCard(e) {
+    e.preventDefault();
+    var currCard = appController.getCurrentCard();
+    var currText = document.getElementById('flashcardText').innerHTML;
+
+    if (currText == currCard.getFrontText()) {
+      document.getElementById('flashcardText').innerHTML = appController.getCurrentCard().getBackText();
+    } else if (currText == currCard.getBackText()) {
+      document.getElementById('flashcardText').innerHTML = appController.getCurrentCard().getFrontText();
+    }
+  }
+
+
+  function flashcardTextCurrentCardString(){
     var c = appController.getCurrentCard();
     if(c == null){
       return;
@@ -101,7 +109,7 @@ const App = () => {
     if(clickedCard.getFrontText() != "card not found"){
       appController.setCurrentCard(clickedCard);
       // Delete this line once Flashcard React Component is implemented
-      document.getElementById('temp').innerHTML = appController.getCurrentCard().getFrontText();
+      document.getElementById('flashcardText').innerHTML = appController.getCurrentCard().getFrontText();
     }
 
     // returns formatted React Component
@@ -113,10 +121,9 @@ const App = () => {
   }
  
   function Flashcard(){
-    // React formatting
     return (
       <div>
-        <p id="temp" className="u-align-center u-text u-text-2">&lt;flash card front/back&gt;</p>
+        <div id="flashcardText" className="u-align-center u-text-2" onClick={flipCard}></div>
       </div>
     );
   }
