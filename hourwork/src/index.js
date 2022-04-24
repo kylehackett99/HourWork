@@ -29,7 +29,7 @@ function updateStructure(){
     appController.setTitle(titleCard.getLabel());
 
     //sets dueDate for the MindMap
-    appController.setDueDate(localStorage.getItem("due-date"));
+    appController.setDueDate(sessionStorage.getItem("due-date"));
 
     // empty array for the parent nodes
     var parents = [];

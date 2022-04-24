@@ -96,12 +96,89 @@ export class MindmapObj {
 
     // Put card back in deck
     putInDeck(card){
-        // var position = 0; // calc using date and weight and current size of deck
-        // var leftSide = this.deck.splice(0, position);
-        // var rightSide = this.deck;
-        // standard deck, need to modify to make it more specialized for learning repititions
-        this.deck.push(card);
-        // combine left and right sides
+        var arr = this.deck; // makes copy of the deck
+
+        /** 
+         * Calculates the position where the card should be placed 
+         *  Integral for creating randomness as well as repetition
+         *  based on a card's difficulty
+        **/ 
+        var position = this.calcPosition(card.getWeight());
+
+        // Slices deck into halves based on the calculated position
+        var leftSide = arr.slice(0, position);
+        var rightSide = arr.slice(position, arr.length);
+        
+        // appends card to the left side
+        leftSide.push(card);
+
+        // combines modified left side and the rightside
+        this.deck = leftSide.concat(rightSide);
+    }
+    calcPosition(weight){
+        const maxPos = this.deck.length;
+        
+        weight /= maxPos;
+
+        // If the user has never gotten it wrong, add it to the end of the deck 
+        if(weight == 0 || maxPos == 0) return maxPos;
+
+        // Calculates number of days until dueDate
+        const timeToDate = new Date(this.dateDue) - new Date();
+        const numDaysRemaining = Math.ceil(timeToDate / (1000 * 60 * 60 * 24)); 
+        
+        // Determines the multiplier rate based on the date
+        var multiplier;
+        if(numDaysRemaining >= 365){        // 1 Year
+            multiplier = 1;
+        } else if(numDaysRemaining >= 180){ // ~ 6 months
+            multiplier = 1.2;
+        } else if(numDaysRemaining >= 90){  // ~ 3 months
+            multiplier = 1.4
+        } else if(numDaysRemaining >= 30){  // ~ 1 month
+            multiplier = 1.8;
+        } else if(numDaysRemaining >= 14){  // 2 weeks
+            multiplier = 2;
+        } else if(numDaysRemaining >= 7){   // 1 week
+            multiplier = 2.2;
+        } else if(numDaysRemaining >= 3){   //  3 Days
+            multiplier = 2.6;
+        } else if(numDaysRemaining >= 1){   //  1 Days
+            multiplier = 3;
+        } else if(numDaysRemaining >= 0){   //  0 Days
+            multiplier = 4;
+        } else {                            // Deadline has Passed
+            multiplier = 1;
+        }
+
+        // determines the importance of the card due to difficulty and due date
+        var importance = weight * multiplier;
+
+        // Constraints for placement
+        const firstQuarter = Math.floor((maxPos / 4));
+        const firstThird = Math.floor((maxPos / 3));
+        const firstHalf = Math.floor((maxPos / 2));
+        const firstThreeQuarters = Math.floor((maxPos * (3/4)));
+
+        /**  
+         * Calculates random position within a constraint depending on the
+         *  card's importance
+         **/
+        var position;
+        if(importance > maxPos){
+            position = (Math.random() * firstQuarter) + 1;
+        } else if(importance > maxPos / firstThreeQuarters){
+            position = Math.random() * (firstThird - firstQuarter) + firstQuarter;
+        } else if(importance > maxPos / firstHalf){
+            position = Math.random() * (firstHalf - firstThird) + firstThird;
+        } else if(importance > maxPos / firstThird){
+            position = Math.random() * (firstThreeQuarters - firstHalf) + firstHalf;
+        } else {
+            position = Math.random() * (maxPos - firstThreeQuarters) + firstThreeQuarters;
+        } 
+        
+        // Returns the ceiling + ensures the position given is not out of bounds
+        return Math.min(Math.ceil(position), maxPos);
     }
 
     // Deque top card from deck

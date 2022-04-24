@@ -1,12 +1,9 @@
 export class Card {
-    constructor(frontText = " ", backText = " ", weight = 0, dueDate = new Date) {
+    constructor(frontText = " ", backText = " ", weight = 0) {
         this.frontText = frontText;
         this.backText = backText;
 
         this.weight = weight;
-        this.dueDate = dueDate;
-        this.nextStudyDate = this.calcNextStudyDate();
-
     }
     getFrontText() {
         return this.frontText;
@@ -27,21 +24,6 @@ export class Card {
     setWeight(w){
         this.weight = w;
     }
-
-    getNextStudyDate(){
-        return this.nextStudyDate;
-    }
-    setNextStudyDate(){
-        this.nextStudyDate = this.calcNextStudyDate();
-    }
-    calcNextStudyDate(){
-        // calculate next study date based on dueDate and weight
-        const [month, day, year] = 
-            [this.dueDate.getMonth(), this.dueDate.getDate(), this.dueDate.getFullYear()];
-
-        return new Date();
-    }
-
 
     
     toString() {
