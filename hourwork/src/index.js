@@ -68,18 +68,17 @@ function updateStructure(){
 }
 
 // Function definition for when the user uploads a file
-var sessionStorageSetHandler = function(e) {
+var uploadHandler = function(e) {
   root.render(<App/>);
 };
 // defines the listener for the file upload, and then executes the function to rerender
-document.addEventListener("newFileUploaded", sessionStorageSetHandler, false);
+document.addEventListener("newFileUploaded", uploadHandler, false);
 
 // Structures the React Parent Component
 const App = () => {
+  // Updates the structure with values from browser storage
   updateStructure();
-  console.log(appController);
   
-
   // Handler for Next Card Button Press
   function handleNext(e) {
     e.preventDefault();
@@ -205,4 +204,5 @@ const App = () => {
   );
 }
 
+// In Charge of Initial Render
 root.render(<App/>);

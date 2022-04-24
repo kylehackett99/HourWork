@@ -28,6 +28,7 @@ export class MindmapObj {
         this.topCard = null;
         this.currentCard = null;
         this.moveHistory = []; // for previous button 
+        this.worstFive = [];
     }
 
     getTitle(){
@@ -205,6 +206,31 @@ export class MindmapObj {
             this.moveHistory.shift();
         }
     }
+
+    getWorstFive(){
+        return this.worstFive;
+    }
+    generateWorstFive(){
+        // Gets all cards in the graph
+        (this.getNodes()).forEach(element => {
+            this.worstFive.push(element.getCard());
+        });
+
+        // Sorts array according to weight
+        this.worstFive.sort(function (first, second) {
+            if(first.getWeight() > second.getWeight()) {
+               return -1;
+            }
+            if(first.getWeight() < second.getWeight()) {
+               return 1;
+            }
+            return 0;
+        });
+
+        // Only keeps worst 5 cards according to their weight
+        this.worstFive = this.worstFive.slice(0, 4);
+    }
+
 
     nextCard(){
         /**If the current card does not match the top card that means the user selected a card
