@@ -187,13 +187,13 @@ const App = () => {
 
                   {/** yes, no, and partially buttons **/}
                   <div className="u-container-layout u-container-layout-6">
-                    <button id="yes-button" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2">
+                    <button id="yes-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2">
                       yes
                     </button>
-                    <button id="partially-button" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2">
+                    <button id="partially-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2">
                       partially
                     </button>
-                    <button id="yes-button" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2">
+                    <button id="yes-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2">
                       no
                     </button>
                   </div>
