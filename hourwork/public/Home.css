@@ -35,6 +35,25 @@
   margin: 0 auto 0 0;
 }
 
+/* yes, no, partially buttons */
+.u-section-1 .u-btn-2 {
+  display: inline;
+  float: none;
+  border-style: none;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  background-image: none;
+  font-weight: 700;
+  font-family: Nunito;
+  margin: 10px 10px 10px 6px;
+}
+
+/* div that holds the yes, no, partially buttons */
+.u-section-1 .u-container-layout-6 {
+  margin-left: 86px;
+}
+
 /* file chosen span */
 .u-section-1 #file-chosen {
   font-size: 0.925rem;

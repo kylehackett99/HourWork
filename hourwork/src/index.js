@@ -158,6 +158,7 @@ const App = () => {
       <div className="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-2">
           <div className="u-layout">
             <div className="u-layout-row">
+
       {/** LEFT SIDE **/ }
             {/** JSX for the Flashcard view **/}
               <div className="u-container-style u-layout-cell u-shape-rectangle u-size-30 u-layout-cell-2">
@@ -183,6 +184,20 @@ const App = () => {
                       <svg className="u-svg-content" viewBox="0 0 160 100" x="0px" y="0px" id="svg-a94c" ><g><path d="M109.2,99.9L160,50L109.2,0H75.6l38.7,38H0v24.2h114L75.6,100L109.2,99.9z"></path></g></svg>
                     </button>
                   </div>
+
+                  {/** yes, no, and partially buttons **/}
+                  <div className="u-container-layout u-container-layout-6">
+                    <button id="yes-button" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2">
+                      yes
+                    </button>
+                    <button id="partially-button" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2">
+                      partially
+                    </button>
+                    <button id="yes-button" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2">
+                      no
+                    </button>
+                  </div>
+
                 </div>
               </div>
 
@@ -199,7 +214,6 @@ const App = () => {
             </div>
           </div>
         </div>
-
     </div>
   );
 }
