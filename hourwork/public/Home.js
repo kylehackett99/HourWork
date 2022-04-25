@@ -13,6 +13,7 @@ fileUploadButton.addEventListener('change', function() {
     /* once a file is added, change the file chosen text to reflect the name of 
        the file uploaded */
     fileChosen.textContent = file.name;
+    sessionStorage.setItem("uploaded-file-name", file.name)
 
     /* create a new FileReader */
     var fileReader = new FileReader();
@@ -29,6 +30,7 @@ fileUploadButton.addEventListener('change', function() {
     /* uploads the contents of the file and displays them on the page */
     fileReader.onload = function() {
         output.textContent=this.result;
+        sessionStorage.setItem("file-contents", this.result);
 
         /* read input line by line */
         var lines = this.result.split('\n');
@@ -74,9 +76,24 @@ fileUploadButton.addEventListener('change', function() {
         // console.log(nestedArray); <-- used for testing
 
         // add title, dueDate, and nestedArray to localStorage
-        localStorage.setItem("file-name", title);
-        localStorage.setItem("due-date", dueDate);
-        localStorage.setItem("file-array", JSON.stringify(nestedArray));
+        sessionStorage.setItem("file-name", title);
+        sessionStorage.setItem("due-date", dueDate);
+        sessionStorage.setItem("file-array", JSON.stringify(nestedArray));
+
+        var event = new Event('newFileUploaded');
+
+        document.dispatchEvent(event);
+
     }
     fileReader.readAsText(file);
 })
+
+// maintains file on screen after refresh
+if (sessionStorage.getItem("file-contents") != null) {
+    output.textContent = sessionStorage.getItem("file-contents");
+}
+
+// maintains file name on screen after refresh
+if (sessionStorage.getItem("uploaded-file-name") != null) {
+    fileChosen.textContent = sessionStorage.getItem("uploaded-file-name")
+}
