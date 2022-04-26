@@ -256,6 +256,14 @@ export class MindmapObj {
             this.currentCard = this.moveHistory.pop();
         }
     }
+
+    logDeck(){
+        var card = new Card("card not found");
+        (this.getNodes()).forEach(element => {
+            card = element.getCard();
+            card.logger();
+        });
+    }
    
 
 }

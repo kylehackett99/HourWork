@@ -6,6 +6,7 @@ import {Mindmap} from './ReactComponents/MindmapComponent.js';
 import {Card} from './js/Card';
 import {Node} from './js/Node'
 import {MindmapObj} from './js/MindmapObj';
+import './index.css'
 
 // Defines where the App gets rendered in the DOM
 const root = createRoot(document.getElementById("root"));
@@ -83,28 +84,68 @@ const App = () => {
   function handleNext(e) {
     e.preventDefault();
     appController.nextCard();
-    var string;
+    var frontString, backString;
     var c = appController.getCurrentCard();
     if(c == null){
-      string = "";
+      frontString = "";
+      backString = "";
     } else {
-      string = c.getFrontText();
+      frontString = c.getFrontText();
+      backString = c.getBackText();
     }
-    document.getElementById('flashcardText').innerHTML = string;
+    document.getElementById('flashcardText').innerHTML = frontString;
+    document.getElementById('flashcardBackText').innerHTML = backString;
   }
    // Handler for Previous Card Button Press
   function handlePrevious(e) {
     e.preventDefault();
     appController.previousCard();
-    var string;
+    var frontString, backString;
     var c = appController.getCurrentCard();
     if(c == null){
-      string = "";
+      frontString = "";
+      backString = "";
     } else {
-      string = c.getFrontText();
+      frontString = c.getFrontText();
+      backString = c.getBackText();
     }
-    document.getElementById('flashcardText').innerHTML = string;
+    document.getElementById('flashcardText').innerHTML = frontString;
+    document.getElementById('flashcardBackText').innerHTML = backString;
+    
   }
+
+  function handleNo(e) {
+    e.preventDefault();
+    var c = appController.getCurrentCard();
+    if(c != null){
+      var currentCard = appController.getCurrentCard();
+      var weight = currentCard.getWeight();
+      weight += 1;
+      currentCard.setWeight(weight);
+      appController.putInDeck(currentCard);
+      appController.logDeck();
+    }  
+  }
+
+  function handleYes(e) {
+    e.preventDefault();
+    var c = appController.getCurrentCard();
+    if(c != null){
+      var currentCard = appController.getCurrentCard();
+      var weight = currentCard.getWeight();
+      if (weight > 0){
+        weight -= 1;
+      }
+      currentCard.setWeight(weight);
+      appController.putInDeck(currentCard);
+      appController.logDeck();
+    }
+  }
+
+
+
+
+
 
   // Flips flashcard
   function flipCard(e) {
@@ -126,6 +167,11 @@ const App = () => {
 
     // allows for callback from MindmapComponent js file
     const [node, setNode] = useState('No Node Selected');
+
+
+
+
+
     // Updates Current Card with the callback node ID
     var clickedCard = appController.getCardByNodeID(node[0]);
 
@@ -133,6 +179,8 @@ const App = () => {
       appController.setCurrentCard(clickedCard);
       // Delete this line once Flashcard React Component is implemented
       document.getElementById('flashcardText').innerHTML = appController.getCurrentCard().getFrontText();
+      document.getElementById('flashcardBackText').innerHTML = appController.getCurrentCard().getBackText();
+      
     }
 
     // returns formatted React Component
@@ -144,11 +192,20 @@ const App = () => {
   }
  
   function Flashcard(){
+
+    const [flip, setFlip] = useState(false)
+
+
     return (
-      <div>
-        <div id="flashcardText" className="u-align-center u-text-2" onClick={flipCard}></div>
+      <div  className={`card ${flip ? 'flip' : ''}`} onClick={() => setFlip(!flip)}>
+          <div className="front" id="flashcardText"> </div>
+          <div className="back" id="flashcardBackText"></div>
       </div>
-    );
+  );
+
+
+
+
   }
 
 
@@ -160,10 +217,14 @@ const App = () => {
             <div className="u-layout-row">
 
       {/** LEFT SIDE **/ }
+
             {/** JSX for the Flashcard view **/}
               <div className="u-container-style u-layout-cell u-shape-rectangle u-size-30 u-layout-cell-2">
                 <div className="u-border-1 u-border-custom-color-1 u-border-no-bottom u-border-no-left u-border-no-top u-container-layout u-container-layout-3">
-                  <div className="u-border-1 u-border-custom-color-1 u-container-style u-group u-radius-5 u-shape-round u-group-2">
+                  <button id="easy" onclick="changeDifficulty(1)" style= {{color: "white", background: "#04ce71" , cursor: "pointer" }} >Easy</button>
+                  <button id="medium" onclick="changeDifficulty(2)" style= {{color: "white", background: "#ffd450" , cursor: "pointer"}} >Medium</button>
+                  <button id="hard" onclick="changeDifficulty(3)" style= {{color: "white", background: "red" , cursor: "pointer" }} >Hard</button>
+                  <div className="u-container-style u-group u-radius-5 u-shape-round u-group-2">
                     <div className="u-container-layout u-container-layout-4">
                       <Flashcard/>
                     </div>
@@ -171,7 +232,7 @@ const App = () => {
 
                   {/** Previous Button **/ }
                   <div className="u-shape u-shape-svg u-text-custom-color-3 u-shape-1">
-                    <button id="next-button" className="u-svg-link" onClick={handleNext} style={{background: "transparent", border: "none" }}>
+                    <button id="next-button" className="u-svg-link" onClick={handlePrevious} style={{background: "transparent", border: "none", cursor: "pointer" }}>
                       <svg className="u-svg-link" preserveAspectRatio="none" viewBox="0 0 160 100" ><use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#svg-8406"></use></svg>
                       <svg className="u-svg-content" viewBox="0 0 160 100" x="0px" y="0px" id="svg-8406" ><g><path d="M109.2,99.9L160,50L109.2,0H75.6l38.7,38H0v24.2h114L75.6,100L109.2,99.9z"></path></g></svg>
                     </button>
@@ -179,7 +240,7 @@ const App = () => {
 
                   {/** Next Button **/ }
                   <div className="u-flip-horizontal u-shape u-shape-svg u-text-custom-color-3 u-shape-2">
-                    <button id="previous-button" className="u-svg-link" onClick={handlePrevious} style={{background: "transparent", border: "none" }}>
+                    <button id="previous-button" className="u-svg-link" onClick={handleNext} style={{background: "transparent", border: "none", cursor: "pointer" }}>
                       <svg className="u-svg-link" preserveAspectRatio="none" viewBox="0 0 160 100" ><use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#svg-a94c"></use></svg>
                       <svg className="u-svg-content" viewBox="0 0 160 100" x="0px" y="0px" id="svg-a94c" ><g><path d="M109.2,99.9L160,50L109.2,0H75.6l38.7,38H0v24.2h114L75.6,100L109.2,99.9z"></path></g></svg>
                     </button>
@@ -187,13 +248,15 @@ const App = () => {
 
                   {/** yes, no, and partially buttons **/}
                   <div className="u-container-layout u-container-layout-6">
-                    <button id="yes-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2">
+                    <button id="yes-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2"
+                     onClick={handleYes}>
                       yes
                     </button>
                     <button id="partially-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2">
                       partially
                     </button>
-                    <button id="yes-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2">
+                    <button id="yes-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2"
+                    onClick={handleNo}>
                       no
                     </button>
                   </div>
