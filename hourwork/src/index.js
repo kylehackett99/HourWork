@@ -112,6 +112,7 @@ const App = () => {
     document.getElementById('flashcardText').innerHTML = frontString;
     document.getElementById('flashcardBackText').innerHTML = backString;
     
+    
   }
 
   function handleNo(e) {
@@ -124,6 +125,20 @@ const App = () => {
       currentCard.setWeight(weight);
       appController.putInDeck(currentCard);
       appController.logDeck();
+      appController.nextCard();
+      var frontString, backString;
+      var c = appController.getCurrentCard();
+      if(c == null){
+        frontString = "";
+        backString = "";
+      } 
+      else {
+        frontString = c.getFrontText();
+        backString = c.getBackText();
+      }
+      document.getElementById('flashcardText').innerHTML = frontString;
+      document.getElementById('flashcardBackText').innerHTML = backString;
+      
     }  
   }
 
@@ -139,12 +154,47 @@ const App = () => {
       currentCard.setWeight(weight);
       appController.putInDeck(currentCard);
       appController.logDeck();
+      appController.nextCard();
+      var frontString, backString;
+      var c = appController.getCurrentCard();
+      if(c == null){
+        frontString = "";
+        backString = "";
+      } 
+      else {
+        frontString = c.getFrontText();
+        backString = c.getBackText();
+      }
+      document.getElementById('flashcardText').innerHTML = frontString;
+      document.getElementById('flashcardBackText').innerHTML = backString;
     }
   }
 
-
-
-
+ ////can probably get away with just going to next
+  function handlePartially(e){
+    e.preventDefault();
+    var c = appController.getCurrentCard();
+    if(c != null){
+      var currentCard = appController.getCurrentCard();
+      var weight = currentCard.getWeight();
+      currentCard.setWeight(weight);
+      appController.putInDeck(currentCard);
+      appController.logDeck();
+      appController.nextCard();
+      var frontString, backString;
+      var c = appController.getCurrentCard();
+      if(c == null){
+        frontString = "";
+        backString = "";
+      } 
+      else {
+        frontString = c.getFrontText();
+        backString = c.getBackText();
+      }
+      document.getElementById('flashcardText').innerHTML = frontString;
+      document.getElementById('flashcardBackText').innerHTML = backString;
+    }
+  }
 
 
   // Flips flashcard
@@ -192,21 +242,14 @@ const App = () => {
   }
  
   function Flashcard(){
-
     const [flip, setFlip] = useState(false)
-
-
     return (
       <div  className={`card ${flip ? 'flip' : ''}`} onClick={() => setFlip(!flip)}>
           <div className="front" id="flashcardText"> </div>
           <div className="back" id="flashcardBackText"></div>
       </div>
   );
-
-
-
-
-  }
+    }
 
 
   // This is what gets rendered
@@ -252,7 +295,8 @@ const App = () => {
                      onClick={handleYes}>
                       yes
                     </button>
-                    <button id="partially-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2">
+                    <button id="partially-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2"
+                    onClick={handlePartially}>
                       partially
                     </button>
                     <button id="yes-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2"
