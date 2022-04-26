@@ -24,9 +24,12 @@ export class Card {
         this.weight = w;
     }
 
+    logger(){
+        console.log(this.frontText + '\n' + this.backText + '\n' + this.weight);
+    }
     
     toString() {
-        console.log(this.frontText + '\n' + this.backText);
+        console.log(this.frontText + '\n' + this.backText + '\n' + this.weight);
         return this.frontText + '\n' + this.backText;
     }
 
