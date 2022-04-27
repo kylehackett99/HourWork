@@ -32,5 +32,12 @@ export class Card {
         console.log(this.frontText + '\n' + this.backText + '\n' + this.weight);
         return this.frontText + '\n' + this.backText;
     }
+    toJSON(){
+        return {
+            frontText: this.frontText,
+            backText: this.backText,
+            weight: this.weight
+        }
+    }
 
 }

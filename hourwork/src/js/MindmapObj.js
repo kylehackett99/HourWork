@@ -1,6 +1,7 @@
 import {Card} from './Card';
 import {Node} from './Node';
 import {Graph} from './Graph';
+import _ from 'lodash';
 
 export class MindmapObj {
     constructor() {
@@ -45,6 +46,14 @@ export class MindmapObj {
         this.dateDue = date;
     }
 
+    getGraph(){
+        return this.graph;
+    }
+
+    setGraph(graph){
+        this.graph = graph;
+    }
+
     getSize(){
         return this.graph.getSize();
     }
@@ -63,6 +72,10 @@ export class MindmapObj {
     addEdge(parent, child){
         this.graph.addEdge(parent,child);
     }
+    // add edges b/w nodes (+ remove)
+    removeEdge(parent, child){
+        this.graph.removeEdge(parent,child);
+    }
 
     // Gets edges to work with MindMap API
     getEdges(){
@@ -78,6 +91,41 @@ export class MindmapObj {
         (this.getNodes()).forEach(element => {
             if(element.id === id){
                 card = element.getCard();
+            }
+        });
+        return card;
+    }
+
+    setCardWeight(id,weight){
+        var card = new Card("card not found");
+        (this.getNodes()).forEach(element => {
+            if(element.id === id){
+                card = element.getCard();
+                card.setWeight(weight);
+            }
+        });
+    }
+    getNodeByCard(card){
+        var node = new Node();
+        (this.getNodes()).forEach(element => {
+            if(_.isEqual(card,element.getCard())){
+                node = element;
+            }
+        });
+
+        //console.log(node.getID())
+        return node;
+    }
+    
+
+    
+
+    printCard(id){
+        var card = new Card("card not found");
+        (this.getNodes()).forEach(element => {
+            if(element.id === id){
+                card = element.getCard();
+                card.logger();
             }
         });
         return card;
@@ -264,5 +312,18 @@ export class MindmapObj {
             card.logger();
         });
     }
+    
+    printGraph(){
+        var adj_list_map = this.graph.getAdjacentListAsMap();
+        for (let [key, value] of adj_list_map) {
+            console.log(key,value);
+            //key.printNode();
+          }
+    }
+
+
+
+
+
    
 }

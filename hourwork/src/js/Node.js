@@ -28,6 +28,15 @@ export class Node {
         return this.label;
     }
 
-   
-    
+    printNode(){
+        console.log(`ID: ${this.id}` )
+        this.card.logger();
+    }
+    toJSON(){
+        return {
+            card: this.card,
+            id: this.id,
+            label: this.label
+        }
+    }
 }

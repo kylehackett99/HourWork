@@ -7,11 +7,13 @@ import {Card} from './js/Card';
 import {Node} from './js/Node'
 import {MindmapObj} from './js/MindmapObj';
 import './flash.css'
+import { Graph } from './js/Graph.js';
 
 // Defines where the App gets rendered in the DOM
 const root = createRoot(document.getElementById("root"));
 // initial definition of the  application controller
 var appController = new MindmapObj();
+var weights = [];
 
 //** Reads in data from session storage and updates the application data structure **/
 function updateStructure(){
@@ -19,6 +21,7 @@ function updateStructure(){
   var retrievedData = sessionStorage.getItem("file-array");
   var nestedArray = JSON.parse(retrievedData);
   var title = sessionStorage.getItem("file-name");
+
   
   // initialize our graph
   appController = new MindmapObj();
@@ -27,6 +30,7 @@ function updateStructure(){
   if (nestedArray != null) {
     // title card
     var titleCard = new Node(0, new Card(title));
+    
     appController.setTitle(titleCard.getLabel());
 
     //sets dueDate for the MindMap
@@ -62,11 +66,23 @@ function updateStructure(){
         appController.addEdge(parents[i], child);
       }
     }
-
     // Generates deck of cards from the Mindmap
     appController.generateDeck();
   }
 }
+
+function weightChanger(id, num) {
+  weights = JSON.parse(sessionStorage.getItem("weights"));
+  var weight = weights[id].weight;
+  var newWeight = weight + num;
+  weights[id] = { id: id, weight: newWeight};
+  appController.setCardWeight(id,newWeight);
+  var weightsJSON = JSON.stringify(weights);
+  sessionStorage.setItem("weights", weightsJSON );
+  //console.log(weights);
+  //appController.printGraph(); 
+}
+
 
 // Function definition for when the user uploads a file
 var uploadHandler = function(e) {
@@ -94,7 +110,7 @@ const App = () => {
       backString = c.getBackText();
     }
     document.getElementById('flashcardText').innerHTML = frontString;
-    document.getElementById('flashcardBackText').innerHTML = backString;
+    //document.getElementById('flashcardBackText').innerHTML = backString;
   }
    // Handler for Previous Card Button Press
   function handlePrevious(e) {
@@ -110,7 +126,7 @@ const App = () => {
       backString = c.getBackText();
     }
     document.getElementById('flashcardText').innerHTML = frontString;
-    document.getElementById('flashcardBackText').innerHTML = backString;
+    //document.getElementById('flashcardBackText').innerHTML = backString;
     
     
   }
@@ -121,26 +137,22 @@ const App = () => {
     if(c != null){
       var currentCard = appController.getCurrentCard();
       var weight = currentCard.getWeight();
-      weight += 1;
-      currentCard.setWeight(weight);
-      appController.putInDeck(currentCard);
-      appController.logDeck();
-      appController.nextCard();
-      var frontString, backString;
-      var c = appController.getCurrentCard();
-      if(c == null){
-        frontString = "";
-        backString = "";
-      } 
-      else {
-        frontString = c.getFrontText();
-        backString = c.getBackText();
-      }
-      document.getElementById('flashcardText').innerHTML = frontString;
-      document.getElementById('flashcardBackText').innerHTML = backString;
-      
+      var id = appController.getNodeByCard(currentCard).getID();
+      weightChanger(id, 2);
     }  
   }
+
+  function handlePartially(e) {
+    e.preventDefault();
+    var c = appController.getCurrentCard();
+    if(c != null){
+      var currentCard = appController.getCurrentCard();
+      var weight = currentCard.getWeight();
+      var id = appController.getNodeByCard(currentCard).getID();
+      weightChanger(id, 1);
+    }  
+  }
+
 
   function handleYes(e) {
     e.preventDefault();
@@ -148,54 +160,12 @@ const App = () => {
     if(c != null){
       var currentCard = appController.getCurrentCard();
       var weight = currentCard.getWeight();
-      if (weight > 0){
-        weight -= 1;
+      if (weight > 0){ /// assuming we dont wont negative weights
+        var id = appController.getNodeByCard(currentCard).getID();
+        weightChanger(id, - 1);
       }
-      currentCard.setWeight(weight);
-      appController.putInDeck(currentCard);
-      appController.logDeck();
-      appController.nextCard();
-      var frontString, backString;
-      var c = appController.getCurrentCard();
-      if(c == null){
-        frontString = "";
-        backString = "";
-      } 
-      else {
-        frontString = c.getFrontText();
-        backString = c.getBackText();
-      }
-      document.getElementById('flashcardText').innerHTML = frontString;
-      document.getElementById('flashcardBackText').innerHTML = backString;
     }
   }
-
- ////can probably get away with just going to next
-  function handlePartially(e){
-    e.preventDefault();
-    var c = appController.getCurrentCard();
-    if(c != null){
-      var currentCard = appController.getCurrentCard();
-      var weight = currentCard.getWeight();
-      currentCard.setWeight(weight);
-      appController.putInDeck(currentCard);
-      appController.logDeck();
-      appController.nextCard();
-      var frontString, backString;
-      var c = appController.getCurrentCard();
-      if(c == null){
-        frontString = "";
-        backString = "";
-      } 
-      else {
-        frontString = c.getFrontText();
-        backString = c.getBackText();
-      }
-      document.getElementById('flashcardText').innerHTML = frontString;
-      document.getElementById('flashcardBackText').innerHTML = backString;
-    }
-  }
-
 
   // Flips flashcard
   function flipCard(e) {
@@ -219,9 +189,6 @@ const App = () => {
     const [node, setNode] = useState('No Node Selected');
 
 
-
-
-
     // Updates Current Card with the callback node ID
     var clickedCard = appController.getCardByNodeID(node[0]);
 
@@ -229,8 +196,7 @@ const App = () => {
       appController.setCurrentCard(clickedCard);
       // Delete this line once Flashcard React Component is implemented
       document.getElementById('flashcardText').innerHTML = appController.getCurrentCard().getFrontText();
-      document.getElementById('flashcardBackText').innerHTML = appController.getCurrentCard().getBackText();
-      
+      //document.getElementById('flashcardBackText').innerHTML = appController.getCurrentCard().getBackText();
     }
 
     // returns formatted React Component
@@ -242,13 +208,22 @@ const App = () => {
   }
  
   function Flashcard(){
-    const [flip, setFlip] = useState(false)
+
+    // FOR FLIP ANIMATION
+     /* const [flip, setFlip] = useState(false)
     return (
       <div  className={`card ${flip ? 'flip' : ''}`} onClick={() => setFlip(!flip)}>
           <div className="front" id="flashcardText"> </div>
           <div className="back" id="flashcardBackText"></div>
       </div>
+  );  */
+  return (
+    <div>
+      <div id="flashcardText" className="u-align-center u-text-2" onClick={flipCard}></div>
+    </div>
   );
+
+
     }
 
 
@@ -264,10 +239,9 @@ const App = () => {
             {/** JSX for the Flashcard view **/}
               <div className="u-container-style u-layout-cell u-shape-rectangle u-size-30 u-layout-cell-2">
                 <div className="u-border-1 u-border-custom-color-1 u-border-no-bottom u-border-no-left u-border-no-top u-container-layout u-container-layout-3">
-                  <button id="easy" onclick="changeDifficulty(1)" style= {{color: "white", background: "#04ce71" , cursor: "pointer" }} >Easy</button>
-                  <button id="medium" onclick="changeDifficulty(2)" style= {{color: "white", background: "#ffd450" , cursor: "pointer"}} >Medium</button>
-                  <button id="hard" onclick="changeDifficulty(3)" style= {{color: "white", background: "red" , cursor: "pointer" }} >Hard</button>
-                  <div className="u-container-style u-group u-radius-5 u-shape-round u-group-2">
+                  <div className="u-border-1 u-border-custom-color-1 u-container-style u-group u-radius-5 u-shape-round u-group-2">
+                    {/**  change this ^^^ to below to remove original flashcard field **/ }
+                  {/* <div className="u-container-style u-group u-radius-5 u-shape-round u-group-2"> */}
                     <div className="u-container-layout u-container-layout-4">
                       <Flashcard/>
                     </div>

@@ -75,10 +75,30 @@ fileUploadButton.addEventListener('change', function() {
         }
         // console.log(nestedArray); <-- used for testing
 
-        // add title, dueDate, and nestedArray to localStorage
+        /// Setting Initial weights to zero
+        var weights = [];
+        var id_counter = 0;
+        weights.push({id: id_counter, weight: 0})
+
+        for (var i = 0; i < nestedArray.length; i++){
+            id_counter++;
+            weights.push({id: id_counter, weight: 0})
+        } 
+            
+        for (var i = 0; i < nestedArray.length; i++)
+            for (var j = 2; j < nestedArray[i].length; j++) {
+                id_counter++;
+                weights.push({id: id_counter, weight: 0})
+            }
+
+        // add title, dueDate, nestedArray, and weights to localStorage
         sessionStorage.setItem("file-name", title);
         sessionStorage.setItem("due-date", dueDate);
         sessionStorage.setItem("file-array", JSON.stringify(nestedArray));
+        sessionStorage.setItem("weights", JSON.stringify(weights));
+        
+        
+
 
         var event = new Event('newFileUploaded');
 

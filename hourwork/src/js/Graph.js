@@ -27,6 +27,13 @@ export class Graph {
     return list;
   }
 
+  getAdjacentListAsMap(){
+    return this.adjacentList;
+  }
+
+
+
+
   // Gets edges to work with MindMap API
   getEdges(){
     return this.adjacentList;
@@ -93,6 +100,15 @@ export class Graph {
         }
     return false;
   }
+  toJSON() {
+    return {
+      vertices: [...this.vertices],
+      adjacentList: [...this.adjacentList.entries()],
+      size: this.size
+    }
+  }
+
 
 
 }
+
