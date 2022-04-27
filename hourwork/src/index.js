@@ -69,6 +69,7 @@ function updateStructure(){
 
 // Function definition for when the user uploads a file
 var uploadHandler = function(e) {
+  console.log(appController);
   root.render(<App/>);
 };
 // defines the listener for the file upload, and then executes the function to rerender
