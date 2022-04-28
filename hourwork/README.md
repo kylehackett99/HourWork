@@ -1,3 +1,5 @@
+# HourWork Study Assistant
+
 **How to use this development environment**
 
 - Have Node JS installed
