@@ -78,17 +78,17 @@ fileUploadButton.addEventListener('change', function() {
         /// Setting Initial weights to zero
         var weights = [];
         var id_counter = 0;
-        weights.push({id: id_counter, weight: 0})
+        weights[0] = 0;
 
         for (var i = 0; i < nestedArray.length; i++){
             id_counter++;
-            weights.push({id: id_counter, weight: 0})
+            weights[id_counter] = 0;
         } 
             
         for (var i = 0; i < nestedArray.length; i++)
             for (var j = 2; j < nestedArray[i].length; j++) {
                 id_counter++;
-                weights.push({id: id_counter, weight: 0})
+                weights[id_counter] = 0;
             }
 
         // add title, dueDate, nestedArray, and weights to localStorage

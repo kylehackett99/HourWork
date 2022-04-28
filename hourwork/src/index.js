@@ -73,14 +73,17 @@ function updateStructure(){
 
 function weightChanger(id, num) {
   weights = JSON.parse(sessionStorage.getItem("weights"));
-  var weight = weights[id].weight;
+  var weight = weights[id];
   var newWeight = weight + num;
-  weights[id] = { id: id, weight: newWeight};
+  weights[id] = newWeight;
   appController.setCardWeight(id,newWeight);
-  var weightsJSON = JSON.stringify(weights);
-  sessionStorage.setItem("weights", weightsJSON );
-  //console.log(weights);
-  //appController.printGraph(); 
+  sessionStorage.setItem("weights", JSON.stringify(weights));
+
+  for (var i = 0; i<weights.length; i++) {
+    console.log( "id:" + i + "->" + "weight:" + weights[i]);
+  }
+  
+  appController.printGraph(); 
 }
 
 
@@ -138,7 +141,7 @@ const App = () => {
       var currentCard = appController.getCurrentCard();
       var weight = currentCard.getWeight();
       var id = appController.getNodeByCard(currentCard).getID();
-      weightChanger(id, 2);
+      weightChanger(id, 1 );
     }  
   }
 
@@ -149,7 +152,7 @@ const App = () => {
       var currentCard = appController.getCurrentCard();
       var weight = currentCard.getWeight();
       var id = appController.getNodeByCard(currentCard).getID();
-      weightChanger(id, 1);
+      weightChanger(id, .5 )
     }  
   }
 
@@ -157,12 +160,18 @@ const App = () => {
   function handleYes(e) {
     e.preventDefault();
     var c = appController.getCurrentCard();
-    if(c != null){
+    if(c != null) {
       var currentCard = appController.getCurrentCard();
       var weight = currentCard.getWeight();
-      if (weight > 0){ /// assuming we dont wont negative weights
-        var id = appController.getNodeByCard(currentCard).getID();
-        weightChanger(id, - 1);
+      if (weight > 0) { /// assuming we dont wont negative weights
+        if (weight == .5) { //catching half weights 
+          var id = appController.getNodeByCard(currentCard).getID();
+          weightChanger(id, - .5);
+        }  
+        else {
+          var id = appController.getNodeByCard(currentCard).getID();
+          weightChanger(id, - 1);
+        }
       }
     }
   }
@@ -273,7 +282,7 @@ const App = () => {
                     onClick={handlePartially}>
                       partially
                     </button>
-                    <button id="yes-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2"
+                    <button id="no-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2"
                     onClick={handleNo}>
                       no
                     </button>
