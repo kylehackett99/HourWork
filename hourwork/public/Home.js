@@ -26,6 +26,9 @@ fileUploadButton.addEventListener('change', function() {
     var headers = 0;
     var nest = 0;
     var currHeader;
+    var id_counter = 0;
+    var newIdCounter = 0;
+    var weights = [];
 
     /* uploads the contents of the file and displays them on the page */
     fileReader.onload = function() {
@@ -38,16 +41,23 @@ fileUploadButton.addEventListener('change', function() {
         /* title and due date -- title will be at the center of the mindmap */
         title = lines[0];
         dueDate = lines[1];
+        weights[0] = 0;
+        
 
         for (var line = 2; line < lines.length-1; line++) {
             /* Gets the leading heading
              * Relies on: empty line before, no tabs at index & index+1 */
             if (lines[line-1] === "" && lines[line].indexOf('\t')==-1 &&
                     lines[line+1].indexOf('\t')==-1) {
+
                 currHeader = lines[line];
                 nestedArray[headers] = new Array (currHeader, lines[line+1]);
+                console.log(lines[line] + ", " + lines[line + 1] );
+                
                 headers++;
                 nest = 2;
+                id_counter++;
+                weights[id_counter] = 0;
             /* Checks for nested values
              * Relies on: empty line before & \t at the beginning of the line */
             } else if (lines[line-1] == "" && lines[line].indexOf('\t')!=-1) {
@@ -65,38 +75,30 @@ fileUploadButton.addEventListener('change', function() {
                 if (tabCounter == 1) {
                     /* remove tab from beginning of line prior to inserting
                      * a node and it's child into the array */
+
                     lines[line] = lines[line].replace("\t", "");
                     lines[line+1] = lines[line+1].replace("\t", "");
+                    
+                    console.log(lines[line] + ", " + lines[line + 1] );
+                    
                     nestedArray[headers-1][nest] =
                         new Array (lines[line], lines[line+1]);
                     nest++;
+                    id_counter++;
+                    weights[id_counter] = 0;
                 }
             }
         }
+
+        
         // console.log(nestedArray); <-- used for testing
-
-        /// Setting Initial weights to zero
-        var weights = [];
-        var id_counter = 0;
-        weights[0] = 0;
-
-        for (var i = 0; i < nestedArray.length; i++){
-            id_counter++;
-            weights[id_counter] = 0;
-        } 
-            
-        for (var i = 0; i < nestedArray.length; i++)
-            for (var j = 2; j < nestedArray[i].length; j++) {
-                id_counter++;
-                weights[id_counter] = 0;
-            }
 
         // add title, dueDate, nestedArray, and weights to localStorage
         sessionStorage.setItem("file-name", title);
         sessionStorage.setItem("due-date", dueDate);
         sessionStorage.setItem("file-array", JSON.stringify(nestedArray));
         sessionStorage.setItem("weights", JSON.stringify(weights));
-        
+        //console.log (nestedArray);
         
 
 
