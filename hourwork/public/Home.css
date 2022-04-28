@@ -62,6 +62,14 @@
   padding: 20px;
 }
 
+/* input file content summary */
+.u-section-1 #file-contents-sum {
+  font-size: 0.925rem;
+  font-family: Nunito;
+  text-transform: lowercase;
+  padding: 20px;
+}
+
 .u-section-1 .u-text-1 {
   font-size: 1.125rem;
   margin: -35px -21px 0 auto;
