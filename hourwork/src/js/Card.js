@@ -1,5 +1,5 @@
 export class Card {
-    constructor(frontText = " ", backText = " ", weight = 0) {
+    constructor(frontText = " ", backText = " ", weight = 0.0) {
         this.frontText = frontText;
         this.backText = backText;
         this.weight = weight;

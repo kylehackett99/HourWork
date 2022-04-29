@@ -29,6 +29,7 @@ fileUploadButton.addEventListener('change', function() {
     var id_counter = 0;
     var newIdCounter = 0;
     var weights = [];
+    const MAP_START_LINE = 2;
 
     /* uploads the contents of the file and displays them on the page */
     fileReader.onload = function() {
@@ -44,23 +45,27 @@ fileUploadButton.addEventListener('change', function() {
         weights[0] = 0;
         
 
-        for (var line = 2; line < lines.length-1; line++) {
+        for (var line = MAP_START_LINE; line < lines.length-1; line++) {
             /* Gets the leading heading
              * Relies on: empty line before, no tabs at index & index+1 */
-            if (lines[line-1] === "" && lines[line].indexOf('\t')==-1 &&
-                    lines[line+1].indexOf('\t')==-1) {
+            if (lines[line - 1] === "" 
+                && lines[line].indexOf('\t')==-1 
+                && lines[line + 1].indexOf('\t') == -1
+                && lines[line + 2].indexOf('\t') == -1 
+                ) {
 
                 currHeader = lines[line];
                 nestedArray[headers] = new Array (currHeader, lines[line+1]);
-                console.log(lines[line] + ", " + lines[line + 1] );
+                //console.log(lines[line] + ", " + lines[line + 1] );
+                //console.log(lines[line + 2]);
                 
                 headers++;
                 nest = 2;
                 id_counter++;
-                weights[id_counter] = 0;
+                weights[id_counter] = parseFloat(lines[line + 2]);
             /* Checks for nested values
              * Relies on: empty line before & \t at the beginning of the line */
-            } else if (lines[line-1] == "" && lines[line].indexOf('\t')!=-1) {
+            } else if (lines[line-1] == "" && lines[line].indexOf('\t')!=-1 ) {
                 var index = 0;
                 var tabCounter = 0;
 
@@ -77,18 +82,22 @@ fileUploadButton.addEventListener('change', function() {
                      * a node and it's child into the array */
 
                     lines[line] = lines[line].replace("\t", "");
-                    lines[line+1] = lines[line+1].replace("\t", "");
+                    lines[line + 1] = lines[line + 1].replace("\t", "");
+                    lines[line + 2] = lines[line + 2].replace("\t", "");
                     
-                    console.log(lines[line] + ", " + lines[line + 1] );
+                    //console.log(lines[line] + ", " + lines[line + 1] );
+                    //console.log(lines[line + 2]);
                     
                     nestedArray[headers-1][nest] =
                         new Array (lines[line], lines[line+1]);
                     nest++;
                     id_counter++;
-                    weights[id_counter] = 0;
+                    weights[id_counter] = parseFloat(lines[line + 2]);
                 }
             }
         }
+
+        
 
         
         // console.log(nestedArray); <-- used for testing
@@ -98,7 +107,7 @@ fileUploadButton.addEventListener('change', function() {
         sessionStorage.setItem("due-date", dueDate);
         sessionStorage.setItem("file-array", JSON.stringify(nestedArray));
         sessionStorage.setItem("weights", JSON.stringify(weights));
-        //console.log (nestedArray);
+        console.log (nestedArray);
         
 
 

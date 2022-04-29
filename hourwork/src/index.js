@@ -21,6 +21,7 @@ function updateStructure(){
   var retrievedData = sessionStorage.getItem("file-array");
   var nestedArray = JSON.parse(retrievedData);
   var title = sessionStorage.getItem("file-name");
+  weights = JSON.parse(sessionStorage.getItem("weights"));
 
   
   // initialize our graph
@@ -47,7 +48,8 @@ function updateStructure(){
     * nodes */
     for (var i = 0; i < nestedArray.length; i++) {
       id_counter++;
-      parents[i] = new Node(id_counter, new Card(nestedArray[i][0], nestedArray[i][1]));
+      parents[i] = new Node(id_counter, 
+                            new Card(nestedArray[i][0], nestedArray[i][1], weights[id_counter]));
     }
 
     /* make the titleCard the vertex, then loop through and make each parent
@@ -62,12 +64,14 @@ function updateStructure(){
     for (var i = 0; i < nestedArray.length; i++) {
       for (var j = 2; j < nestedArray[i].length; j++) {
         id_counter++;
-        child = new Node(id_counter, new Card(nestedArray[i][j][0], nestedArray[i][j][1]));
+        child = new Node(id_counter, 
+                         new Card(nestedArray[i][j][0], nestedArray[i][j][1], weights[id_counter]));
         appController.addEdge(parents[i], child);
       }
     }
     // Generates deck of cards from the Mindmap
     appController.generateDeck();
+    appController.printGraph();
   }
 }
 
