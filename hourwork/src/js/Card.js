@@ -29,8 +29,8 @@ export class Card {
     }
     
     toString() {
-        console.log(this.frontText + '\n' + this.backText + '\n' + this.weight);
-        return this.frontText + '\n' + this.backText;
+        //console.log(this.frontText + '\n' + this.backText + '\n' + this.weight);
+        return this.frontText + ' ' + this.backText + ' ' + this.weight;
     }
     toJSON(){
         return {

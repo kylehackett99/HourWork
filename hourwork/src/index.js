@@ -9,11 +9,13 @@ import {MindmapObj} from './js/MindmapObj';
 import './flash.css'
 import { Graph } from './js/Graph.js';
 
+
 // Defines where the App gets rendered in the DOM
 const root = createRoot(document.getElementById("root"));
 // initial definition of the  application controller
 var appController = new MindmapObj();
 var weights = [];
+
 
 //** Reads in data from session storage and updates the application data structure **/
 function updateStructure(){
@@ -21,17 +23,16 @@ function updateStructure(){
   var retrievedData = sessionStorage.getItem("file-array");
   var nestedArray = JSON.parse(retrievedData);
   var title = sessionStorage.getItem("file-name");
-  weights = JSON.parse(sessionStorage.getItem("weights"));
+  var headNode = JSON.parse(sessionStorage.getItem("head-node"));
 
-  
   // initialize our graph
   appController = new MindmapObj();
 
   // If the nested array is null -> then it wont parse the data in local storage
-  if (nestedArray != null) {
+  if (headNode != null) {
     // title card
-    var titleCard = new Node(0, new Card(title));
-    
+    var titleCard = new Node(0, new Card(headNode.front));
+
     appController.setTitle(titleCard.getLabel());
 
     //sets dueDate for the MindMap
@@ -44,50 +45,50 @@ function updateStructure(){
     // flashcardText variable for each child node
     var child;
 
+
     /* loop through the top layer of the nested array and fill in the parent
     * nodes */
-    for (var i = 0; i < nestedArray.length; i++) {
+    for (var i = 0; i < headNode.children.length; i++){
       id_counter++;
       parents[i] = new Node(id_counter, 
-                            new Card(nestedArray[i][0], nestedArray[i][1], weights[id_counter]));
+                            new Card(headNode.children[i].front,
+                                     headNode.children[i].back,  
+                                     headNode.children[i].weight)); 
     }
 
     /* make the titleCard the vertex, then loop through and make each parent
     * node an edge to that card */
     appController.addNode(titleCard);
-    for (var i = 0; i < nestedArray.length; i++) {
+    for (var i = 0; i < headNode.children.length; i++) {
       appController.addNode(parents[i]);
       appController.addEdge(titleCard, parents[i]);
     }
-
-    /* go through the children and add them as edges to their parent nodes */
-    for (var i = 0; i < nestedArray.length; i++) {
-      for (var j = 2; j < nestedArray[i].length; j++) {
+  
+    // go through the children and add them as edges to their parent nodes 
+     for (var i = 0; i < headNode.children.length; i++) { 
+       for (var j = 0; j < headNode.children[i].children.length; j++) {
         id_counter++;
         child = new Node(id_counter, 
-                         new Card(nestedArray[i][j][0], nestedArray[i][j][1], weights[id_counter]));
-        appController.addEdge(parents[i], child);
-      }
-    }
+                         new Card(headNode.children[i].children[j].front, 
+                                  headNode.children[i].children[j].back, 
+                                  headNode.children[i].children[j].weight));
+        appController.addEdge(parents[i], child); 
+      } 
+    }  
+
     // Generates deck of cards from the Mindmap
     appController.generateDeck();
-    appController.printGraph();
+    //appController.printGraph();
   }
 }
 
 function weightChanger(id, num) {
-  weights = JSON.parse(sessionStorage.getItem("weights"));
-  var weight = weights[id];
-  var newWeight = weight + num;
-  weights[id] = newWeight;
-  appController.setCardWeight(id,newWeight);
-  sessionStorage.setItem("weights", JSON.stringify(weights));
 
-  for (var i = 0; i<weights.length; i++) {
-    console.log( "id:" + i + "->" + "weight:" + weights[i]);
-  }
-  
-  appController.printGraph(); 
+  var weight = appController.getCardWeight(id);
+  var newWeight = weight + num;
+  appController.setCardWeight(id,newWeight);  
+  appController.store();
+  //appController.printGraph(); 
 }
 
 
@@ -134,8 +135,6 @@ const App = () => {
     }
     document.getElementById('flashcardText').innerHTML = frontString;
     //document.getElementById('flashcardBackText').innerHTML = backString;
-    
-    
   }
 
   function handleNo(e) {
@@ -143,9 +142,10 @@ const App = () => {
     var c = appController.getCurrentCard();
     if(c != null){
       var currentCard = appController.getCurrentCard();
-      var weight = currentCard.getWeight();
       var id = appController.getNodeByCard(currentCard).getID();
       weightChanger(id, 1 );
+      appController.putInDeck(currentCard);
+      //appController.logDeck();
     }  
   }
 
@@ -154,13 +154,12 @@ const App = () => {
     var c = appController.getCurrentCard();
     if(c != null){
       var currentCard = appController.getCurrentCard();
-      var weight = currentCard.getWeight();
       var id = appController.getNodeByCard(currentCard).getID();
-      weightChanger(id, .5 )
+      weightChanger(id, .5 );
+      appController.putInDeck(currentCard);
+      //appController.logDeck();
     }  
   }
-
-
   function handleYes(e) {
     e.preventDefault();
     var c = appController.getCurrentCard();
@@ -177,6 +176,8 @@ const App = () => {
           weightChanger(id, - 1);
         }
       }
+      appController.putInDeck(currentCard);
+      //appController.logDeck();
     }
   }
 
@@ -262,7 +263,7 @@ const App = () => {
 
                   {/** Previous Button **/ }
                   <div className="u-shape u-shape-svg u-text-custom-color-3 u-shape-1">
-                    <button id="next-button" className="u-svg-link" onClick={handlePrevious} style={{background: "transparent", border: "none", cursor: "pointer" }}>
+                    <button id="next-button" className="u-svg-link" onClick={handleNext} style={{background: "transparent", border: "none", cursor: "pointer" }}>
                       <svg className="u-svg-link" preserveAspectRatio="none" viewBox="0 0 160 100" ><use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#svg-8406"></use></svg>
                       <svg className="u-svg-content" viewBox="0 0 160 100" x="0px" y="0px" id="svg-8406" ><g><path d="M109.2,99.9L160,50L109.2,0H75.6l38.7,38H0v24.2h114L75.6,100L109.2,99.9z"></path></g></svg>
                     </button>
@@ -270,7 +271,7 @@ const App = () => {
 
                   {/** Next Button **/ }
                   <div className="u-flip-horizontal u-shape u-shape-svg u-text-custom-color-3 u-shape-2">
-                    <button id="previous-button" className="u-svg-link" onClick={handleNext} style={{background: "transparent", border: "none", cursor: "pointer" }}>
+                    <button id="prev-button" className="u-svg-link" onClick={handlePrevious} style={{background: "transparent", border: "none", cursor: "pointer" }}>
                       <svg className="u-svg-link" preserveAspectRatio="none" viewBox="0 0 160 100" ><use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#svg-a94c"></use></svg>
                       <svg className="u-svg-content" viewBox="0 0 160 100" x="0px" y="0px" id="svg-a94c" ><g><path d="M109.2,99.9L160,50L109.2,0H75.6l38.7,38H0v24.2h114L75.6,100L109.2,99.9z"></path></g></svg>
                     </button>

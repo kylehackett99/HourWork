@@ -30,6 +30,7 @@ export class MindmapObj {
         this.currentCard = null;
         this.moveHistory = []; // for previous button 
         this.worstFive = [];
+        //this.headNode = {};
     }
 
     getTitle(){
@@ -57,6 +58,15 @@ export class MindmapObj {
     getSize(){
         return this.graph.getSize();
     }
+
+
+    //setHeadNode(headNode){
+      //  this.headNode = headNode;
+    //}
+
+    //getHeadNode(){
+      //  return this.headNode;
+    //}
     isEmpty(){
         return this.size == 0;
     }
@@ -105,6 +115,19 @@ export class MindmapObj {
             }
         });
     }
+    getCardWeight(id){
+        var card = new Card("card not found");
+        var weight = 0;
+        (this.getNodes()).forEach(element => {
+            if(element.id === id){
+                card = element.getCard();
+                weight = card.getWeight();
+            }
+        });
+        return weight;
+    }
+
+
     getNodeByCard(card){
         var node = new Node();
         (this.getNodes()).forEach(element => {
@@ -112,13 +135,8 @@ export class MindmapObj {
                 node = element;
             }
         });
-
-        //console.log(node.getID())
         return node;
     }
-    
-
-    
 
     printCard(id){
         var card = new Card("card not found");
@@ -318,12 +336,48 @@ export class MindmapObj {
         for (let [key, value] of adj_list_map) {
             console.log(key,value);
             //key.printNode();
-          }
+        }
     }
 
 
+    
+    store(){
 
+        var adjacentArray = this.graph.getAdjacentArray();
+        var nodes = Array.from(this.graph.getNodes());
 
+    
+        var headNode = {
+            front: nodes[0].getCard().getFrontText(), 
+            back:  "", 
+            children: [], 
+            weight: 0 
+        };
 
-   
+    
+        for (var i = 1; i < adjacentArray.length; i++) { 
+            //Parent Nodes
+            if (adjacentArray[i].adj.length > 0) {
+                headNode.children.push({ front: nodes[i].getCard().getFrontText(), 
+                                         back: nodes[i].getCard().getBackText(), 
+                                         children: [], 
+                                         weight: nodes[i].getCard().getWeight()})
+            }  
+            // Child Nodes
+            if (adjacentArray[i].adj.length == 0) {
+                adjacentArray.forEach( n => {
+                    if (n.adj.includes(i)){
+                        //console.log(n.id + "->" + i);
+                         headNode.children[n.id - 1].children.push({ 
+                             front: nodes[i].getCard().getFrontText(), 
+                              back: nodes[i].getCard().getBackText(), 
+                              children: [], 
+                              weight: nodes[i].getCard().getWeight()}) 
+                    } //end if                    
+                })  // end forEach         
+            } 
+        } 
+        console.log(headNode);
+        sessionStorage.setItem("head-node", JSON.stringify(headNode));  
+    }
 }
