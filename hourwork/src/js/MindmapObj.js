@@ -30,7 +30,6 @@ export class MindmapObj {
         this.currentCard = null;
         this.moveHistory = []; // for previous button 
         this.worstFive = [];
-        //this.headNode = {};
     }
 
     getTitle(){
@@ -58,19 +57,9 @@ export class MindmapObj {
     getSize(){
         return this.graph.getSize();
     }
-
-
-    //setHeadNode(headNode){
-      //  this.headNode = headNode;
-    //}
-
-    //getHeadNode(){
-      //  return this.headNode;
-    //}
     isEmpty(){
         return this.size == 0;
     }
-
     // add nodes to graph (+ remove)
     addNode(node){
         this.graph.addVertex(node);
@@ -346,6 +335,9 @@ export class MindmapObj {
         var adjacentArray = this.graph.getAdjacentArray();
         var nodes = Array.from(this.graph.getNodes());
 
+        console.log(adjacentArray);
+        //console.log("-------------");
+
     
         var headNode = {
             front: nodes[0].getCard().getFrontText(), 
@@ -354,30 +346,29 @@ export class MindmapObj {
             weight: 0 
         };
 
-    
         for (var i = 1; i < adjacentArray.length; i++) { 
             //Parent Nodes
-            if (adjacentArray[i].adj.length > 0) {
+            if (adjacentArray[0].adj.includes(i)) {
                 headNode.children.push({ front: nodes[i].getCard().getFrontText(), 
                                          back: nodes[i].getCard().getBackText(), 
                                          children: [], 
                                          weight: nodes[i].getCard().getWeight()})
             }  
             // Child Nodes
-            if (adjacentArray[i].adj.length == 0) {
+            else{    
                 adjacentArray.forEach( n => {
-                    if (n.adj.includes(i)){
-                        //console.log(n.id + "->" + i);
+                    if ( n.adj.includes(i)){
+                         //console.log(n.id + "->" + i);
                          headNode.children[n.id - 1].children.push({ 
                              front: nodes[i].getCard().getFrontText(), 
                               back: nodes[i].getCard().getBackText(), 
                               children: [], 
                               weight: nodes[i].getCard().getWeight()}) 
-                    } //end if                    
+                    } //end else                    
                 })  // end forEach         
             } 
         } 
-        console.log(headNode);
+        //console.log(headNode);
         sessionStorage.setItem("head-node", JSON.stringify(headNode));  
     }
 }

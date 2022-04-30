@@ -49,14 +49,22 @@ fileUploadButton.addEventListener('change', function() {
             if (lines[line - 1] === "" 
                 && lines[line].indexOf('\t')==-1 
                 && lines[line + 1].indexOf('\t') == -1
-                && lines[line + 2].indexOf('\t') == -1 
-                ) {
-
-                parentArray[headers] = { front: lines[line], 
+                &&  (line + 2 == lines.length || lines[line + 2].indexOf('\t') == -1) ) //tab or last line in file
+                {
+                /// if empty Line or last line of File 
+                if (lines[line + 2] == "" || line + 2 == lines.length){
+                    parentArray[headers] = { front: lines[line], 
                                          back: lines[line+1], 
                                          children: [], 
-                                         weight: parseFloat(lines[line + 2])};
-                headers++;
+                                         weight: 0};
+                    headers++;
+                } else {
+                    parentArray[headers] = { front: lines[line], 
+                                             back: lines[line+1], 
+                                             children: [], 
+                                             weight: parseFloat(lines[line + 2])};
+                    headers++;
+                }
 
             /* Checks for nested values
              * Relies on: empty line before & \t at the beginning of the line */
@@ -73,17 +81,31 @@ fileUploadButton.addEventListener('change', function() {
 
                 /* single tab -- \t */
                 if (tabCounter == 1) {
-                    /* remove tab from beginning of line prior to inserting
-                     * a node and it's child into the array */
 
-                    lines[line] = lines[line].replace("\t", ""); 
-                    lines[line + 1] = lines[line + 1].replace("\t", ""); 
-                    lines[line + 2] = lines[line + 2].replace("\t", ""); 
-                    
-                    parentArray[headers-1].children.push({front: lines[line], 
-                                                        back: lines[line+1], 
-                                                        children: [], 
-                                                        weight: parseFloat(lines[line + 2])}); 
+                    /// if empty Line or last line of File
+                    if (lines[line + 2] == "" ||  line + 2 == lines.length){
+                        
+                        /* remove tab from beginning of line prior to inserting
+                        * a node and it's child into the array */
+                        lines[line] = lines[line].replace("\t", ""); 
+                        lines[line + 1] = lines[line + 1].replace("\t", ""); 
+                        
+                        parentArray[headers-1].children.push({front: lines[line], 
+                                                              back: lines[line+1], 
+                                                              children: [], 
+                                                              weight: 0 });
+                    } else {
+                       /* remove tab from beginning of line prior to inserting
+                       * a node and it's child into the array */
+                       lines[line] = lines[line].replace("\t", ""); 
+                       lines[line + 1] = lines[line + 1].replace("\t", ""); 
+                       lines[line + 2] = lines[line + 2].replace("\t", "");
+                       
+                       parentArray[headers-1].children.push({front: lines[line], 
+                                                             back: lines[line+1], 
+                                                             children: [], 
+                                                             weight: parseFloat(lines[line + 2])});
+                    }
                 }
             }
         }

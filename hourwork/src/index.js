@@ -78,7 +78,7 @@ function updateStructure(){
 
     // Generates deck of cards from the Mindmap
     appController.generateDeck();
-    //appController.printGraph();
+    appController.printGraph();
   }
 }
 
@@ -88,7 +88,7 @@ function weightChanger(id, num) {
   var newWeight = weight + num;
   appController.setCardWeight(id,newWeight);  
   appController.store();
-  //appController.printGraph(); 
+  appController.printGraph();
 }
 
 
