@@ -405,7 +405,7 @@ export class MindmapObj {
             } 
         } 
   
-        var text = headNode.front + '\r\n' + '04/30/2022' + '\r\n\r\n';
+        var text = headNode.front + '\r\n' + this.dateDue + '\r\n\r\n';
         
         //console.log(headNode.front);
         //console.log("04/30/2022");
