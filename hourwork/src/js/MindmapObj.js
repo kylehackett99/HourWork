@@ -369,4 +369,66 @@ export class MindmapObj {
         //console.log(headNode);
         sessionStorage.setItem("head-node", JSON.stringify(headNode));  
     }
+
+    toText(){
+
+        var adjacentArray = this.graph.getAdjacentArray();
+        var nodes = Array.from(this.graph.getNodes());
+
+        var headNode = {
+            front: nodes[0].getCard().getFrontText(), 
+            back:  "", 
+            children: [], 
+            weight: 0 
+        };
+
+        for (var i = 1; i < adjacentArray.length; i++) { 
+            //Parent Nodes
+            if (adjacentArray[0].adj.includes(i)) {
+                headNode.children.push({ front: nodes[i].getCard().getFrontText(), 
+                                         back: nodes[i].getCard().getBackText(), 
+                                         children: [], 
+                                         weight: nodes[i].getCard().getWeight()})
+            }  
+            // Child Nodes
+            else{    
+                adjacentArray.forEach( n => {
+                    if ( n.adj.includes(i)){
+                         //console.log(n.id + "->" + i);
+                         headNode.children[n.id - 1].children.push({ 
+                             front: nodes[i].getCard().getFrontText(), 
+                              back: nodes[i].getCard().getBackText(), 
+                              children: [], 
+                              weight: nodes[i].getCard().getWeight()}) 
+                    } //end else                    
+                })  // end forEach         
+            } 
+        } 
+  
+        var text = headNode.front + '\r\n' + '04/30/2022' + '\r\n\r\n';
+        
+        //console.log(headNode.front);
+        //console.log("04/30/2022");
+        //console.log('\n')
+
+        headNode.children.forEach( parent => {       
+            text += parent.front + '\r\n';
+            text += parent.back + '\r\n';
+            text += parent.weight + '\r\n';
+            console.log(parent.front);
+            console.log(parent.back);
+            console.log(parent.weight);
+
+            parent.children.forEach( child =>{
+                text += '\t' + child.front + '\r\n';
+                text += '\t' + child.back + '\r\n';
+                text += '\t' + child.weight + '\r\n';
+                console.log(child.front);
+                console.log(child.back);
+                console.log(child.weight);
+            })
+        })
+        text = text.slice(0,-2);
+        return text;
+    }
 }
