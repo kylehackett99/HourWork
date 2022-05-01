@@ -1,5 +1,5 @@
 export class Card {
-    constructor(frontText = " ", backText = " ", weight = 0) {
+    constructor(frontText = " ", backText = " ", weight = 0.0) {
         this.frontText = frontText;
         this.backText = backText;
         this.weight = weight;
@@ -24,10 +24,20 @@ export class Card {
         this.weight = w;
     }
 
+    logger(){
+        console.log(this.frontText + '\n' + this.backText + '\n' + this.weight);
+    }
     
     toString() {
-        console.log(this.frontText + '\n' + this.backText);
-        return this.frontText + '\n' + this.backText;
+        //console.log(this.frontText + '\n' + this.backText + '\n' + this.weight);
+        return this.frontText + ' ' + this.backText + ' ' + this.weight;
+    }
+    toJSON(){
+        return {
+            frontText: this.frontText,
+            backText: this.backText,
+            weight: this.weight
+        }
     }
 
 }

@@ -18,14 +18,48 @@ export class Graph {
     
   // Returns adjacency list of all verticies
   getAdjacentList() {
-    const list = {};
+    var list = [];
       
     this.adjacentList.forEach((value, key) => {
       list[key] = Array.from(value)
     })
-      
     return list;
   }
+
+  getAdjacentArray(){
+    // get all the vertices
+    var get_keys = this.adjacentList.keys();
+    var adjacentArray = [];
+    // iterate over the vertices
+    var i_num = 0;
+    for (var i of get_keys) {
+        // get the corresponding adjacency list
+        // for the vertex
+        var get_values = this.adjacentList.get(i);
+        // iterate over the adjacency list
+        // push the values 
+        adjacentArray.push({id: i.getID(), adj:[] });
+        var j_num = 0;
+        for (var j of get_values) {
+            adjacentArray[i_num].adj.push(j.getID());
+            j_num++;
+        }
+        i_num++;
+    }
+    //console.log(adjacentArray);
+    return adjacentArray;
+}
+
+
+
+
+
+  getAdjacentListAsMap(){
+    return this.adjacentList;
+  }
+
+
+
 
   // Gets edges to work with MindMap API
   getEdges(){
@@ -93,6 +127,15 @@ export class Graph {
         }
     return false;
   }
+  toJSON() {
+    return {
+      vertices: [...this.vertices],
+      adjacentList: [...this.adjacentList.entries()],
+      size: this.size
+    }
+  }
+
 
 
 }
+

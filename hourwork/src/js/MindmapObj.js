@@ -1,6 +1,7 @@
 import {Card} from './Card';
 import {Node} from './Node';
 import {Graph} from './Graph';
+import _ from 'lodash';
 
 export class MindmapObj {
     constructor() {
@@ -45,13 +46,20 @@ export class MindmapObj {
         this.dateDue = date;
     }
 
+    getGraph(){
+        return this.graph;
+    }
+
+    setGraph(graph){
+        this.graph = graph;
+    }
+
     getSize(){
         return this.graph.getSize();
     }
     isEmpty(){
         return this.size == 0;
     }
-
     // add nodes to graph (+ remove)
     addNode(node){
         this.graph.addVertex(node);
@@ -62,6 +70,10 @@ export class MindmapObj {
     // add edges b/w nodes (+ remove)
     addEdge(parent, child){
         this.graph.addEdge(parent,child);
+    }
+    // add edges b/w nodes (+ remove)
+    removeEdge(parent, child){
+        this.graph.removeEdge(parent,child);
     }
 
     // Gets edges to work with MindMap API
@@ -78,6 +90,49 @@ export class MindmapObj {
         (this.getNodes()).forEach(element => {
             if(element.id === id){
                 card = element.getCard();
+            }
+        });
+        return card;
+    }
+
+    setCardWeight(id,weight){
+        var card = new Card("card not found");
+        (this.getNodes()).forEach(element => {
+            if(element.id === id){
+                card = element.getCard();
+                card.setWeight(weight);
+            }
+        });
+    }
+    getCardWeight(id){
+        var card = new Card("card not found");
+        var weight = 0;
+        (this.getNodes()).forEach(element => {
+            if(element.id === id){
+                card = element.getCard();
+                weight = card.getWeight();
+            }
+        });
+        return weight;
+    }
+
+
+    getNodeByCard(card){
+        var node = new Node();
+        (this.getNodes()).forEach(element => {
+            if(_.isEqual(card,element.getCard())){
+                node = element;
+            }
+        });
+        return node;
+    }
+
+    printCard(id){
+        var card = new Card("card not found");
+        (this.getNodes()).forEach(element => {
+            if(element.id === id){
+                card = element.getCard();
+                card.logger();
             }
         });
         return card;
@@ -260,6 +315,58 @@ export class MindmapObj {
             this.currentCard = this.moveHistory.pop();
         }
     }
-   
 
+    logDeck(){
+        var card = new Card("card not found");
+        (this.getNodes()).forEach(element => {
+            card = element.getCard();
+            card.logger();
+        });
+    }
+    
+    printGraph(){
+        var adj_list_map = this.graph.getAdjacentListAsMap();
+        for (let [key, value] of adj_list_map) {
+            console.log(key,value);
+            //key.printNode();
+        }
+    }
+
+    store(){
+
+        var adjacentArray = this.graph.getAdjacentArray();
+        var nodes = Array.from(this.graph.getNodes());
+
+        var headNode = {
+            front: nodes[0].getCard().getFrontText(), 
+            back:  "", 
+            children: [], 
+            weight: 0 
+        };
+
+        for (var i = 1; i < adjacentArray.length; i++) { 
+            //Parent Nodes
+            if (adjacentArray[0].adj.includes(i)) {
+                headNode.children.push({ front: nodes[i].getCard().getFrontText(), 
+                                         back: nodes[i].getCard().getBackText(), 
+                                         children: [], 
+                                         weight: nodes[i].getCard().getWeight()})
+            }  
+            // Child Nodes
+            else{    
+                adjacentArray.forEach( n => {
+                    if ( n.adj.includes(i)){
+                         //console.log(n.id + "->" + i);
+                         headNode.children[n.id - 1].children.push({ 
+                             front: nodes[i].getCard().getFrontText(), 
+                              back: nodes[i].getCard().getBackText(), 
+                              children: [], 
+                              weight: nodes[i].getCard().getWeight()}) 
+                    } //end else                    
+                })  // end forEach         
+            } 
+        } 
+        //console.log(headNode);
+        sessionStorage.setItem("head-node", JSON.stringify(headNode));  
+    }
 }
