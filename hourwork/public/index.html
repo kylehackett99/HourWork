@@ -84,8 +84,14 @@
                       <input id="file-upload" type="file" accept=".txt"/>
                       <span id="file-chosen">No file chosen</span>
 
-                      <!-- holds + displays the contents of a file once uploaded -->
-                      <pre id="output"></pre>
+                      <!-- collapsable section for text file contents -->
+                      <details>
+                        <summary id="file-contents-sum">
+                          Text File Contents
+                        </summary>
+                        <!-- holds + displays the contents of a file once uploaded -->
+                        <pre id="output"></pre>
+                      </details>
 
                     </div>
                   </div>

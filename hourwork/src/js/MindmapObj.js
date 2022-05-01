@@ -143,7 +143,11 @@ export class MindmapObj {
         // Clears the deck
         this.deck = this.deck.splice(0,this.deck.length);
         (this.getNodes()).forEach(element => {
-            this.putInDeck(element.getCard());
+            var c = element.getCard();
+            // skips title card
+            if(c.getFrontText() != this.title && c.getBackText() != " "){
+                this.putInDeck(element.getCard()); 
+            } 
         });
 
         this.pullTopCard(); // removes title card from the deck
