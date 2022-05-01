@@ -328,17 +328,11 @@ export class MindmapObj {
         }
     }
 
-
-    
     store(){
 
         var adjacentArray = this.graph.getAdjacentArray();
         var nodes = Array.from(this.graph.getNodes());
 
-        console.log(adjacentArray);
-        //console.log("-------------");
-
-    
         var headNode = {
             front: nodes[0].getCard().getFrontText(), 
             back:  "", 

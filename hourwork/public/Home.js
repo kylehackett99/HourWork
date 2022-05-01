@@ -26,7 +26,6 @@ fileUploadButton.addEventListener('change', function() {
     var dueDate;
     var parentArray = [];
     var headers = 0;
-    var weights = [];
     const MAP_START_LINE = 2;
 
     /* uploads the contents of the file and displays them on the page */
@@ -40,9 +39,7 @@ fileUploadButton.addEventListener('change', function() {
         /* title and due date -- title will be at the center of the mindmap */
         title = lines[0];
         dueDate = lines[1];
-        weights[0] = 0;
-
-        
+       
         for (var line = MAP_START_LINE; line < lines.length-1; line++) {
             /* Gets the leading heading
              * Relies on: empty line before, no tabs at index & index+1 */
@@ -119,16 +116,13 @@ fileUploadButton.addEventListener('change', function() {
         for (var i = 0; i < headers; i++){     
             headNode.children.push(parentArray[i]);
         }
-        console.log(headNode);
-        // console.log(nestedArray); <-- used for testing
-
+        //console.log(headNode); <-- used for testing
+    
         // add title, dueDate, headNode to localStorage
         sessionStorage.setItem("file-name", title);
         sessionStorage.setItem("due-date", dueDate);
         sessionStorage.setItem("head-node", JSON.stringify(headNode));
     
-        
-
 
         var event = new Event('newFileUploaded');
 

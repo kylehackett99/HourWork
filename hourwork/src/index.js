@@ -19,10 +19,7 @@ var weights = [];
 
 //** Reads in data from session storage and updates the application data structure **/
 function updateStructure(){
-  // retrieve nestedArray and title from localStorage
-  var retrievedData = sessionStorage.getItem("file-array");
-  var nestedArray = JSON.parse(retrievedData);
-  var title = sessionStorage.getItem("file-name");
+  // retrieve headNode and title from localStorage
   var headNode = JSON.parse(sessionStorage.getItem("head-node"));
 
   // initialize our graph
@@ -32,7 +29,6 @@ function updateStructure(){
   if (headNode != null) {
     // title card
     var titleCard = new Node(0, new Card(headNode.front));
-
     appController.setTitle(titleCard.getLabel());
 
     //sets dueDate for the MindMap
@@ -44,7 +40,6 @@ function updateStructure(){
     var id_counter = 0;
     // flashcardText variable for each child node
     var child;
-
 
     /* loop through the top layer of the nested array and fill in the parent
     * nodes */
@@ -78,17 +73,14 @@ function updateStructure(){
 
     // Generates deck of cards from the Mindmap
     appController.generateDeck();
-    appController.printGraph();
   }
 }
 
 function weightChanger(id, num) {
-
   var weight = appController.getCardWeight(id);
   var newWeight = weight + num;
   appController.setCardWeight(id,newWeight);  
   appController.store();
-  appController.printGraph();
 }
 
 
@@ -145,7 +137,6 @@ const App = () => {
       var id = appController.getNodeByCard(currentCard).getID();
       weightChanger(id, 1 );
       appController.putInDeck(currentCard);
-      //appController.logDeck();
     }  
   }
 
@@ -157,7 +148,6 @@ const App = () => {
       var id = appController.getNodeByCard(currentCard).getID();
       weightChanger(id, .5 );
       appController.putInDeck(currentCard);
-      //appController.logDeck();
     }  
   }
   function handleYes(e) {
@@ -177,7 +167,6 @@ const App = () => {
         }
       }
       appController.putInDeck(currentCard);
-      //appController.logDeck();
     }
   }
 
@@ -231,11 +220,11 @@ const App = () => {
           <div className="back" id="flashcardBackText"></div>
       </div>
   );  */
-  return (
-    <div>
-      <div id="flashcardText" className="u-align-center u-text-2" onClick={flipCard}></div>
-    </div>
-  );
+    return (
+      <div>
+        <div id="flashcardText" className="u-align-center u-text-2" onClick={flipCard}></div>
+      </div>
+    );
 
 
     }

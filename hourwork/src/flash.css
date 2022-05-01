@@ -26,6 +26,7 @@
     position: absolute;
     padding: 1rem;
     backface-visibility: hidden;
+    transform: rotateX(0deg);
   
   }
   
