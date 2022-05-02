@@ -7,15 +7,12 @@ import {Card} from './js/Card';
 import {Node} from './js/Node'
 import {MindmapObj} from './js/MindmapObj';
 import './flash.css'
-import { Graph } from './js/Graph.js';
 
 
 // Defines where the App gets rendered in the DOM
 const root = createRoot(document.getElementById("root"));
 // initial definition of the  application controller
 var appController = new MindmapObj();
-var weights = [];
-
 
 //** Reads in data from session storage and updates the application data structure **/
 function updateStructure(){
@@ -111,7 +108,7 @@ const App = () => {
       backString = c.getBackText();
     }
     document.getElementById('flashcardText').innerHTML = frontString;
-    //document.getElementById('flashcardBackText').innerHTML = backString;
+    document.getElementById('flashcardBackText').innerHTML = backString;
   }
    // Handler for Previous Card Button Press
   function handlePrevious(e) {
@@ -127,7 +124,7 @@ const App = () => {
       backString = c.getBackText();
     }
     document.getElementById('flashcardText').innerHTML = frontString;
-    //document.getElementById('flashcardBackText').innerHTML = backString;
+    document.getElementById('flashcardBackText').innerHTML = backString;
   }
 
   function handleNo(e) {
@@ -200,7 +197,7 @@ const App = () => {
       appController.setCurrentCard(clickedCard);
       // Delete this line once Flashcard React Component is implemented
       document.getElementById('flashcardText').innerHTML = appController.getCurrentCard().getFrontText();
-      //document.getElementById('flashcardBackText').innerHTML = appController.getCurrentCard().getBackText();
+      document.getElementById('flashcardBackText').innerHTML = appController.getCurrentCard().getBackText();
     }
 
     // returns formatted React Component
@@ -214,18 +211,18 @@ const App = () => {
   function Flashcard(){
 
     // FOR FLIP ANIMATION
-     /* const [flip, setFlip] = useState(false)
+     const [flip, setFlip] = useState(false)
     return (
       <div  className={`card ${flip ? 'flip' : ''}`} onClick={() => setFlip(!flip)}>
           <div className="front" id="flashcardText"> </div>
           <div className="back" id="flashcardBackText"></div>
       </div>
-  );  */
-    return (
+  ); 
+    /* return (
       <div>
         <div id="flashcardText" className="u-align-center u-text-2" onClick={flipCard}></div>
       </div>
-    );
+    ); */
 
 
     }
@@ -243,9 +240,9 @@ const App = () => {
             {/** JSX for the Flashcard view **/}
               <div className="u-container-style u-layout-cell u-shape-rectangle u-size-30 u-layout-cell-2">
                 <div className="u-border-1 u-border-custom-color-1 u-border-no-bottom u-border-no-left u-border-no-top u-container-layout u-container-layout-3">
-                  <div className="u-border-1 u-border-custom-color-1 u-container-style u-group u-radius-5 u-shape-round u-group-2">
+                  {/* <div className="u-border-1 u-border-custom-color-1 u-container-style u-group u-radius-5 u-shape-round u-group-2"> */}
                     {/**  change this ^^^ to below to remove original flashcard field **/ }
-                  {/* <div className="u-container-style u-group u-radius-5 u-shape-round u-group-2"> */}
+                  <div className="u-container-style u-group u-radius-5 u-shape-round u-group-2">
                     <div className="u-container-layout u-container-layout-4">
                       <Flashcard/>
                     </div>
