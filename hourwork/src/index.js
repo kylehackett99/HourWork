@@ -155,7 +155,7 @@ const App = () => {
     //document.getElementById('flashcardBackText').innerHTML = backString;
   }
 
-  function handleNo(e) {
+  function handleHard(e) {
     e.preventDefault();
     var c = appController.getCurrentCard();
     if(c != null){
@@ -166,7 +166,7 @@ const App = () => {
     }  
   }
 
-  function handlePartially(e) {
+  function handleMedium(e) {
     e.preventDefault();
     var c = appController.getCurrentCard();
     if(c != null){
@@ -176,7 +176,7 @@ const App = () => {
       appController.putInDeck(currentCard);
     }  
   }
-  function handleYes(e) {
+  function handleEasy(e) {
     e.preventDefault();
     var c = appController.getCurrentCard();
     if(c != null) {
@@ -267,7 +267,6 @@ const App = () => {
             <div className="u-layout-row">
 
       {/** LEFT SIDE **/ }
-
             {/** JSX for the Flashcard view **/}
               <div className="u-container-style u-layout-cell u-shape-rectangle u-size-30 u-layout-cell-2">
                 <div className="u-border-1 u-border-custom-color-1 u-border-no-bottom u-border-no-left u-border-no-top u-container-layout u-container-layout-3">
@@ -295,19 +294,19 @@ const App = () => {
                     </button>
                   </div>
 
-                  {/** yes, no, and partially buttons **/}
+                  {/** easy, medium, and hard buttons **/}
                   <div className="u-container-layout u-container-layout-6">
-                    <button id="yes-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2"
-                     onClick={handleYes}>
-                      yes
+                    <button id="easy-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2"
+                     onClick={handleEasy}>
+                      easy
                     </button>
-                    <button id="partially-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2"
-                    onClick={handlePartially}>
-                      partially
+                    <button id="medium-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2"
+                    onClick={handleMedium}>
+                      medium
                     </button>
-                    <button id="no-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2"
-                    onClick={handleNo}>
-                      no
+                    <button id="hard-button" className="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-2"
+                    onClick={handleHard}>
+                      hard
                     </button>
                   </div>
 
