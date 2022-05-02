@@ -84,7 +84,9 @@ function weightChanger(id, num) {
   appController.setCardWeight(id,newWeight);  
   appController.store();
   const output = document.getElementById('output');
-  output.textContent = appController.toText();
+  var updatedText = appController.toText();
+  output.textContent = updatedText;
+  sessionStorage.setItem("file-contents",updatedText);
 }
 
 fileChosen.addEventListener("click", function(){
