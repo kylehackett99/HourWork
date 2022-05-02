@@ -405,24 +405,24 @@ export class MindmapObj {
             } 
         } 
   
-        var text = headNode.front + '\r\n' + this.dateDue + '\r\n\r\n';
+        var text = headNode.front + '\n' + this.dateDue + '\n\n';
         
         //console.log(headNode.front);
         //console.log("04/30/2022");
         //console.log('\n')
 
         headNode.children.forEach( parent => {       
-            text += parent.front + '\r\n';
-            text += parent.back + '\r\n';
-            text += parent.weight + '\r\n';
+            text += parent.front + '\n';
+            text += parent.back + '\n';
+            text += parent.weight + '\n\n';
             console.log(parent.front);
             console.log(parent.back);
             console.log(parent.weight);
 
             parent.children.forEach( child =>{
-                text += '\t' + child.front + '\r\n';
-                text += '\t' + child.back + '\r\n';
-                text += '\t' + child.weight + '\r\n';
+                text += '\t' + child.front + '\n';
+                text += '\t' + child.back + '\n';
+                text += '\t' + child.weight + '\n\n';
                 console.log(child.front);
                 console.log(child.back);
                 console.log(child.weight);
