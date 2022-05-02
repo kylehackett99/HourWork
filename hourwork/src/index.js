@@ -14,7 +14,9 @@ import { Graph } from './js/Graph.js';
 const root = createRoot(document.getElementById("root"));
 // initial definition of the  application controller
 var appController = new MindmapObj();
-var weights = [];
+
+const fileChosen = document.getElementById('file-chosen');
+
 
 
 //** Reads in data from session storage and updates the application data structure **/
@@ -81,7 +83,30 @@ function weightChanger(id, num) {
   var newWeight = weight + num;
   appController.setCardWeight(id,newWeight);  
   appController.store();
+  const output = document.getElementById('output');
+  output.textContent = appController.toText();
 }
+
+fileChosen.addEventListener("click", function(){
+
+  let text = appController.toText();
+  const currentFile = document.getElementById('file-chosen');
+  var fileName = currentFile.textContent;
+  const textToBLOB = new Blob([text], { type: 'text/plain' });
+  let newLink = document.createElement("a");
+        newLink.download = fileName;
+
+        if (window.webkitURL != null) {
+            newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+        }
+        else {
+            newLink.href = window.URL.createObjectURL(textToBLOB);
+            newLink.style.display = "none";
+            document.body.appendChild(newLink);
+        }
+
+        newLink.click();
+})
 
 
 // Function definition for when the user uploads a file
@@ -170,6 +195,9 @@ const App = () => {
       appController.putInDeck(currentCard);
     }
   }
+
+
+
 
   // Flips flashcard
   function flipCard(e) {

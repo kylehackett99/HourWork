@@ -8,6 +8,18 @@ const fileChosen = document.getElementById('file-chosen');
 /* output text */
 const output = document.getElementById('output');
 
+
+
+fileChosen.addEventListener('mouseover', function handleMouseOver() {
+    fileChosen.style.color = 'blue';
+    fileChosen.style.cursor = 'pointer';
+  });
+  
+fileChosen.addEventListener('mouseout', function handleMouseOut() {
+    fileChosen.style.color = 'black';
+    fileChosen.style.cursor = 'default';
+  });
+
 fileUploadButton.addEventListener('change', function() {
 
     /* get file */
