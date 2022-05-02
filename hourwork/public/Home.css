@@ -35,7 +35,7 @@
   margin: 0 auto 0 0;
 }
 
-/* yes, no, partially buttons */
+/* easy, medium, and hard buttons */
 .u-section-1 .u-btn-2 {
   display: inline;
   float: none;
@@ -49,9 +49,9 @@
   margin: 10px 10px 10px 6px;
 }
 
-/* div that holds the yes, no, partially buttons */
+/* div that holds the easy, medium, and hard buttons */
 .u-section-1 .u-container-layout-6 {
-  margin-left: 86px;
+  margin-left: 82px;
 }
 
 /* file chosen span */
