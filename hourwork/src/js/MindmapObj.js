@@ -150,8 +150,8 @@ export class MindmapObj {
             } 
         });
 
-        this.pullTopCard(); // removes title card from the deck
-        this.currentCard = this.topCard;
+        //this.pullTopCard(); // removes title card from the deck
+        //this.currentCard = this.topCard;
     }
 
     // Put card back in deck
@@ -298,10 +298,14 @@ export class MindmapObj {
         if(this.currentCard != this.topCard){
             this.currentCard = this.topCard;
         } else {
+
             // puts previous top card into history and back into the deck
             //this.moveHistory.push(this.topCard);
-            this.addToHistory(this.topCard);
-            this.putInDeck(this.topCard);
+            if(this.topCard != null){
+                this.addToHistory(this.topCard);
+                this.putInDeck(this.topCard); 
+            }
+            
             // updates the currentCard and moves 
             this.pullTopCard();
             this.currentCard = this.topCard;
@@ -415,17 +419,17 @@ export class MindmapObj {
             text += parent.front + '\n';
             text += parent.back + '\n';
             text += parent.weight + '\n\n';
-            console.log(parent.front);
-            console.log(parent.back);
-            console.log(parent.weight);
+            //console.log(parent.front);
+            //console.log(parent.back);
+            //console.log(parent.weight);
 
             parent.children.forEach( child =>{
                 text += '\t' + child.front + '\n';
                 text += '\t' + child.back + '\n';
                 text += '\t' + child.weight + '\n\n';
-                console.log(child.front);
-                console.log(child.back);
-                console.log(child.weight);
+                //console.log(child.front);
+                //console.log(child.back);
+                //console.log(child.weight);
             })
         })
         text = text.slice(0,-2);
