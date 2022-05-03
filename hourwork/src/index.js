@@ -6,7 +6,7 @@ import {Mindmap} from './ReactComponents/MindmapComponent.js';
 import {Card} from './js/Card';
 import {Node} from './js/Node'
 import {MindmapObj} from './js/MindmapObj';
-import './flash.css'
+import './style/flash.css'
 
 
 // Defines where the App gets rendered in the DOM
@@ -245,7 +245,7 @@ const App = () => {
   );  */
     return (
       <div>
-        <div id="flashcardText" className="u-align-center u-text-2" onClick={flipCard}>Start of "{appController.getTitle()}" Deck</div>
+        <div id="flashcardText" className="u-align-center u-text-2" onClick={flipCard}></div>
       </div>
     );
 
