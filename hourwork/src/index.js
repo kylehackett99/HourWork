@@ -7,7 +7,6 @@ import {Card} from './js/Card';
 import {Node} from './js/Node'
 import {MindmapObj} from './js/MindmapObj';
 import './flash.css'
-import { Graph } from './js/Graph.js';
 
 
 // Defines where the App gets rendered in the DOM
@@ -84,9 +83,7 @@ function weightChanger(id, num) {
   appController.setCardWeight(id,newWeight);  
   appController.store();
   const output = document.getElementById('output');
-  var updatedText = appController.toText();
-  output.textContent = updatedText;
-  sessionStorage.setItem("file-contents",updatedText);
+  output.textContent = appController.toText();
 }
 
 fileChosen.addEventListener("click", function(){
@@ -113,7 +110,6 @@ fileChosen.addEventListener("click", function(){
 
 // Function definition for when the user uploads a file
 var uploadHandler = function(e) {
-  console.log(appController);
   root.render(<App/>);
 };
 // defines the listener for the file upload, and then executes the function to rerender
@@ -164,7 +160,6 @@ const App = () => {
       var currentCard = appController.getCurrentCard();
       var id = appController.getNodeByCard(currentCard).getID();
       weightChanger(id, 1 );
-      appController.putInDeck(currentCard);
     }  
   }
 
@@ -175,7 +170,6 @@ const App = () => {
       var currentCard = appController.getCurrentCard();
       var id = appController.getNodeByCard(currentCard).getID();
       weightChanger(id, .5 );
-      appController.putInDeck(currentCard);
     }  
   }
   function handleEasy(e) {
@@ -194,7 +188,6 @@ const App = () => {
           weightChanger(id, - 1);
         }
       }
-      appController.putInDeck(currentCard);
     }
   }
 
@@ -221,7 +214,6 @@ const App = () => {
 
     // allows for callback from MindmapComponent js file
     const [node, setNode] = useState('No Node Selected');
-
 
     // Updates Current Card with the callback node ID
     var clickedCard = appController.getCardByNodeID(node[0]);
@@ -253,7 +245,7 @@ const App = () => {
   );  */
     return (
       <div>
-        <div id="flashcardText" className="u-align-center u-text-2" onClick={flipCard}></div>
+        <div id="flashcardText" className="u-align-center u-text-2" onClick={flipCard}>Start of "{appController.getTitle()}" Deck</div>
       </div>
     );
 
