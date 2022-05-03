@@ -419,17 +419,17 @@ export class MindmapObj {
             text += parent.front + '\n';
             text += parent.back + '\n';
             text += parent.weight + '\n\n';
-            console.log(parent.front);
-            console.log(parent.back);
-            console.log(parent.weight);
+            //console.log(parent.front);
+            //console.log(parent.back);
+            //console.log(parent.weight);
 
             parent.children.forEach( child =>{
                 text += '\t' + child.front + '\n';
                 text += '\t' + child.back + '\n';
                 text += '\t' + child.weight + '\n\n';
-                console.log(child.front);
-                console.log(child.back);
-                console.log(child.weight);
+                //console.log(child.front);
+                //console.log(child.back);
+                //console.log(child.weight);
             })
         })
         text = text.slice(0,-2);

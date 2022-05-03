@@ -200,11 +200,15 @@ const App = () => {
     var currCard = appController.getCurrentCard();
     var currText = document.getElementById('flashcardText').innerHTML;
 
-    if (currText == currCard.getFrontText()) {
-      document.getElementById('flashcardText').innerHTML = appController.getCurrentCard().getBackText();
-    } else if (currText == currCard.getBackText()) {
-      document.getElementById('flashcardText').innerHTML = appController.getCurrentCard().getFrontText();
+    if(currCard != null){
+      if (currText == currCard.getFrontText()) {
+        document.getElementById('flashcardText').innerHTML = appController.getCurrentCard().getBackText();
+      } else if (currText == currCard.getBackText()) {
+        document.getElementById('flashcardText').innerHTML = appController.getCurrentCard().getFrontText();
+      }
     }
+
+    
   }
 
 
@@ -243,14 +247,23 @@ const App = () => {
           <div className="back" id="flashcardBackText"></div>
       </div>
   );  */
+
+  
+    // Updates Title Card Text on Render
+    var textString;
+    if(appController.getTitle() == ""){
+      textString = "";
+    } else {
+      textString = "Start of " + appController.getTitle() + " Deck";
+    }
+
     return (
       <div>
-        <div id="flashcardText" className="u-align-center u-text-2" onClick={flipCard}></div>
+        <div id="flashcardText" className="u-align-center u-text-2" onClick={flipCard}>{textString}</div>
       </div>
     );
 
-
-    }
+  }
 
 
   // This is what gets rendered
