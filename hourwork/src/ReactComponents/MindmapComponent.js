@@ -3,6 +3,7 @@ import Graph from 'react-graph-vis';
 
 // Options for the Mindmap
 const options = {
+  autoResize: true,
   layout: {
     hierarchical: false
   },
@@ -21,15 +22,15 @@ const options = {
 // Generates a Hex color for a node in the mindmap
 function randomColor() {
   const color1 = '#007BFF';
-  const color2 = '#2254ce';
+  const color2 = '#226fce';
   const color3 = '#2097eF';
-  const color4 = '#5c83e3';
+  const color4 = '#5c8be3';
   const color5 = '#2fc0ff';
   const color6 = '#7b9ef3';
   const color7 = '#b2d7ff';
   const color8 = '#409cff';
-  const color9 = '#0097cc';
-  const color10 = '#4da1e2';
+  const color9 = '#4da1e2';
+  const color10 = '#4db3e2';
 
   var choice = Math.floor(Math.random() * 10);
   switch(choice){
