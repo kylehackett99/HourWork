@@ -129,7 +129,21 @@ fileUploadButton.addEventListener('change', function() {
             headNode.children.push(parentArray[i]);
         }
         //console.log(headNode); <-- used for testing
-    
+        function errorMessage() {
+            var error = document.getElementById("empty")
+            if (isNaN(document.getElementById("number").value))
+            {
+                 
+                // Changing content and color of content
+                error.textContent = "Please enter a valid text"
+                error.style.color = "red"
+            } else {
+                error.textContent = ""
+            }
+        }
+// var e = new Error('Could not parse input');
+// e.message is 'Could not parse input'
+// throw e;
         // add title, dueDate, headNode to localStorage
         sessionStorage.setItem("file-name", title);
         sessionStorage.setItem("due-date", dueDate);
