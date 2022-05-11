@@ -10961,7 +10961,7 @@ section.u-image:not(.u-hover-box),
   margin: 0px;
 }
 .u-gutter-0 .u-layout .u-layout-cell {
-  border: 0px solid transparent;
+  border: 15px solid transparent;
 }
 .u-gutter-0.u-layout-spacing-top {
   padding-top: 0px;
@@ -36098,8 +36098,8 @@ a.u-link.u-text-hover-grey-90:hover {
         .u-container-layout.u-container-layout.u-custom-color-3:before,
         .u-table-alt-custom-color-3 tr:nth-child(even)
         {
-            color: #ffffff;
-            background-color: #1c45a8;
+            color: #001C8F;
+            background-color: #ffffff;
         }
 
         .u-button-style.u-custom-color-3,
