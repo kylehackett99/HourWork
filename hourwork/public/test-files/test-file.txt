@@ -1,5 +1,5 @@
 Animals
-04/30/2022
+05/25/2022
 
 Panda
 Black and white fluffy animal
@@ -21,6 +21,7 @@ Tall, yellow and brown animal
 
 Geckos
 Small, colorful lizards
+0
 
 	What happens if a gecko drops its tail?
 	It grows back!
