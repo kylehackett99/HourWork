@@ -1,0 +1,27 @@
+Animals 
+05/20/2023 
+
+Panda
+Black and white fluffy animal
+12
+
+	What food does a panda eat?
+	Bamboo
+	4
+
+	Where do pandas generally live?
+	Asia
+	2
+
+Giraffe
+Tall, yellow and brown animal
+
+	Where do giraffes generally live?
+	Africa
+
+Geckos
+Small, colorful lizards
+2
+
+	What happens if a gecko drops its tail?
+	It grows back!
