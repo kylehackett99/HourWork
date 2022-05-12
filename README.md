@@ -139,12 +139,12 @@ Small, colorful lizards
 ```
 
 ## Contributors
-[Nikol Vladinska](https://github.com/nikolvladinska)
-[Kyle Hackett](https://github.com/kylehackett99)
-Christopher Gonzalez
-Christa Som
-Vivek Patel
-Parth Patel
+[Nikol Vladinska](https://github.com/nikolvladinska),
+[Kyle Hackett](https://github.com/kylehackett99),
+Christopher Gonzalez,
+Christa Som,
+Vivek Patel,
+& Parth Patel
 
 ## Acknowledgement
 
