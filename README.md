@@ -49,7 +49,7 @@ The public folder can be moved from within it's parent directory and be hosted.
    ```bash
     npm i webpack
    ```
-3. Install Mind Map Dependancy
+3. Install Mind Map Dependency
    It should already be installed within the node_modules directory, but if not run the following command in the HourWork directory
    ```bash
     npm i react-graph-vis
@@ -67,7 +67,7 @@ Run a live React server (updates the page as you save your code)
 
 
 ### Build
-  Build production code (condensed and allows for NPM modules such as the Mindmap API and others
+  Build production code (condensed and allows for NPM modules such as the Mind Map API and others
   to be run in browser)
   - Run the following command in HourWork 
    ```bash
