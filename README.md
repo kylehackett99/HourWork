@@ -1,17 +1,17 @@
 # HourWork Study Assistant
 The HourWork Study Assistant is a study tool for students and learners alike, utilizing structured notes to generate mind maps and flash cards to increase retention.
 
-######1. [Installation](#installation)
-######2. [Usage](#usage)
-######3. [Production Build](#production-build)
-######4. [Development Environment](#development-environment)
+##### 1. [Installation](#installation)
+##### 2. [Usage](#usage)
+##### 3. [Production Build](#production-build)
+##### 4. [Development Environment](#development-environment)
   * [Setup](#setup)
   * [Development](#development)
   * [Build](#build)
-######5. [Test File](#test-file)
-######6. [Contributors](#contributors)
-######7. [Acknowledgement](#acknowledgement)
-######8. [License](#license)
+##### 5. [Test File](#test-file)
+##### 6. [Contributors](#contributors)
+##### 7. [Acknowledgement](#acknowledgement)
+##### 8. [License](#license)
 
 ## Installation
 
@@ -40,7 +40,7 @@ The public folder can be moved from within it's parent directory and be hosted.
 
 ## Development Environment
 
-###Setup
+### Setup
 1. [Install Node JS](https://nodejs.org/en/download/)
    Description
  
@@ -56,7 +56,7 @@ The public folder can be moved from within it's parent directory and be hosted.
    ```
 4. Change directories to be in HourWork/
 
-###Development
+### Development
 Run a live React server (updates the page as you save your code)
   - Run the following command in HourWork 
    ```bash
@@ -66,7 +66,7 @@ Run a live React server (updates the page as you save your code)
   - Enjoy development!
 
 
-###Build
+### Build
   Build production code (condensed and allows for NPM modules such as the Mindmap API and others
   to be run in browser)
   - Run the following command in HourWork 
@@ -79,7 +79,7 @@ Run a live React server (updates the page as you save your code)
 
 
 ## Test File
-**Blank Test File**
+**Unweighted Test File**
 ```text
 Animals
 
