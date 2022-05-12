@@ -125,17 +125,32 @@ const App = () => {
   // Handler for Next Card Button Press
   function handleNext(e) {
     e.preventDefault();
-    appController.nextCard();
-    var frontString;
-    var c = appController.getCurrentCard();
-    if(c == null){
-      document.getElementById('flashcardText').innerHTML = "Start of " + appController.getTitle() + " Deck";
-    } else if (appController.getTopCard() == null){
+    var c;
+    var t;
+    c = appController.getCurrentCard();
+    t = appController.getTopCard();
+    if(c == null && t == null){ // Start of deck case
+      appController.nextCard();
+      c = appController.getCurrentCard();
+      t = appController.getTopCard();
+      document.getElementById('flashcardText').innerHTML = c.getFrontText();
+    } else if(c == t){ // Normal Usage case
+      appController.nextCard();
+      c = appController.getCurrentCard();
+      t = appController.getTopCard();
+      document.getElementById('flashcardText').innerHTML = c.getFrontText();
+    } else if(c != t && t != null){ // Node was clicked - standard case
+      appController.setCurrentCard(t);
+      c = appController.getCurrentCard();
+      document.getElementById('flashcardText').innerHTML = c.getFrontText();
+    } else if(c != t ){ // Node was clicked - from Start of deck case
       appController.pullTopCard();
-    } else {
-      frontString = c.getFrontText();
-      document.getElementById('flashcardText').innerHTML = frontString;
-    }
+      t = appController.getTopCard();
+      appController.setCurrentCard(t);
+      c = appController.getCurrentCard();
+      document.getElementById('flashcardText').innerHTML = c.getFrontText();
+    } 
+
   }
 
    // Handler for Previous Card Button Press
@@ -223,9 +238,7 @@ const App = () => {
     var clickedCard = appController.getCardByNodeID(node[0]);
 
     if(clickedCard.getFrontText() != "card not found"){
-
       appController.setCurrentCard(clickedCard);
-      // Delete this line once Flashcard React Component is implemented
       document.getElementById('flashcardText').innerHTML = appController.getCurrentCard().getFrontText();
       //document.getElementById('flashcardBackText').innerHTML = appController.getCurrentCard().getBackText();
     }
@@ -340,3 +353,4 @@ const App = () => {
 
 // In Charge of Initial Render
 root.render(<App/>);
+console.log(appController);
