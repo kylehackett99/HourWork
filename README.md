@@ -139,7 +139,7 @@ Small, colorful lizards
 ```
 
 ## Contributors
-Nikol Vladinska
+[Nikol Vladinska](https://github.com/nikolvladinska)
 [Kyle Hackett](https://github.com/kylehackett99)
 Christopher Gonzalez
 Christa Som
