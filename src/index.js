@@ -127,6 +127,12 @@ const App = () => {
     e.preventDefault();
     var c;
     var t;
+
+    // Escape case for if deck is empty
+    if(appController.getSize() == 0){
+      return;
+    }
+
     c = appController.getCurrentCard();
     t = appController.getTopCard();
     if(c == null && t == null){ // Start of deck case
@@ -156,6 +162,11 @@ const App = () => {
    // Handler for Previous Card Button Press
   function handlePrevious(e) {
     e.preventDefault();
+
+    // Escape case for if deck is empty
+    if(appController.getSize() == 0){
+      return;
+    }
 
     appController.previousCard();
     var frontString;
