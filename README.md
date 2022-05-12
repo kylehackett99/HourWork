@@ -82,7 +82,6 @@ Run a live React server (updates the page as you save your code)
 **Unweighted Test File**
 ```text
 Animals
-
 05/20/2023
 
 Panda
