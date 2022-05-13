@@ -16,20 +16,13 @@ export class Card {
     setBackText(str) {
         this.backText = str;
     }
-
     getWeight(){
         return this.weight;
     }
     setWeight(w){
         this.weight = w;
     }
-
-    logger(){
-        console.log(this.frontText + '\n' + this.backText + '\n' + this.weight);
-    }
-    
     toString() {
-        //console.log(this.frontText + '\n' + this.backText + '\n' + this.weight);
         return this.frontText + ' ' + this.backText + ' ' + this.weight;
     }
     toJSON(){
