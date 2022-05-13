@@ -25,7 +25,8 @@ export class Graph {
     })
     return list;
   }
-
+   /*Returns adjacencies as array represented as 
+      adjacency objects ({ id:, adj[] }) */
   getAdjacentArray(){
     // get all the vertices
     var get_keys = this.adjacentList.keys();
@@ -48,30 +49,19 @@ export class Graph {
     }
     //console.log(adjacentArray);
     return adjacentArray;
-}
-
-
-
-
-
+  }
+  // returns Map representation of adjacency list
   getAdjacentListAsMap(){
     return this.adjacentList;
   }
-
-
-
-
   // Gets edges to work with MindMap API
   getEdges(){
     return this.adjacentList;
   }
-
   // gets nodes to work with Mindmap API
   getNodes(){
     return this.vertices;
   }
-
-
   // Adds a vertex to the graph
   addVertex(vertex = null) {
     if( !this.vertices.has(vertex) && vertex !== null && vertex !== undefined) {
@@ -98,8 +88,6 @@ export class Graph {
     }
     return false;
   }
-
-
   // Adds an edge between two verticies, and creates them if they do not already exist
   addEdge(vertex1 = null, vertex2 = null) {
     if( vertex1 !== null && vertex1 !== undefined &&
@@ -134,8 +122,5 @@ export class Graph {
       size: this.size
     }
   }
-
-
-
 }
 

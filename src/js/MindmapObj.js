@@ -115,8 +115,7 @@ export class MindmapObj {
         });
         return weight;
     }
-
-
+    //gets Node by card object (Uses lodash for object equality)
     getNodeByCard(card){
         var node = new Node();
         (this.getNodes()).forEach(element => {
@@ -319,23 +318,7 @@ export class MindmapObj {
             this.currentCard = this.moveHistory.pop();
         }
     }
-
-    logDeck(){
-        var card = new Card("card not found");
-        (this.getNodes()).forEach(element => {
-            card = element.getCard();
-            card.logger();
-        });
-    }
-    
-    printGraph(){
-        var adj_list_map = this.graph.getAdjacentListAsMap();
-        for (let [key, value] of adj_list_map) {
-            console.log(key,value);
-            //key.printNode();
-        }
-    }
-
+    //Stores text representaion of Mindmap in Session Storage
     store(){
 
         var adjacentArray = this.graph.getAdjacentArray();
@@ -370,12 +353,10 @@ export class MindmapObj {
                 })  // end forEach         
             } 
         } 
-        //console.log(headNode);
         sessionStorage.setItem("head-node", JSON.stringify(headNode));  
     }
-
+    // Returns text representation of Mindmap
     toText(){
-
         var adjacentArray = this.graph.getAdjacentArray();
         var nodes = Array.from(this.graph.getNodes());
 
@@ -411,25 +392,15 @@ export class MindmapObj {
   
         var text = headNode.front + '\n' + this.dateDue + '\n\n';
         
-        //console.log(headNode.front);
-        //console.log("04/30/2022");
-        //console.log('\n')
-
         headNode.children.forEach( parent => {       
             text += parent.front + '\n';
             text += parent.back + '\n';
             text += parent.weight + '\n\n';
-            //console.log(parent.front);
-            //console.log(parent.back);
-            //console.log(parent.weight);
 
             parent.children.forEach( child =>{
                 text += '\t' + child.front + '\n';
                 text += '\t' + child.back + '\n';
                 text += '\t' + child.weight + '\n\n';
-                //console.log(child.front);
-                //console.log(child.back);
-                //console.log(child.weight);
             })
         })
         text = text.slice(0,-2);

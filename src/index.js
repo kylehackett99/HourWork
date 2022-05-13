@@ -6,7 +6,6 @@ import {Mindmap} from './ReactComponents/MindmapComponent.js';
 import {Card} from './js/Card';
 import {Node} from './js/Node'
 import {MindmapObj} from './js/MindmapObj';
-import './style/flash.css'
 
 
 // Defines where the App gets rendered in the DOM
@@ -76,7 +75,9 @@ function updateStructure(){
     appController.generateDeck();
   }
 }
-
+/* Params: Node Id, Amount to increment weight by
+   Changes updates weight in MindmapObject and
+   stores in session Storage */
 function weightChanger(id, num) {
   var weight = appController.getCardWeight(id);
   var newWeight = weight + num;
@@ -88,6 +89,7 @@ function weightChanger(id, num) {
   sessionStorage.setItem("file-contents", updatedText);
 }
 
+//Downloads updated mind map text file 
 fileChosen.addEventListener("click", function(){
 
   let text = appController.toText();
@@ -179,9 +181,11 @@ const App = () => {
       frontString = c.getFrontText();
       document.getElementById('flashcardText').innerHTML = frontString;
     }
+
   }
 
   // Handlers for difficulty options
+
   function handleHard(e) {
     e.preventDefault();
     var c = appController.getCurrentCard();
@@ -191,6 +195,8 @@ const App = () => {
       weightChanger(id, 1 );
     }  
   }
+
+  // Handler for Medium Button Press
   function handleMedium(e) {
     e.preventDefault();
     var c = appController.getCurrentCard();
@@ -200,6 +206,7 @@ const App = () => {
       weightChanger(id, .5 );
     }  
   }
+  // Handler for Easy Button Press
   function handleEasy(e) {
     e.preventDefault();
     var c = appController.getCurrentCard();
@@ -219,9 +226,6 @@ const App = () => {
     }
   }
 
-
-
-
   // Flips flashcard
   function flipCard(e) {
     e.preventDefault();
@@ -237,8 +241,6 @@ const App = () => {
     }
   }
 
-
-
   // Renders MindMap from the MindMapComponent
   function MindMap() {
 
@@ -251,7 +253,6 @@ const App = () => {
     if(clickedCard.getFrontText() != "card not found"){
       appController.setCurrentCard(clickedCard);
       document.getElementById('flashcardText').innerHTML = appController.getCurrentCard().getFrontText();
-      //document.getElementById('flashcardBackText').innerHTML = appController.getCurrentCard().getBackText();
     }
 
     // returns formatted React Component
@@ -263,17 +264,7 @@ const App = () => {
   }
  
   function Flashcard(){
-
-    // FOR FLIP ANIMATION
-     /* const [flip, setFlip] = useState(false)
-    return (
-      <div  className={`card ${flip ? 'flip' : ''}`} onClick={() => setFlip(!flip)}>
-          <div className="front" id="flashcardText"> </div>
-          <div className="back" id="flashcardBackText"></div>
-      </div>
-  );  */
-
-  
+ 
     // Updates Title Card Text on Render
     var textString;
     if(appController.getTitle() == ""){
@@ -303,8 +294,6 @@ const App = () => {
               <div className="u-container-style u-layout-cell u-shape-rectangle u-size-30 u-layout-cell-2">
                 <div className="u-border-1 u-border-custom-color-1 u-border-no-bottom u-border-no-left u-border-no-top u-container-layout u-container-layout-3">
                   <div className="u-border-1 u-border-custom-color-1 u-container-style u-group u-radius-5 u-shape-round u-group-2">
-                    {/**  change this ^^^ to below to remove original flashcard field **/ }
-                  {/* <div className="u-container-style u-group u-radius-5 u-shape-round u-group-2"> */}
                     <div className="u-container-layout u-container-layout-4">
                       <Flashcard/>
                     </div>
