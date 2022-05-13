@@ -48,6 +48,7 @@
   padding: 10px 34px;
 }
 
+
 @media (max-width: 1199px) {
   .u-section-1 .u-sheet-1 {
     width: 48%;
@@ -69,11 +70,10 @@
   }
 }
 
+
 @media (max-width: 991px) {
   .u-section-1 .u-sheet-1 {
-    width: 48%;
-    min-height: 48%;
-    /*min-height: 367px;*/
+    min-height: 367px;
   }
 
   .u-section-1 .u-image-1 {
@@ -97,9 +97,8 @@
 
 @media (max-width: 767px) {
   .u-section-1 .u-sheet-1 {
-    width: 48%;
-    min-height: 48%;
-    /*min-height: 653px;*/
+
+    min-height: 653px;
   }
 
   .u-section-1 .u-image-1 {
@@ -135,8 +134,6 @@
   width: 100px;
   position: absolute;
   top: -15px;
-  /*left: 48%;
-  right: 52%;*/
   z-index: 2;
   text-align: center;
 }
@@ -145,8 +142,6 @@
   width: 100px;
   position: absolute;
   top: -15px;
-  /*left: 48%;
-  right: 52%;*/
   z-index: 2;
   text-align:center;
   
@@ -171,7 +166,6 @@
 
 .download-btn {
   position: absolute;
-  /*top: 0%;*/
   top: 80px;
   left: 30%;
   background-color:navy;
@@ -192,7 +186,6 @@
   width: 500px;
   height: 55px;
   text-align: center;
-  /*vertical-align: center;*/
   top: 175px;
 }
 
@@ -202,39 +195,36 @@
   height: 60px;
   margin-top: 100px;
   margin-left: 40px;
-  /*text-align: center;*/
-  /*vertical-align: middle;*/
 }
 
 .social-media-icon {
   position: relative;
   display: inline;
-  /*width: 60px;
-  height: 60px;*/
   margin-top: 450px;
   margin-right: -120px;
   margin-left: -75px;
   font-size: 0;
   text-align: center;
-  /*vertical-align: middle;*/
 }
-/*
+
 .hourwork-icon {
   position: absolute;
   display: inline;
-  width: 75px;
-  height: 75px;
-  /*margin-top: 90%;
-  margin-left: -150%;*/
+  width: 68px;
+  height: 68px;
+  margin-top: 446px;
+  margin-left: -60px;
   /*vertical-align:middle;*/
-  /*text-align: center;
-}*/
+  text-align: center;
+}
 img {
   float: middle;
 }
 .follow {
   line-height: 19px;
 }
+
+
 
 .home-page-ss-img {
   width: 530px;
@@ -247,24 +237,7 @@ img {
 .valign{
   vertical-align:middle;
 }
-/*
-.bcg-1 {
-  width: 450px;
-  position: absolute;
-  top: -5px;
-  left: 81%;
-  right: 19%;
-  
-}
 
-.bcg-2 {
-  width: 450px;
-  position: absolute;
-  top: 1550px;
-  left: -20%;
-  right: 180%;
-  
-}*/
 
 @media (max-width: 575px) {
   .u-section-1 .u-sheet-1 {
@@ -277,3 +250,4 @@ img {
     min-height: 351px;
   }
 }
+

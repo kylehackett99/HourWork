@@ -15592,36 +15592,44 @@ p {
 @media (min-width: 1400px) {
   .u-align-left-xxl {
     text-align: left;
+  
   }
 }
 @media (min-width: 1200px) {
   .u-xl-mode .u-align-left-xl {
     text-align: left;
+   
+    
   }
 }
 @media (min-width: 1200px) and (max-width: 1399px) {
   .u-xxl-mode .u-align-left-xl {
     text-align: left;
+   
   }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
   .u-align-left-lg {
     text-align: left;
+    
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .u-align-left-md {
     text-align: left;
+   
   }
 }
 @media (min-width: 576px) and (max-width: 767px) {
   .u-align-left-sm {
     text-align: left;
+  
   }
 }
 @media (max-width: 575px) {
   .u-align-left-xs {
     text-align: left;
+  
   }
 }
 .u-align-center {
@@ -18354,6 +18362,7 @@ a.pswp__share--download:hover {
 .u-responsive-xs .slideInDown,
 .u-responsive-sm .slideInDown {
   animation-name: slideInUp;
+  
 }
 .u-responsive-xs .slideOutUp,
 .u-responsive-sm .slideOutUp {
