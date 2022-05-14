@@ -184,6 +184,8 @@ img {
   }
 
   .u-section-1 .u-container-layout-2 {
+    padding-left: 15px;
+    padding-right: 15px;
     margin-top: -100px;
     min-height: 486px;
   }
@@ -195,14 +197,14 @@ img {
   .u-section-1 .u-text-1 {
     font-family: Nunito;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bolder;
     margin: 0 auto 0 0;
   }
   
   .u-section-1 .u-text-2 {
     font-family: Nunito;
-    font-size: 80%;
+    font-size: 99%;
     margin: 18px 0 0;
   }
   
@@ -218,8 +220,8 @@ img {
   }
 
   .borderbox {
-    width: 75%;
-    height: 75%;
+    width: 85%;
+    height: 85%;
     background-color: white;
     display: inline-block;
     margin: 20px 40px;
@@ -292,18 +294,20 @@ img {
     display:inline;
     width: 45px;
     height: 45px;
-    margin-top: 45px;
+    margin-top: 35px;
     margin-left: 20px;
   }
   
   .social-media-icon {
     position: relative;
     display: inline;
-    margin-top: 285px;
-    margin-right: -100px;
+    margin-top: 320px;
+    margin-right: -80px;
     margin-left: -55px;
-    width: 7%;
-    height: 9%;
+    /*width: 7%;
+    height: 9%;*/
+    max-width: 40px;
+    height: auto;
     font-size: 0;
     text-align: center;
   }
@@ -311,10 +315,12 @@ img {
   .hourwork-icon {
     position: absolute;
     display: inline;
-    width: 65px;
-    height: 50px;
-    margin-top: 285px;
-    margin-left: -35px;
+    /*width: 35px;
+    height: 45px;*/
+    max-width: 50px;
+    height: auto;
+    margin-top: 315px;
+    margin-left: -45px;
     text-align: center;
   }
   img {
@@ -341,15 +347,12 @@ img {
 
 @media (max-width: 991px) {
   .u-section-1 .u-sheet-1 {
-    min-height: 367px;
+    min-height: 446px;
   }
 
-  .u-layout .u-layout-row {
-    max-height: 375px;
-  }
 
   .u-section-1 .u-image-1 {
-    min-height: 372px;
+    max-height: 250px;
   }
   
   .u-section-1 .u-layout-wrap-1 {
@@ -360,40 +363,42 @@ img {
 
 
   .u-section-1 .u-container-layout-1 {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
 
   .u-section-1 .u-container-layout-2 {
-    padding-left: 30px;
-    padding-right: 30px;
-    margin-top: -200px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: -180px;
 
   }
   .u-section-1 .u-layout-cell-2 {
-    max-height: 350px;
+  
+    min-height: 350px;
     margin-left: 0px;
-    margin-top: -10px;
+    margin-top: 20px;
+
   }
 
   .u-section-1 .u-text-1 {
     font-family: Nunito;
-    font-weight: 400;
-    font-size: 15px;
+    font-weight: 500;
+    font-size: 30px;
     font-weight: bolder;
     margin: 0 auto 0 0;
   }
   
   .u-section-1 .u-text-2 {
     font-family: Nunito;
-    font-size: 55%;
+    font-size: 100%;
     margin: 16px 0 0;
   }
   /* check */
   .u-section-1 .u-btn-1 {
     text-transform: uppercase;
-    font-size: 65%;
+    font-size: 45%;
     letter-spacing: 1.0px;
     background-image: none;
     border-style: solid;
@@ -402,8 +407,8 @@ img {
     padding: 5px 20px;
   }
   .borderbox {
-    width: 75%;
-    height: 75%;
+    width: 95%;
+    height: 95%;
     background-color: white;
     display: inline-block;
     margin: 20px 40px;
@@ -469,21 +474,21 @@ img {
     width: 75px;
     height: 35px;
     text-align: center;
-    top: 100px;
+    top: 120px;
   }
   
   .browser-icon {
     display:inline;
     width: 30px;
     height: 30px;
-    margin-top: 45px;
+    margin-top: 15px;
     margin-left: 20px;
   }
   
   .social-media-icon {
     position: relative;
     display: inline;
-    margin-top: 220px;
+    margin-top: 280px;
     margin-right: -65px;
     margin-left: -40px;
     max-width: 35px;
@@ -497,7 +502,7 @@ img {
     display: inline;
     max-width: 40px;
     height: auto;
-    margin-top: 215px;
+    margin-top: 276px;
     margin-left: -40px;
     text-align: center;
   }
@@ -509,7 +514,7 @@ img {
   }
   
   .home-page-ss-img {
-    width: 330px;
+    width: 400px;
     height: auto;
     margin-top: 50px;
     margin-left: 0%;
@@ -522,5 +527,412 @@ img {
   
 }
 
+@media (max-width: 767px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 653px;
+  }
 
+
+  .u-section-1 .u-image-1 {
+    min-height: 558px;
+  }
+  
+  .u-section-1 .u-layout-wrap-1 {
+    margin-right: initial;
+    margin-left: initial;
+
+  }
+
+
+  .u-section-1 .u-container-layout-1 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+
+  .u-section-1 .u-container-layout-2 {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: -120px;
+
+  }
+  .u-section-1 .u-layout-cell-2 {
+  
+    min-height: 200px;
+    margin-left: 0px;
+    margin-top: -150px;
+    border-radius: 30px;
+
+  }
+  .u-section-1 .u-layout-cell-1 {
+    position: absolute;
+    min-height: 200px;
+    margin-top: 5px;
+  
+    
+  }
+
+  .u-section-1 .u-text-1 {
+    font-family: Nunito;
+    font-weight: 500;
+    font-size: 27px;
+    font-weight: bolder;
+    text-align: center;
+    margin: 0 auto 0 0;
+  }
+  
+  .u-section-1 .u-text-2 {
+    font-family: Nunito;
+    font-size: 95%;
+    margin: 16px 0 0;
+  }
+  /* check */
+  .u-section-1 .u-btn-1 {
+    text-transform: uppercase;
+    font-size: 65%;
+    letter-spacing: 1.0px;
+    background-image: none;
+    border-style: solid;
+    font-family: Nunito;
+    margin: 15px auto 0 0;
+    padding: 5px 20px;
+  }
+  .borderbox {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: inline-block;
+    margin: 20px 40px;
+    border: 5px solid #0693e3;
+    border-radius: 30px;
+    text-align: center;
+    z-index: 1;
+   
+  }
+
+  .hourwork-logo-border {
+    width: 45px;
+    height: auto;
+    position: absolute;
+    top: -4px;
+    right: 190px;
+    z-index: 2;
+    align-items: center;
+    
+  }
+   
+  .img-logo-4 {
+    width: 75%;
+    position: absolute;
+    top: -15px;
+    z-index: 2;
+    text-align:center;
+    
+  }
+  
+  .about-section-image {
+    width: 70%;
+    height: auto;
+    align-items: center;
+    position: absolute;
+    top: 90px;
+    left: 75px;
+    border-radius: 30px;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Nunito;
+  }
+  
+  .download-btn {
+    position: absolute;
+    top: -110px;
+    left: 220px;
+    background-color:#1c45a8;
+    color: white;
+    padding: 0.3rem 0.4rem;
+    font-size: 1.0rem;
+    text-transform: lowercase;
+    border-radius: 30px;
+    text-align: center;
+  }
+  
+  .browser-image {
+    position: absolute;
+    width: 75px;
+    height: 35px;
+    text-align: center;
+    top: 120px;
+  }
+  
+
+  
+  .hourwork-icon {
+    position: absolute;
+    display: inline;
+    max-width: 70px;
+    height: auto;
+    margin-top: 200px;
+    margin-left: 30px;
+    text-align: center;
+  }
+  img {
+    float: middle;
+  }
+  .follow {
+    line-height: 19px;
+  }
+  .browser-icon {
+    display:inline;
+    width: 70px;
+    height: 70px;
+    margin-top: 50px;
+    margin-left: 30px;
+  }
+  
+  .social-media-icon {
+    position: relative;
+    display: inline;
+    margin-top: 200px;
+    margin-right: -200px;
+    margin-left: -35px;
+    max-width: 120px;
+    height: auto;
+    font-size: 0;
+    text-align: center;
+  }
+  
+  .home-page-ss-img {
+    width: 530px;
+    height: auto;
+    margin-top: 0px;
+    margin-left: 0%;
+    position: absolute;
+    text-align: center;
+  }
+  .valign{
+    vertical-align:middle;
+  }
+  
+}
+/*
+@media (max-width: 575px) {
+  .hourwork-logo-border {
+    width: 45px;
+    height: auto;
+    position: absolute;
+    top: -4px;
+    right: 100px;
+    z-index: 2;
+    align-items: center;
+    
+  }
+  .download-btn {
+    position: absolute;
+    top: -110px;
+    left: 130px;
+    background-color:#1c45a8;
+    color: white;
+    padding: 0.3rem 0.4rem;
+    font-size: 1.0rem;
+    text-transform: lowercase;
+    border-radius: 20px;
+    text-align: center;
+  }
+  .home-page-ss-img {
+    width: 330px;
+    height: auto;
+    margin-top: 0px;
+    margin-left: 0%;
+    position: absolute;
+    text-align: center;
+  }
+
+}*/
+
+
+@media (max-width: 575px) {
+  .u-section-1 .u-sheet-1 {
+  min-height: 446px;
+  }
+
+.u-section-1 u.image-1 {
+  min-height: 351px;
+}
+
+.u-section-1 .u-layout-wrap-1 {
+  margin-right: initial;
+  margin-left: initial;
+
+}
+
+
+.u-section-1 .u-container-layout-1 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+
+.u-section-1 .u-container-layout-2 {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: -120px;
+
+}
+.u-section-1 .u-layout-cell-2 {
+
+  min-height: 200px;
+  margin-left: 0px;
+  margin-top: -150px;
+  border-radius: 30px;
+
+}
+
+
+.u-section-1 .u-text-1 {
+  font-family: Nunito;
+  font-weight: 500;
+  font-size: 27px;
+  font-weight: bolder;
+  text-align: center;
+  margin: 0 auto 0 0;
+}
+
+.u-section-1 .u-text-2 {
+  font-family: Nunito;
+  font-size: 18px;
+  margin: 16px 0 0;
+}
+/* check */
+.u-section-1 .u-btn-1 {
+  text-transform: uppercase;
+  font-size: 65%;
+  letter-spacing: 1.0px;
+  background-image: none;
+  border-style: solid;
+  font-family: Nunito;
+  margin: 15px auto 0 0;
+  padding: 5px 20px;
+}
+.borderbox {
+  width: 95%;
+  height: 95%;
+  background-color: white;
+  display: inline-block;
+  margin: 20px 40px;
+  border: 5px solid #0693e3;
+  border-radius: 30px;
+  text-align: center;
+  z-index: 1;
+ 
+}
+
+.hourwork-logo-border {
+  width: 45px;
+  height: auto;
+  position: absolute;
+  top: -4px;
+  right: 110px;
+  z-index: 2;
+  align-items: center;
+  
+}
+ 
+.img-logo-4 {
+  width: 75%;
+  position: absolute;
+  top: -15px;
+  z-index: 2;
+  text-align:center;
+  
+}
+
+.about-section-image {
+  width: 85%;
+  height: auto;
+  align-items: center;
+  position: absolute;
+  top: 90px;
+  left: 35px;
+  border-radius: 30px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Nunito;
+}
+
+.download-btn {
+  position: absolute;
+  top: -110px;
+  left: 130px;
+  background-color:#1c45a8;
+  color: white;
+  padding: 0.3rem 0.4rem;
+  font-size: 1.0rem;
+  text-transform: lowercase;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.browser-image {
+  position: absolute;
+  width: 75px;
+  height: 35px;
+  text-align: center;
+  top: 120px;
+}
+
+.hourwork-icon {
+  position: absolute;
+  display: inline;
+  max-width: 50px;
+  height: auto;
+  margin-top: 125px;
+  margin-left: -20px;
+  text-align: center;
+}
+img {
+  float: middle;
+}
+.follow {
+  line-height: 19px;
+}
+.browser-icon {
+  display:inline;
+  width: 40px;
+  height: 40px;
+  margin-top: 50px;
+  margin-left: 21px;
+}
+
+.social-media-icon {
+  position: relative;
+  display: inline;
+  margin-top: 130px;
+  margin-right: -100px;
+  margin-left: -35px;
+  max-width: 40px;
+  height: auto;
+  font-size: 0;
+  text-align: center;
+}
+
+.home-page-ss-img {
+  width: 310px;
+  height: auto;
+  margin-top: 0px;
+  margin-left: 0%;
+  position: absolute;
+  text-align: center;
+}
+.valign{
+  vertical-align:middle;
+}
+}
 
