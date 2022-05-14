@@ -378,14 +378,14 @@ img {
   
     min-height: 350px;
     margin-left: 0px;
-    margin-top: 20px;
+    margin-top: 70px;
 
   }
 
   .u-section-1 .u-text-1 {
     font-family: Nunito;
     font-weight: 500;
-    font-size: 30px;
+    font-size: 28px;
     font-weight: bolder;
     margin: 0 auto 0 0;
   }
@@ -718,41 +718,6 @@ img {
   }
   
 }
-/*
-@media (max-width: 575px) {
-  .hourwork-logo-border {
-    width: 45px;
-    height: auto;
-    position: absolute;
-    top: -4px;
-    right: 100px;
-    z-index: 2;
-    align-items: center;
-    
-  }
-  .download-btn {
-    position: absolute;
-    top: -110px;
-    left: 130px;
-    background-color:#1c45a8;
-    color: white;
-    padding: 0.3rem 0.4rem;
-    font-size: 1.0rem;
-    text-transform: lowercase;
-    border-radius: 20px;
-    text-align: center;
-  }
-  .home-page-ss-img {
-    width: 330px;
-    height: auto;
-    margin-top: 0px;
-    margin-left: 0%;
-    position: absolute;
-    text-align: center;
-  }
-
-}*/
-
 
 @media (max-width: 575px) {
   .u-section-1 .u-sheet-1 {
@@ -788,6 +753,7 @@ img {
   margin-left: 0px;
   margin-top: -150px;
   border-radius: 30px;
+  
 
 }
 
@@ -795,7 +761,7 @@ img {
 .u-section-1 .u-text-1 {
   font-family: Nunito;
   font-weight: 500;
-  font-size: 27px;
+  font-size: 25px;
   font-weight: bolder;
   text-align: center;
   margin: 0 auto 0 0;
@@ -803,10 +769,11 @@ img {
 
 .u-section-1 .u-text-2 {
   font-family: Nunito;
-  font-size: 18px;
+  font-size: 16px;
   margin: 16px 0 0;
+  
 }
-/* check */
+
 .u-section-1 .u-btn-1 {
   text-transform: uppercase;
   font-size: 65%;
@@ -831,10 +798,10 @@ img {
 }
 
 .hourwork-logo-border {
-  width: 45px;
+  width: 40px;
   height: auto;
   position: absolute;
-  top: -4px;
+  top: -2px;
   right: 110px;
   z-index: 2;
   align-items: center;
@@ -870,7 +837,7 @@ img {
 .download-btn {
   position: absolute;
   top: -110px;
-  left: 130px;
+  left: 115px;
   background-color:#1c45a8;
   color: white;
   padding: 0.3rem 0.4rem;
@@ -908,7 +875,7 @@ img {
   width: 40px;
   height: 40px;
   margin-top: 50px;
-  margin-left: 21px;
+  margin-left: 20px;
 }
 
 .social-media-icon {
