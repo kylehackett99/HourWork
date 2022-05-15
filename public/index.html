@@ -35,8 +35,8 @@
   <body data-home-page="index.html" data-home-page-title="Home" class="u-body u-xl-mode"><header class="u-border-1 u-border-custom-color-1 u-border-no-left u-border-no-right u-border-no-top u-clearfix u-header u-header" id="sec-3d2c"><div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-container-style u-expanded-width-xs u-group u-group-1">
           <div class="u-container-layout">
-            <a class="u-image u-logo u-image-1" data-image-width="516" data-image-height="124">
-              <img src="images/ScreenShot2022-02-23at10.16.04AM.png" class="u-logo-image u-logo-image-1">
+            <a href="https://www.hourwork.com" class="u-image u-logo u-image-1" data-image-width="516" data-image-height="124">
+              <img src="images/logo.png" class="u-logo-image u-logo-image-1">
             </a>
             <p class="u-custom-font u-text u-text-custom-color-1 u-text-default u-text-1">Interactive Study Assistant</p>
           </div>
@@ -78,19 +78,26 @@
                     <div class="u-container-layout">
 
                       <!-- upload file button and text -->
-                      <label for="file-upload" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-1">
-                        Upload File
-                      </label>
-                      <input id="file-upload" type="file" accept=".txt"/>
-                      <span id="file-chosen">No file chosen</span>
-                      <!-- collapsable section for text file contents -->
-                      <details>
-                        <summary id="file-contents-sum" style="outline: none;">
-                          Text File Contents
-                        </summary>
-                        <!-- holds + displays the contents of a file once uploaded -->
-                        <pre id="output"></pre>
-                      </details>
+                      <div id="file-upload-div">
+                        <label for="file-upload" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-custom-color-2 u-radius-50 u-btn-1">
+                          Upload File
+                        </label>
+                        <input id="file-upload" type="file" accept=".txt"/>
+                        <span id="file-chosen">No file chosen</span>
+                        <!-- collapsable section for text file contents -->
+                        <details>
+                          <summary id="file-contents-sum" style="outline: none;">
+                            Text File Contents
+                          </summary>
+                          <!-- holds + displays the contents of a file once uploaded -->
+                          <pre id="output"></pre>
+                        </details>
+                      </div>
+
+                    <!-- countdown -->
+                    <div id="countdown-div">
+                      <p id="countdown">countdown to due date:<br>0d 0h 0m</p>
+                    </div>
 
                     </div>
                   </div>
