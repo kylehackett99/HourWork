@@ -139,6 +139,7 @@ fileUploadButton.addEventListener('change', function() {
         var event = new Event('newFileUploaded');
 
         document.dispatchEvent(event);
+        setTimer();
 
     }
     fileReader.readAsText(file);
