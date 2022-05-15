@@ -8,15 +8,13 @@
 // Testing - throw it in the index.js file 
 // grab date from home.js file
 
-
     
-    
-const getTimeRemaining = (myDate) => {
-    const total = Date.parse(dueDate) - Date.parse(new Date());
-    const seconds = Math.floor((total / 1000) % 60);
-    const minutes = Math.floor((total / 1000 / 60) % 60);
-    const hours = Math.floor((total / 1000 * 60 * 60) % 24);
-    const days = Math.floor((total / 1000 * 60 * 60));
+function getTimeRemaining (dueDate) {
+    const total = new Date(dueDate) - new Date();
+    const seconds = Math.floor(((total / (1000 * 60 * 60 * 24) % 24) % 60) % 60);
+    const minutes = Math.floor((total / (1000 * 60 * 60 * 24) % 24) % 60);
+    const hours = Math.floor(total / (1000 * 60 * 60 * 24) % 24);
+    const days = Math.floor(total / (1000 * 60 * 60 * 24));
 
     return {
         total, days, hours, minutes, seconds
@@ -31,16 +29,20 @@ function setTimer() {
    var x = getTimeRemaining(dueDate);
    var timerString = "";
 
-   if ( dueDate == null ){
+   if ( x.days < 0 && x.hours < 0 && x.minutes < 0 && x.seconds < 0 ){
+
+    timerString = "Past Due" ;
+
+   }else if ( dueDate == null ){
     timerString = "invalid date" ;
 
-   } else if ( days >= 1){
+   } else if ( x.days >= 1){
          timerString = x.days + ":" + x.hours ;
 
-    } else if( days < 1 && hours >= 1){
+    } else if( x.days < 1 && x.hours >= 1){
 
         timerString = x.hours + ":" + x.minutes;
-    } else if( days < 1 && hours < 1){
+    } else if( x.days < 1 && x.hours < 1){
 
     timerString = x.minutes + ":" + x.seconds;
 }
@@ -48,12 +50,11 @@ function setTimer() {
 
 
    //temporary, change fill timerString with the calculated countdown string
-   timerString = dueDate;
+    //timerString = dueDate;
 
     // HTML LINE
     document.getElementById('countdown').innerHTML = timerString;
-    setTimer();
-
-
-
 }
+
+
+setTimer();
