@@ -37,14 +37,16 @@ function setTimer() {
     timerString = "invalid date" ;
 
    } else if ( x.days >= 1){
-         timerString = x.days + ":" + x.hours ;
+         timerString = x.days  + x.hours ;
 
     } else if( x.days < 1 && x.hours >= 1){
 
-        timerString = x.hours + ":" + x.minutes;
+        timerString = x.hours  + x.minutes;
+
     } else if( x.days < 1 && x.hours < 1){
 
-    timerString = x.minutes + ":" + x.seconds;
+    timerString = x.minutes + x.seconds;
+    
 }
    
 
