@@ -1,6 +1,3 @@
-
-
-
 /* file upload button */
 const fileUploadButton = document.getElementById('file-upload');
 /* file chosen text */
@@ -8,10 +5,8 @@ const fileChosen = document.getElementById('file-chosen');
 /* output text */
 const output = document.getElementById('output');
 
-
-
 fileChosen.addEventListener('mouseover', function handleMouseOver() {
-    fileChosen.style.color = 'blue';
+    fileChosen.style.color = '#1c45a8';
     fileChosen.style.cursor = 'pointer';
   });
   
@@ -19,6 +14,32 @@ fileChosen.addEventListener('mouseout', function handleMouseOut() {
     fileChosen.style.color = 'black';
     fileChosen.style.cursor = 'default';
   });
+
+/* interval var for countdown */
+var interval;
+
+/* countdown -- helper function that creates a countdown using the due date */
+function countdown(dueDate) {
+    var endDate = new Date(dueDate).getTime();
+    var currDate = new Date().getTime();
+    var distance = endDate - currDate;
+
+    // if date object is valid, start countdown
+    if (!isNaN(endDate)) {
+        if (distance < 0) {
+            clearInterval(interval);
+            document.getElementById("countdown").innerHTML = "countdown to due date:<br>0d 0h 0m";
+        } else {
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("countdown").innerHTML = "countdown to due date:<br>" + days + "d " + hours + "h " + minutes + "m";
+        }
+    // otherwise, return an error message to the countdown component
+    } else {
+        document.getElementById("countdown").innerHTML = "countdown to due date:<br>invalid date provided!";
+    }
+}
 
 fileUploadButton.addEventListener('change', function() {
 
@@ -51,6 +72,9 @@ fileUploadButton.addEventListener('change', function() {
         /* title and due date -- title will be at the center of the mindmap */
         title = lines[0];
         dueDate = lines[1];
+
+        /* SET COUNTDOWN */
+        interval = setInterval(countdown(dueDate), 1000);
        
         for (var line = MAP_START_LINE; line < lines.length-1; line++) {
             /* Gets the leading heading
@@ -60,7 +84,7 @@ fileUploadButton.addEventListener('change', function() {
                 && lines[line + 1].indexOf('\t') == -1
                 &&  (line + 2 == lines.length || lines[line + 2].indexOf('\t') == -1) ) //tab or last line in file
                 {
-                /// if empty Line or last line of File 
+                /// if empty line or last line of File 
                 if (lines[line + 2] == "" || line + 2 == lines.length){
                     parentArray[headers] = { front: lines[line], 
                                          back: lines[line+1], 
@@ -128,7 +152,6 @@ fileUploadButton.addEventListener('change', function() {
         for (var i = 0; i < headers; i++){     
             headNode.children.push(parentArray[i]);
         }
-        //console.log(headNode); <-- used for testing
     
         // add title, dueDate, headNode to localStorage
         sessionStorage.setItem("file-name", title);
@@ -145,12 +168,17 @@ fileUploadButton.addEventListener('change', function() {
     fileReader.readAsText(file);
 })
 
-// maintains file on screen after refresh
-if (sessionStorage.getItem("file-contents") != null) {
+/* MAINTAIN COUNTDOWN AFTER REFRESH */
+if (sessionStorage.getItem("due-date")) {
+    interval = setInterval(countdown(sessionStorage.getItem("due-date")), 1000);
+}
+
+/* MAINTAIN FILE CONTENTS AFTER REFRESH */
+if (sessionStorage.getItem("file-contents")) {
     output.textContent = sessionStorage.getItem("file-contents");
 }
 
-// maintains file name on screen after refresh
-if (sessionStorage.getItem("uploaded-file-name") != null) {
+/* MAINTAIN FILE NAME AFTER REFRESH */
+if (sessionStorage.getItem("uploaded-file-name")) {
     fileChosen.textContent = sessionStorage.getItem("uploaded-file-name")
 }

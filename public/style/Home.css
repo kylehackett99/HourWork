@@ -21,6 +21,11 @@
   margin: 0 auto 0 0;
 }
 
+#file-upload-div {
+  display: inline-block;
+  width: 600px;
+}
+
 /* upload file button */
 .u-section-1 .u-btn-1 {
   display: inline;
@@ -33,6 +38,22 @@
   font-weight: 700;
   font-family: Nunito;
   margin: 0 auto 0 0;
+}
+
+#countdown-div {
+  display: inline-block;
+  width: 400px;
+}
+
+#countdown {
+  text-transform: lowercase;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px; 
+  width: 460px;
+  height: 80px;  
+  background: #1c45a8;
+  color: white;
 }
 
 /* easy, medium, and hard buttons */
