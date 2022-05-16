@@ -1,14 +1,5 @@
-// Implement a Count Down Timer feature
-// Timer will count down the amount of time that is left to upload file
 
-// Export function - mindMapcompenent.js 126
-// due date would be prop
-
-// index.js 142 - how to put it in the file
-// Testing - throw it in the index.js file 
-// grab date from home.js file
-
-    
+// Calculates the Time in Days.hours.minutes.seconds until desired due date
 function getTimeRemaining (dueDate) {
     const total = new Date(dueDate) - new Date();
     const seconds = Math.floor( (total/1000) % 60 );
@@ -21,39 +12,30 @@ function getTimeRemaining (dueDate) {
     };
 }
 
-
+// gets due Date from the session storage and updates the display according to the time retrieved
 function setTimer() {
-   // This is where I grab the dueDate from session storage
-   var dueDate = sessionStorage.getItem('due-date');
+    // This is where I grab the dueDate from session storage
+    var dueDate = sessionStorage.getItem('due-date');
 
-   var x = getTimeRemaining(dueDate);
-   var timerString = "";
+    var timerString = "";
 
-   if ( x.days < 0 && x.hours < 0 && x.minutes < 0 && x.seconds < 0 ){
+    if ( dueDate == "" ){
+        timerString = "invalid date" ;
+    }
 
-    timerString = "Past Due" ;
+    var x = getTimeRemaining(dueDate);
 
-   }else if ( dueDate == null ){
-    timerString = "invalid date" ;
-
-   } else if ( x.days >= 1){
-         timerString = x.days  + x.hours ;
-
-    } else if( x.days < 1 && x.hours >= 1){
-
-        timerString = x.hours  + x.minutes;
-
-    } else if( x.days < 1 && x.hours < 1){
-
-    timerString = x.minutes + x.seconds;
-
-}
+    // Determines display based on remaining time
+    if ( x.days >= 1){
+        timerString = x.days + ' days '  + x.hours + ' hours';
+    } else if( x.hours >= 1){
+        timerString = x.hours + ' hours '  + x.minutes + ' minutes';
+    } else if( x.minutes >= 1){
+        timerString = x.minutes + ' minutes ' + x.seconds + ' seconds';
+    } else {
+        timerString = "Past Due" ;
+    }
    
-
-
-   //temporary, change fill timerString with the calculated countdown string
-    //timerString = dueDate;
-
     // HTML LINE
     document.getElementById('countdown').innerHTML = timerString;
 }

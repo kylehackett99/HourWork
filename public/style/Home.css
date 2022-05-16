@@ -266,13 +266,6 @@
   }
 }
 
-#countdown {
-  text-align: center;
-  border-radius: 10px;
-  padding: 10px;   
-  background: #1c45a8;
-  color: white;
-}
 
 @media (max-width: 575px) {
   .u-section-1 .u-sheet-1 {
