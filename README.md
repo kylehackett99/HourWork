@@ -25,7 +25,7 @@ The flashcard will be on the left side with a previous(left) and next(right) but
 There will also be three buttons to be selected based off your understanding: Easy, Medium, and Hard.
 
 The Mind Map will be on the right side. Each node will be connected to a flashcard. Users are able to click on each node which would prompt the flashcard
-to the left. 
+to the left.
 
 Users should work their way through their deck of flash cards using the next and previous buttons, and self report the difficulty they experienced in recalling the information on that card.
 
@@ -43,7 +43,7 @@ The public folder can be moved from within it's parent directory and be hosted.
 ### Setup
 1. [Install Node JS](https://nodejs.org/en/download/)
    Description
- 
+
 2. Install Webpack
   It should already be installed within the node_modules directory, but if not run the following command in the HourWork directory
    ```bash
@@ -58,7 +58,7 @@ The public folder can be moved from within it's parent directory and be hosted.
 
 ### Development
 Run a live React server (updates the page as you save your code)
-  - Run the following command in HourWork 
+  - Run the following command in HourWork
    ```bash
     npm run dev
    ```
@@ -69,7 +69,7 @@ Run a live React server (updates the page as you save your code)
 ### Build
   Build production code (condensed and allows for NPM modules such as the Mind Map API and others
   to be run in browser)
-  - Run the following command in HourWork 
+  - Run the following command in HourWork
    ```bash
     npm run build
    ```
