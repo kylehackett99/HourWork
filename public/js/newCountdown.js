@@ -12,15 +12,24 @@ function getTimeRemaining (dueDate) {
     };
 }
 
+
+var intervalID = 0;
+function updateTime(){
+ setTimer();
+}
+
+
 // gets due Date from the session storage and updates the display according to the time retrieved
 function setTimer() {
+    console.log(1);
     // This is where I grab the dueDate from session storage
     var dueDate = sessionStorage.getItem('due-date');
 
     var timerString = "";
 
-    if ( dueDate == "" ){
-        timerString = "invalid date" ;
+    if ( dueDate == "" || dueDate === "undefined"){
+        document.getElementById("countdown").innerHTML = "countdown to due date:<br>invalid date provided!";
+        return;
     }
 
     var x = getTimeRemaining(dueDate);
@@ -32,13 +41,21 @@ function setTimer() {
         timerString = x.hours + ' hours '  + x.minutes + ' minutes';
     } else if( x.minutes >= 1){
         timerString = x.minutes + ' minutes ' + x.seconds + ' seconds';
+    } else if( x.seconds >= 1){
+        timerString = x.seconds + ' seconds';
     } else {
-        timerString = "Past Due" ;
+        document.getElementById("countdown").innerHTML = "countdown to due date:<br/> file is past due!";
+        return;
     }
    
     // HTML LINE
-    document.getElementById('countdown').innerHTML = timerString;
+    document.getElementById('countdown').innerHTML = "countdown to due date:<br>" +  timerString;
 }
 
+/* MAINTAIN COUNTDOWN AFTER REFRESH */
+if (sessionStorage.getItem("due-date")) {
+    intervalID = setInterval(updateTime, 1000,);
+} else {
+    document.getElementById('countdown').innerHTML = "countdown to due date:<br> upload to get started!";
+}
 
-setTimer();

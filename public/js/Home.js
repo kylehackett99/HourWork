@@ -15,31 +15,7 @@ fileChosen.addEventListener('mouseout', function handleMouseOut() {
     fileChosen.style.cursor = 'default';
   });
 
-/* interval var for countdown */
-var interval;
 
-/* countdown -- helper function that creates a countdown using the due date */
-function countdown(dueDate) {
-    var endDate = new Date(dueDate).getTime();
-    var currDate = new Date().getTime();
-    var distance = endDate - currDate;
-
-    // if date object is valid, start countdown
-    if (!isNaN(endDate)) {
-        if (distance < 0) {
-            clearInterval(interval);
-            document.getElementById("countdown").innerHTML = "countdown to due date:<br>0d 0h 0m";
-        } else {
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById("countdown").innerHTML = "countdown to due date:<br>" + days + "d " + hours + "h " + minutes + "m";
-        }
-    // otherwise, return an error message to the countdown component
-    } else {
-        document.getElementById("countdown").innerHTML = "countdown to due date:<br>invalid date provided!";
-    }
-}
 
 fileUploadButton.addEventListener('change', function() {
 
@@ -72,9 +48,6 @@ fileUploadButton.addEventListener('change', function() {
         /* title and due date -- title will be at the center of the mindmap */
         title = lines[0];
         dueDate = lines[1];
-
-        /* SET COUNTDOWN */
-        interval = setInterval(countdown(dueDate), 1000);
        
         for (var line = MAP_START_LINE; line < lines.length-1; line++) {
             /* Gets the leading heading
@@ -158,20 +131,71 @@ fileUploadButton.addEventListener('change', function() {
         sessionStorage.setItem("due-date", dueDate);
         sessionStorage.setItem("head-node", JSON.stringify(headNode));
     
+        /** FILE VALIDATION **/
+        var validFileName = false;
+        var hasContents = false;
+        var validDate = false;
+        var validHeadNode = false;
 
+        // verify that file has contents
+        if(sessionStorage.getItem("file-contents")){
+            hasContents = true;
+        }
+        // verify that theres a filename
+        if(sessionStorage.getItem("file-name")){
+            validFileName = true;
+        }
+        // verify that date is legit
+            // checks that there is fact data stored in date
+            // AND that the date stored is legit
+        if(!isNaN(new Date(sessionStorage.getItem("due-date")))){ 
+            validDate = true;
+        }
+        // verify that head node is at least partially valid
+        if(sessionStorage.getItem("head-node")){
+            var headNode = JSON.parse(sessionStorage.getItem("head-node"));
+            // checks children, and front text
+            if(headNode.children.length != 0 && headNode.front != ""){
+                validHeadNode = true;
+            }
+        }
+        
+        // Generates Alert indicating errors in user's uploaded file
+        //  Clears session storage if bad file, clearing whats in view
+        if(!hasContents){
+            sessionStorage.clear();
+            alert("Nothing in file, please upload a file with properly formatted contents.");
+        } else if (!validFileName || !validDate || !validHeadNode){
+            sessionStorage.clear();
+            var alertStr = "";
+            if(!validFileName){
+                alertStr += "Invalid File Name\n";
+            }
+            if(!validDate){
+                alertStr += "Invalid Date\n";
+            }
+            if(!validHeadNode){
+                alertStr += "Invalid Flashcard Formatting\n";
+            }
+
+            alertStr += "Fix Above Errors and Re-Upload\n";
+
+            alert(alertStr);
+        }
+
+        
+        // Populates Page
         var event = new Event('newFileUploaded');
-
         document.dispatchEvent(event);
-        setTimer();
-
+        // starts recalculating time each second
+        intervalID = setInterval(updateTime, 1000,);
+        
+    
     }
     fileReader.readAsText(file);
 })
 
-/* MAINTAIN COUNTDOWN AFTER REFRESH */
-if (sessionStorage.getItem("due-date")) {
-    interval = setInterval(countdown(sessionStorage.getItem("due-date")), 1000);
-}
+
 
 /* MAINTAIN FILE CONTENTS AFTER REFRESH */
 if (sessionStorage.getItem("file-contents")) {
