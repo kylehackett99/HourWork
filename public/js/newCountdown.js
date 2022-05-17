@@ -1,5 +1,5 @@
 
-// Calculates the Time in Days.hours.minutes.seconds until desired due date
+/* calculates the time in days.hours.minutes.seconds until desired due date */
 function getTimeRemaining (dueDate) {
     const total = new Date(dueDate) - new Date();
     const seconds = Math.floor( (total/1000) % 60 );
@@ -12,42 +12,37 @@ function getTimeRemaining (dueDate) {
     };
 }
 
-
 var intervalID = 0;
-function updateTime(){
+function updateTime() {
  setTimer();
 }
 
-
 // gets due Date from the session storage and updates the display according to the time retrieved
 function setTimer() {
-    console.log(1);
-    // This is where I grab the dueDate from session storage
     var dueDate = sessionStorage.getItem('due-date');
-
     var timerString = "";
 
-    if ( dueDate == "" || dueDate === "undefined"){
+    if (dueDate == "" || dueDate === "undefined") {
         document.getElementById("countdown").innerHTML = "countdown to due date:<br>invalid date provided!";
         return;
     }
 
     var x = getTimeRemaining(dueDate);
 
-    // Determines display based on remaining time
-    if ( x.days >= 1){
+    /* determines display based on remaining time */
+    if ( x.days >= 1) {
         timerString = x.days + ' days '  + x.hours + ' hours';
-    } else if( x.hours >= 1){
+    } else if( x.hours >= 1) {
         timerString = x.hours + ' hours '  + x.minutes + ' minutes';
-    } else if( x.minutes >= 1){
+    } else if( x.minutes >= 1) {
         timerString = x.minutes + ' minutes ' + x.seconds + ' seconds';
-    } else if( x.seconds >= 1){
+    } else if( x.seconds >= 1) {
         timerString = x.seconds + ' seconds';
     } else {
         document.getElementById("countdown").innerHTML = "countdown to due date:<br/> file is past due!";
         return;
     }
-   
+
     // HTML LINE
     document.getElementById('countdown').innerHTML = "countdown to due date:<br>" +  timerString;
 }

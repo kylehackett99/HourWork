@@ -1,7 +1,7 @@
-import React, {useState} from 'react'; 
+import React, {useState} from 'react';
 import Graph from 'react-graph-vis';
 
-// Options for the Mindmap
+// options for the Mindmap
 const options = {
   autoResize: true,
   layout: {
@@ -9,7 +9,7 @@ const options = {
   },
   edges: {
     color: "#000000"
-  }, 
+  },
   nodes: {
     shape: "box",
     font: {
@@ -19,7 +19,7 @@ const options = {
   },
 };
 
-// Generates a Hex color for a node in the mindmap
+// generates a Hex color for a node in the mindmap
 function randomColor() {
   const color1 = '#007BFF';
   const color2 = '#226fce';
@@ -59,9 +59,9 @@ function randomColor() {
   }
 }
 
-//Formats the set of nodes from a graph and reformats it for the mindmap api
+// formats the set of nodes from a graph and reformats it for the mindmap api
 function formatNodes(nodeSet) {
-  
+
   var formatted = new Array();
 
   nodeSet.forEach(element => {
@@ -76,11 +76,11 @@ function formatNodes(nodeSet) {
   return formatted;
 }
 
-//Formats the map of edges from a graph and reformats it for the mindmap api
+// formats the map of edges from a graph and reformats it for the mindmap api
 function formatEdges(adjacencyMap) {
 
   var formatted = new Array();
-  
+
   var i = 0;
   adjacencyMap.forEach(element => {
     element.forEach (function(value, key) {
@@ -90,11 +90,9 @@ function formatEdges(adjacencyMap) {
     })
     i++;
   });
-  
+
   return formatted;
 }
-
-
 
 export function Mindmap(props) {
 
@@ -107,15 +105,13 @@ export function Mindmap(props) {
 
     },
 
-    // Interactible events
+    // interactible events
     events: {
       select: ({ nodes, edges }) => {
-        // call back to main with id of the selected node
-          // do this so that the id can be taken in by the flashcard view upon selection
-         
+        /* call back to main with ID of the selected node, do this so that
+         * the ID can be taken in by the flashcard view upon selection */
         props.sendBackNode(nodes)
-
-      }, 
+      },
     }
   })
 
