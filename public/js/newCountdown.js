@@ -22,7 +22,7 @@ function setTimer() {
     var dueDate = sessionStorage.getItem('due-date');
     var timerString = "";
 
-    if (dueDate == "" || dueDate === "undefined") {
+    if (dueDate == "" || dueDate === "undefined" || !dueDate) {
         document.getElementById("countdown").innerHTML = "countdown to due date:<br>invalid date provided!";
         return;
     }

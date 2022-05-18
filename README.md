@@ -31,6 +31,13 @@ Users should work their way through their deck of flash cards using the next and
 
 ## Production Build
 
+### Live Deployment
+
+The latest live production build of the HourWork Study Assistant can be found [here](https://kylehackett99.github.io/HourWork/)
+
+
+### Local Build
+
 The latest production build of the HourWork Study Assistant can be found in [HourWork/public](https://github.com/kylehackett99/HourWork)
 
 
@@ -42,7 +49,7 @@ The public folder can be moved from within it's parent directory and be hosted.
 
 ### Setup
 1. [Install Node JS](https://nodejs.org/en/download/)
-   Description
+
 
 2. Install Webpack
   It should already be installed within the node_modules directory, but if not run the following command in the HourWork directory
