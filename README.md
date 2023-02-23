@@ -148,7 +148,7 @@ Small, colorful lizards
 [Nikol Vladinska](https://github.com/nikolvladinska),
 [Kyle Hackett](https://github.com/kylehackett99),
 Christopher Gonzalez,
-Christa Som,
+[Christa Som](https://github.com/csom07),
 Vivek Patel,
 & Parth Patel
 
